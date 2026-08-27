@@ -47,11 +47,15 @@
 
 ## 📝 4. Escopo Funcional (User Stories)
 
-> Uma story por vez, no formato do modelo abaixo. Toda story nasce `Draft` —
-> **só você promove a `Ready`**, quando as regras estiverem definidas.
-> As stories exigidas pelo escopo mínimo da ficha são obrigatórias.
+> Uma story por vez, no formato do modelo abaixo. Cada uma carrega dois eixos:
+> **Prioridade (MoSCoW)** — `Must Have` é o escopo comprometido do projeto
+> (o escopo mínimo da ficha é `Must Have` por definição); `Should`/`Could`
+> entram se sobrar tempo, mas ficam documentadas — nada se perde; o
+> `Won't Have` vira item da seção *Fora de Escopo* — e **Tamanho (esforço)** —
+> `S` cabe numa sessão, `M` vira algumas tarefas no plano, `L` pede divisão.
+> Toda story nasce `Draft` — **só você promove a `Ready`**.
 
-### US01 — [título] · `S|M|L` · Status: `Draft`
+### US01 — [título] · `Must|Should|Could Have` · `S|M|L` · Status: `Draft`
 
 **Como** [perfil], **eu quero** [ação] **para que** [objetivo].
 
@@ -74,7 +78,8 @@
 
 ## 🚫 6. Fora de Escopo (Non-goals)
 
-> O que o produto deliberadamente **não** faz neste semestre.
+> O que o produto deliberadamente **não** faz neste semestre — o `Won't Have`
+> do MoSCoW, com o motivo de cada corte.
 
 -
 

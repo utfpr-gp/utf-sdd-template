@@ -22,6 +22,10 @@ que foi decidida. O que não estiver escrito lá, você pergunta; não escolhe.
    **não existem** ou estão vazias. Se já existirem com conteúdo, **PARE**: o setup
    roda uma vez, e rodá-lo de novo por cima é destrutivo.
 3. Você está na `main`, limpa e atualizada.
+4. O `gh` está autenticado (`gh auth status`) **ou** o MCP do GitHub está
+   disponível — sem um dos dois, a etiqueta e o Pull Request do fim não saem.
+   Se faltar, **PARE** e oriente: instalar o `gh`, `gh auth login`, com os
+   escopos `repo` e `workflow`.
 
 ## Passo 1 — Branch
 
@@ -37,6 +41,10 @@ Gere cada app com o gerador oficial da stack declarada no `architecture.md`
 (ex.: `@nestjs/cli` para NestJS, `ng new` para Angular, `create-vite` para React/Vue),
 dentro da estrutura de pastas que o documento descreve.
 
+- **Antes de rodar, confirme na documentação atual** (MCP Context7, se
+  disponível) a versão corrente de cada CLI e sua compatibilidade com o Node
+  instalado — gerador desatualizado ou incompatível descoberto no meio do passo
+  é retrabalho.
 - Desative o `git init` interno do gerador — o repositório é um só, na raiz.
 - Aceite os padrões do gerador. Não adicione biblioteca que o `architecture.md`
   não menciona.
@@ -46,9 +54,14 @@ dentro da estrutura de pastas que o documento descreve.
 
 ## Passo 3 — A raiz
 
-1. `package.json` da raiz com os scripts de orquestração descritos no
-   `architecture.md` (ex.: `start`, `api`, `test`). Se o documento traz os scripts
-   prontos, copie-os literalmente.
+1. `.gitignore` da raiz cobrindo `node_modules/`, artefatos de build (`dist/`,
+   `build/`, `.angular/`, `coverage/`) e `.env` — **antes do primeiro
+   `git add`**. Confira o que os geradores deixaram: com `--skip-git`, alguns
+   (ex.: NestJS) não criam `.gitignore` próprio — não é esquecimento, o da
+   raiz cobre todos os apps. Valide com `git status --short`: se aparecerem
+   milhares de arquivos, o ignore não cobriu algo. (A IDE mostrar uma
+   avalanche de untracked **entre** a geração e este passo é normal — ela
+   some aqui.)
 2. `.gitattributes` com:
 
    ```
@@ -58,7 +71,9 @@ dentro da estrutura de pastas que o documento descreve.
    Sem isso, um repositório tocado em Windows e Linux reescreve todos os arquivos a
    cada troca de máquina, e o diff de qualquer PR vira ruído.
 
-3. `.gitignore` da raiz cobrindo `node_modules`, artefatos de build e `.env`.
+3. `package.json` da raiz com os scripts de orquestração descritos no
+   `architecture.md` (ex.: `start`, `api`, `test`). Se o documento traz os scripts
+   prontos, copie-os literalmente.
 
 ## Passo 4 — As ferramentas do método
 
@@ -67,7 +82,13 @@ dentro da estrutura de pastas que o documento descreve.
    conforme o Apêndice B do guia.
 2. `.github/workflows/portao-de-entendimento.yml` — o Portão de Entendimento,
    copiado do Apêndice B do guia, sem alterações.
-3. `specs/README.md` — o índice de specs, com a tabela vazia:
+3. A etiqueta de manutenção no GitHub (é ela que marca PRs sem spec, a começar
+   pelo deste setup):
+
+   ```
+   gh label create manutencao --description "PR tecnico, sem spec" --color FBCA04
+   ```
+4. `specs/README.md` — o índice de specs, com a tabela vazia:
 
    ```markdown
    # Índice de specs
@@ -89,11 +110,24 @@ motivo, **PARE** e relate. Não tente uma terceira abordagem.
 
 ## Passo 6 — Entrega
 
-1. Commits pequenos e nomeados por passo (apps, raiz, ferramentas do método).
+1. Commits pequenos e nomeados por passo (apps, raiz, ferramentas do método) —
+   **cada um proposto ao usuário antes** ("commit do passo X: <mensagem>?"),
+   nenhum sem o OK dele.
 2. Relate ao usuário: o que foi gerado, a saída dos testes, e as decisões que o
    `architecture.md` não cobria (Passo 2) para ele ratificar no documento.
+   **Ratificação aprovada pelo usuário = atualize o `architecture.md` na mesma
+   branch**, antes do PR — documento e scaffold entram juntos, contando a mesma
+   história.
 3. Instrua o usuário a abrir o PR com a etiqueta **`manutencao`** — setup é Task,
-   não história.
+   não história. Explique os dois detalhes que ninguém adivinha:
+   - **O template de PR só carrega da branch padrão.** Como o
+     `pull_request_template.md` está nascendo **neste** PR, ele ainda não
+     existe na `main` — no primeiro PR, cole o modelo à mão no corpo. Do
+     segundo em diante, o GitHub preenche sozinho.
+   - **`Closes #<n>` no corpo do PR** liga o PR à Issue e a fecha no merge — é
+     esse elo que fecha a rastreabilidade Issue → spec → código exigida na
+     avaliação. O PR do setup não fecha Issue nenhuma, então não leva
+     `Closes` — mas todo PR de história leva.
 
 ---
 

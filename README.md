@@ -19,15 +19,17 @@ nos portões.
 | Requisitos | `/utf-prd` | `docs/prd.md` — o QUE o produto faz |
 | Arquitetura | `/utf-architecture` | `docs/architecture.md` — onde as coisas moram |
 | Scaffold | `/utf-setup` | `apps/` — o monorepo, nascendo verde |
+| Backlog | `/utf-backlog` | Issues no GitHub + Kanban no Projects |
 | Cada história | `/utf-issue <n>` → `/utf-task` | spec, plano e código, tarefa a tarefa |
 | Aprender | `/utf-tutor` | a explicação didática de cada passo |
 
 O passo a passo detalhado está em [`docs/tutorial-sdd.md`](docs/tutorial-sdd.md);
 o porquê de cada regra, em [`docs/guia-sdd.md`](docs/guia-sdd.md).
 
-Depois do `/utf-prd`, crie o Kanban no **GitHub Projects** e mapeie as user
-stories em Issues (ID3) — a descrição da Issue só linka o PRD, nunca copia
-regra de negócio.
+Pré-requisitos das integrações: **`gh` autenticado (`gh auth login`, escopos
+`repo`, `workflow` e `project`) ou MCP do GitHub** — sem isso, backlog, etiquetas
+e PRs não saem. Com MCP Context7 disponível, os fluxos conferem versões de
+ferramentas na documentação atual antes de decidir.
 
 ---
 

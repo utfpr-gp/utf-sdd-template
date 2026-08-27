@@ -13,8 +13,9 @@ Git e de PR estão no [CONTRIBUTING](../CONTRIBUTING.md).
 ## Antes de começar (uma vez por história)
 
 1. A história está no [prd.md](./prd.md) com status `🟡 Ready` (regras definidas).
-2. Existe a Issue no GitHub Projects apontando para ela — a descrição só linka o
-   PRD, nunca copia regra de negócio.
+2. Existe a Issue no GitHub Projects apontando para ela — criada pelo
+   `/utf-backlog`, com a descrição só linkando o PRD, nunca copiando regra de
+   negócio.
 
 ---
 
@@ -92,6 +93,7 @@ palavras, lista os apontamentos aceitos e recusados (saem dos arquivos
 | `/utf-prd` | Uma vez por projeto — a entrevista que gera o `docs/prd.md` |
 | `/utf-architecture` | Uma vez, depois do PRD — a entrevista que gera o `docs/architecture.md` |
 | `/utf-setup` | Uma vez, depois do architecture — gera o scaffold do monorepo |
+| `/utf-backlog` | Depois do PRD aprovado (e a cada leva de stories `Ready`) — cria as Issues e orienta o Kanban |
 | `/utf-issue <n>` | Uma vez, para iniciar o ciclo da Issue (spec → plano) |
 | `/utf-task [n]` | Uma vez **por tarefa** do plano — sem número, executa a próxima pendente |
 | `/utf-tutor spec` | Antes de aprovar a spec |
