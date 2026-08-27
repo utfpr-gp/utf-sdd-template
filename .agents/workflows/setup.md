@@ -27,28 +27,13 @@ que foi decidida. O que não estiver escrito lá, você pergunta; não escolhe.
    Se faltar, **PARE** e oriente: instalar o `gh`, `gh auth login`, com os
    escopos `repo` e `workflow`.
 
-## Passo 1 — Branch e a rede de proteção
+## Passo 1 — Branch
 
 ```
 git switch -c setup-monorepo
 ```
 
 Nenhum arquivo é criado antes da branch existir. A `main` é bloqueada.
-
-Antes de qualquer gerador rodar, crie e commite a rede de proteção — é ela que
-impede a IDE de mostrar dez mil arquivos de `node_modules` como diff no passo
-seguinte:
-
-1. `.gitignore` da raiz cobrindo `node_modules/`, artefatos de build
-   (`dist/`, `build/`, `.angular/`, `coverage/`) e `.env`.
-2. `.gitattributes` com:
-
-   ```
-   * text=auto eol=lf
-   ```
-
-   Sem isso, um repositório tocado em Windows e Linux reescreve todos os arquivos a
-   cada troca de máquina, e o diff de qualquer PR vira ruído.
 
 ## Passo 2 — Os apps, pelos geradores oficiais
 
@@ -61,8 +46,6 @@ dentro da estrutura de pastas que o documento descreve.
   instalado — gerador desatualizado ou incompatível descoberto no meio do passo
   é retrabalho.
 - Desative o `git init` interno do gerador — o repositório é um só, na raiz.
-  **Com isso, alguns geradores (ex.: NestJS) não criam `.gitignore` próprio** —
-  não é esquecimento: o `.gitignore` da raiz (Passo 1) cobre todos os apps.
 - Aceite os padrões do gerador. Não adicione biblioteca que o `architecture.md`
   não menciona.
 - Se o `architecture.md` declara ferramenta de teste diferente do padrão do gerador,
@@ -71,7 +54,24 @@ dentro da estrutura de pastas que o documento descreve.
 
 ## Passo 3 — A raiz
 
-1. `package.json` da raiz com os scripts de orquestração descritos no
+1. `.gitignore` da raiz cobrindo `node_modules/`, artefatos de build (`dist/`,
+   `build/`, `.angular/`, `coverage/`) e `.env` — **antes do primeiro
+   `git add`**. Confira o que os geradores deixaram: com `--skip-git`, alguns
+   (ex.: NestJS) não criam `.gitignore` próprio — não é esquecimento, o da
+   raiz cobre todos os apps. Valide com `git status --short`: se aparecerem
+   milhares de arquivos, o ignore não cobriu algo. (A IDE mostrar uma
+   avalanche de untracked **entre** a geração e este passo é normal — ela
+   some aqui.)
+2. `.gitattributes` com:
+
+   ```
+   * text=auto eol=lf
+   ```
+
+   Sem isso, um repositório tocado em Windows e Linux reescreve todos os arquivos a
+   cada troca de máquina, e o diff de qualquer PR vira ruído.
+
+3. `package.json` da raiz com os scripts de orquestração descritos no
    `architecture.md` (ex.: `start`, `api`, `test`). Se o documento traz os scripts
    prontos, copie-os literalmente.
 
@@ -110,8 +110,9 @@ motivo, **PARE** e relate. Não tente uma terceira abordagem.
 
 ## Passo 6 — Entrega
 
-1. Commits pequenos e nomeados por passo (rede de proteção, apps, raiz,
-   ferramentas do método).
+1. Commits pequenos e nomeados por passo (apps, raiz, ferramentas do método) —
+   **cada um proposto ao usuário antes** ("commit do passo X: <mensagem>?"),
+   nenhum sem o OK dele.
 2. Relate ao usuário: o que foi gerado, a saída dos testes, e as decisões que o
    `architecture.md` não cobria (Passo 2) para ele ratificar no documento.
    **Ratificação aprovada pelo usuário = atualize o `architecture.md` na mesma
