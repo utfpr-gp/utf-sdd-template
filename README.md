@@ -1,6 +1,6 @@
 # 🎓 UTF SDD Template
 
-Template da disciplina de **Engenharia Assistida por IA** (UTFPR). Ele traz o
+Template da disciplina de **Tópicos Especiais** (UTFPR). Ele traz o
 método completo — comandos, agentes, workflows e guias — para você desenvolver
 seu projeto com **Spec-Driven Development**: a IA escreve o código; você decide
 nos portões.
