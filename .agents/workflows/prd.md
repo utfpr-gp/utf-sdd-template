@@ -31,9 +31,13 @@ Uma seção por vez; feche cada uma mostrando o texto e colhendo o OK antes de s
 1. **Visão Geral e Objetivo** — o problema, a solução, como saberemos que deu certo.
 2. **Glossário Ubíquo** — os termos do negócio, cada um com "não confundir com".
 3. **Atores e Permissões** — quem usa, o que pode e o que **não** pode (a coluna "não pode" vira Guard e role depois).
-4. **User Stories** — uma por vez: "Como (perfil), quero (ação), para (objetivo)", tamanho (`S`/`M`/`L`) e critérios de aceite **Dado/Quando/Então**, cada um verificável por teste — **incluindo os caminhos tristes** (erro, lista vazia, abandono no meio). IDs sequenciais `USnn`. Toda story nasce `Draft` — **só o aluno promove a `Ready`**. As stories que o **escopo mínimo da ficha** exige são obrigatórias no conjunto.
+4. **User Stories** — uma por vez: "Como (perfil), quero (ação), para (objetivo)" e critérios de aceite **Dado/Quando/Então**, cada um verificável por teste — **incluindo os caminhos tristes** (erro, lista vazia, abandono no meio). IDs sequenciais `USnn`. Cada story carrega **dois eixos, que não se misturam**:
+   - **Prioridade (MoSCoW):** `Must Have` | `Should Have` | `Could Have`. **O conjunto de Must Have É o escopo do projeto** — as stories que o escopo mínimo da ficha exige são `Must Have` por definição. `Should`/`Could` ficam documentadas e entram se sobrar tempo: escopo flexível, nada se perde. O `Won't Have` não vira story — vira item da seção *Fora de Escopo*.
+   - **Tamanho (esforço):** `S` cabe numa sessão | `M` vira algumas tarefas no plano | `L` é sinal de dividir a história antes de implementar.
+
+   Toda story nasce `Draft` — **só o aluno promove a `Ready`**.
 5. **Regras de Negócio** — `RNnn`, cada uma referenciada pelas stories que a usam.
-6. **Fora de Escopo** — o que o produto deliberadamente não faz neste semestre.
+6. **Fora de Escopo** — o que o produto deliberadamente não faz neste semestre (o `Won't Have` do MoSCoW mora aqui, com o motivo).
 7. **Requisitos Não Funcionais** — só os que o aluno consegue justificar na defesa.
 
 ## Passo 3 — Conferência contra o checklist
@@ -44,7 +48,7 @@ Percorra o `docs/checklist.md` e confira o rascunho contra **todo ID cuja sement
 
 1. Grave `docs/prd.md` completo.
 2. **PARE.** O aluno lê o documento inteiro, fora do chat. Ajuste agora custa uma conversa; depois, custa uma spec.
-3. O commit do `prd.md` é **dele**. Próximo passo: `/utf-architecture`.
+3. O commit do `prd.md` é **dele**. Próximos passos: `/utf-architecture`; e, quando o tema tiver o **aceite do professor** e as stories estiverem `Ready`, `/utf-backlog` leva as stories para o GitHub (Issues + Kanban).
 
 ## Proibições
 

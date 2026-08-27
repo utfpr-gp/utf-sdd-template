@@ -6,6 +6,10 @@ description: Define o fluxo operacional obrigatório da IA. Exige a criação e 
 
 Sempre que o usuário pedir para trabalhar em uma Issue (Feature), você atuará como o orquestrador do método SDD seguindo ESTA ORDEM rigorosa:
 
+**Passo 0: Pré-condições**
+- Acesso ao GitHub: MCP do GitHub disponível **ou** `gh` autenticado (`gh auth status`). Sem um dos dois, **PARE** — este fluxo lê Issues e prepara PR.
+- A Issue existe no GitHub. Se as Issues das stories ainda não foram criadas, mande rodar `/utf-backlog` primeiro.
+
 **Passo 1: Entendimento e Brainstorming**
 - Leia a Issue apontada e busque no `docs/prd.md` os critérios e o Glossário Ubíquo.
 - Faça perguntas ao usuário de forma proativa. Questione sobre casos de borda, caminhos tristes (ex: falhas de rede, dados inválidos) e como validar os critérios de aceite.
