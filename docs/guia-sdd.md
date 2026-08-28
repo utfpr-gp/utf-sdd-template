@@ -1,4 +1,4 @@
-# Guia da Disciplina: Desenvolvimento Dirigido por Especificação (SDD)
+# Guia da Disciplina: UTF-SDD — Desenvolvimento Dirigido por Especificação, por Portões
 
 Este documento explica o método de trabalho da disciplina. Leia antes da primeira
 entrega e volte a ele sempre que tiver dúvida sobre "como eu deveria estar fazendo
@@ -18,7 +18,15 @@ O método desta disciplina existe para resolver esse caos. A regra de ouro é:
 > **A IA escreve o código. Você continua responsável por cada decisão.**
 
 Para materializar isso, adotaremos o **Spec-Driven Development (SDD)** — ou
-Desenvolvimento Dirigido por Especificação — como metodologia central.
+Desenvolvimento Dirigido por Especificação — como metodologia central, na
+variante desta disciplina: o **UTF-SDD**, um **SDD por Portões** (*Gated SDD*).
+O que o distingue dos SDDs de mercado são três compromissos: **nada avança sem
+um portão de decisão humana registrada** (aprovar a spec, aceitar a explicação
+do tutor, triar apontamentos, autorizar cada commit); **quem revisa nunca é
+quem escreveu** (implementador de contexto limpo, revisores somente-leitura,
+auditor final); e **todo artefato é evidência para a defesa** — pareceres,
+decisões e commits existem para provar que você entendeu o que assinou. É o
+*architect-in-the-loop*: a IA é a equipe; o arquiteto do sistema é você.
 
 Você não será avaliado por conseguir gerar código rápido. Sua avaliação será baseada
 na sua capacidade de aplicar o SDD para dirigir a IA, auditar o que ela gerou e
@@ -78,6 +86,19 @@ descrito no fim do §4.
 Antes de codificar a primeira Issue, você estabelece o entendimento compartilhado do
 projeto. São **quatro documentos e um conjunto de tokens visuais**, produzidos uma
 única vez e mantidos vivos daí em diante.
+
+A ordem operacional da fase, com o comando que conduz cada etapa e o portão que a
+fecha:
+
+| # | Etapa | Comando | 🚪 Portão |
+| --- | --- | --- | --- |
+| 1 | Requisitos (`docs/prd.md`) | `/utf-prd` | Você lê, ajusta e **commita**; o professor aceita o tema |
+| 2 | Backlog (Issues + Kanban no Projects) | `/utf-backlog` | Você aprova a lista de Issues **antes** de elas serem criadas |
+| 3 | Arquitetura (`docs/architecture.md`) | `/utf-architecture` | Você lê e **commita** |
+| 4 | Scaffold (`apps/`, verde) | `/utf-setup` | Ratificações + o primeiro PR (`manutencao`) |
+
+Os comandos são entrevistas: **uma pergunta por vez, quem decide é você** — o agente
+organiza e escreve. As seções seguintes explicam o que cada documento contém e por quê.
 
 Não é burocracia de início de semestre. É que **o ciclo por Issue amplifica o
 contexto que existe**. Se há um PRD com glossário e um documento de arquitetura, cada
@@ -371,8 +392,11 @@ Vamos usar um exemplo real que você vai enfrentar: *"o usuário precisa pagar o
 
 ### Passo 1 — Da ideia para a Issue
 
-Você quebra o PRD em histórias de usuário e cria as Issues no GitHub Projects.
-Uma Issue = uma coisa que o usuário consegue fazer.
+Você quebra o PRD em histórias de usuário e as leva para o GitHub Projects.
+Uma Issue = uma coisa que o usuário consegue fazer. Para as **Features**, esse
+transporte é o `/utf-backlog` (Fase 0, etapa 2): uma Issue por story `Ready`,
+com a lista aprovada por você antes de existir — e ele pode rodar de novo a
+cada leva de stories promovidas. Bugs e Tasks nascem à mão, direto no GitHub.
 
 > **Issue #27** — Como cliente, quero pagar meu pedido com cartão ou Pix, para
 > concluir a compra.

@@ -1,9 +1,10 @@
 # 🎓 UTF SDD Template
 
-Template da disciplina de **Tópicos Especiais** (UTFPR). Ele traz o
-método completo — comandos, agentes, workflows e guias — para você desenvolver
-seu projeto com **Spec-Driven Development**: a IA escreve o código; você decide
-nos portões.
+Template da disciplina de **Tópicos Especiais** (UTFPR). Ele traz o método
+completo — comandos, agentes, workflows e guias — para você desenvolver seu
+projeto com **UTF-SDD**, um **SDD por Portões** (*Gated Spec-Driven
+Development*): a IA escreve o código; **você decide nos portões**, quem revisa
+nunca é quem escreveu, e todo artefato é evidência para a defesa.
 
 ## 🚀 Como começar
 
@@ -17,9 +18,9 @@ nos portões.
 | Fase | Comando | Produz |
 | --- | --- | --- |
 | Requisitos | `/utf-prd` | `docs/prd.md` — o QUE o produto faz |
+| Backlog | `/utf-backlog` | Issues no GitHub + Kanban no Projects |
 | Arquitetura | `/utf-architecture` | `docs/architecture.md` — onde as coisas moram |
 | Scaffold | `/utf-setup` | `apps/` — o monorepo, nascendo verde |
-| Backlog | `/utf-backlog` | Issues no GitHub + Kanban no Projects |
 | Cada história | `/utf-issue <n>` → `/utf-task` | spec, plano e código, tarefa a tarefa |
 | Aprender | `/utf-tutor` | a explicação didática de cada passo |
 

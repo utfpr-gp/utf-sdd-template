@@ -53,7 +53,8 @@ fazer isso; se não conseguir, não é erro — siga com a orientação manual.
 ## Passo 4 — Entrega
 
 Relate: Issues criadas (número e título), stories puladas (e por quê), e o
-estado do Kanban. Lembre o fluxo: a implementação de cada Issue começa por
+estado do Kanban. Lembre o fluxo: se `/utf-architecture` e `/utf-setup` ainda
+não rodaram, eles vêm antes; então a implementação de cada Issue começa por
 `/utf-issue <n>`, **uma por vez**, começando pelos `Must Have`.
 
 ## Proibições

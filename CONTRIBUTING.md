@@ -1,10 +1,10 @@
-# Guia de Contribuição e Método de Trabalho (SDD)
+# Guia de Contribuição e Método de Trabalho (UTF-SDD)
 
 Bem-vindo ao repositório! Este documento explica como trabalhamos aqui. Leia antes de iniciar sua primeira entrega e volte a ele sempre que tiver dúvidas sobre "como eu deveria estar fazendo isso".
 
 ## 🥇 A Regra de Ouro
 
-Pedir código para uma Inteligência Artificial é fácil. O problema aparece semanas depois, quando ninguém lembra o porquê de uma regra existir e alterar o sistema vira um caos. Para resolver isso, adotamos o **Spec-Driven Development (SDD)**.
+Pedir código para uma Inteligência Artificial é fácil. O problema aparece semanas depois, quando ninguém lembra o porquê de uma regra existir e alterar o sistema vira um caos. Para resolver isso, adotamos o **UTF-SDD**, um **SDD por Portões** (*Gated Spec-Driven Development*): nada avança sem um portão de decisão humana registrada, e quem revisa nunca é quem escreveu.
 
 A regra número um deste repositório é:
 
