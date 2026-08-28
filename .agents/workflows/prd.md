@@ -48,7 +48,7 @@ Percorra o `docs/checklist.md` e confira o rascunho contra **todo ID cuja sement
 
 1. Grave `docs/prd.md` completo.
 2. **PARE.** O aluno lê o documento inteiro, fora do chat. Ajuste agora custa uma conversa; depois, custa uma spec.
-3. O commit do `prd.md` é **dele**. Próximos passos: `/utf-architecture`; e, quando o tema tiver o **aceite do professor** e as stories estiverem `Ready`, `/utf-backlog` leva as stories para o GitHub (Issues + Kanban).
+3. O commit do `prd.md` é **dele**. Próximos passos, nesta ordem: com o **aceite do professor** e stories `Ready`, `/utf-backlog` leva as stories para o GitHub (Issues + Kanban); depois, `/utf-architecture`.
 
 ## Proibições
 

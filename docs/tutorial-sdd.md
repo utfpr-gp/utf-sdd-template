@@ -4,9 +4,26 @@ Este é o passo a passo **operacional**: o que digitar e o que fazer em cada pau
 O *porquê* de cada regra está no [guia da disciplina](./guia-sdd.md); as normas de
 Git e de PR estão no [CONTRIBUTING](../CONTRIBUTING.md).
 
-> A regra que resume tudo: **a IA escreve o código; você decide nos portões.**
+> A regra que resume tudo (é o que dá nome ao método — **UTF-SDD, um SDD por
+> Portões**): **a IA escreve o código; você decide nos portões.**
 > São três portões por história — aprovar a spec, aceitar a explicação do tutor
 > antes de cada tarefa e fazer a triagem dos apontamentos — mais o PR no fim.
+
+---
+
+## Fase 0 — Iniciar o projeto (uma vez por projeto)
+
+Quatro comandos, nesta ordem, cada um fechando num portão seu:
+
+| # | Comando | O que sai | 🚪 Você faz o quê |
+| --- | --- | --- | --- |
+| 1 | `/utf-prd` | `docs/prd.md` — entrevista de requisitos | Lê o documento inteiro, ajusta e **commita**; leva o tema ao professor |
+| 2 | `/utf-backlog` | Issues (uma por story `Ready`) + Kanban no Projects | **Aprova a lista** antes de as Issues serem criadas |
+| 3 | `/utf-architecture` | `docs/architecture.md` — entrevista técnica | Lê e **commita** |
+| 4 | `/utf-setup` | `apps/` — o monorepo nascendo com testes verdes | Ratifica as decisões relatadas e abre o **1º PR** (`manutencao`) |
+
+Pré-requisito dos passos 2 e 4: `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
+pode rodar de novo mais tarde, a cada leva de stories promovidas a `Ready`.
 
 ---
 
@@ -90,10 +107,10 @@ palavras, lista os apontamentos aceitos e recusados (saem dos arquivos
 
 | Comando | Quando usar |
 | --- | --- |
-| `/utf-prd` | Uma vez por projeto — a entrevista que gera o `docs/prd.md` |
-| `/utf-architecture` | Uma vez, depois do PRD — a entrevista que gera o `docs/architecture.md` |
-| `/utf-setup` | Uma vez, depois do architecture — gera o scaffold do monorepo |
-| `/utf-backlog` | Depois do PRD aprovado (e a cada leva de stories `Ready`) — cria as Issues e orienta o Kanban |
+| `/utf-prd` | Fase 0, etapa 1 — a entrevista que gera o `docs/prd.md` |
+| `/utf-backlog` | Fase 0, etapa 2 — PRD aprovado vira Issues + Kanban (e roda de novo a cada leva de stories `Ready`) |
+| `/utf-architecture` | Fase 0, etapa 3 — a entrevista que gera o `docs/architecture.md` |
+| `/utf-setup` | Fase 0, etapa 4 — gera o scaffold do monorepo |
 | `/utf-issue <n>` | Uma vez, para iniciar o ciclo da Issue (spec → plano) |
 | `/utf-task [n]` | Uma vez **por tarefa** do plano — sem número, executa a próxima pendente |
 | `/utf-tutor spec` | Antes de aprovar a spec |
