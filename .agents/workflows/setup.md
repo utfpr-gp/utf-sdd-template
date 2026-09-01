@@ -77,17 +77,50 @@ dentro da estrutura de pastas que o documento descreve.
 
 ## Passo 4 — As ferramentas do método
 
-1. `.github/pull_request_template.md` — o modelo com a seção
-   **"O que este PR faz e por quê"** e a seção de apontamentos aceitos/recusados,
-   conforme o Apêndice B do guia.
-2. `.github/workflows/portao-de-entendimento.yml` — o Portão de Entendimento,
-   copiado do Apêndice B do guia, sem alterações.
-3. A etiqueta de manutenção no GitHub (é ela que marca PRs sem spec, a começar
+O `.github/` **já vem no template**: `pull_request_template.md` e
+`workflows/portao-de-entendimento.yml` estão na `main` desde o primeiro commit.
+Você não os gera — você **confere** que existem. Copiar YAML de dentro da prosa
+do guia é exatamente como o Portão nasce parafraseado e sem efeito.
+
+1. Confira que `.github/pull_request_template.md` e
+   `.github/workflows/portao-de-entendimento.yml` existem. Se faltar algum,
+   **PARE** e avise: o repositório não veio do template, e os dois são
+   pré-requisito do método — não subproduto do setup.
+2. A etiqueta de manutenção no GitHub (é ela que marca PRs sem spec, a começar
    pelo deste setup):
 
    ```
    gh label create manutencao --description "PR tecnico, sem spec" --color FBCA04
    ```
+
+3. **Proteção da branch `main`.** Sem isso, *"a `main` é sagrada"* é a única
+   regra da constituição sem mecanismo nenhum — e proteção de branch **não é
+   herdada de repositório template**, então cada aluno precisa ligar a dele.
+   Proponha ao usuário e, com o OK, rode:
+
+   ```
+   gh api -X PUT repos/{owner}/{repo}/branches/main/protection --input - <<'JSON'
+   {
+     "required_status_checks": null,
+     "enforce_admins": true,
+     "required_pull_request_reviews": { "required_approving_review_count": 0 },
+     "restrictions": null,
+     "allow_force_pushes": false,
+     "allow_deletions": false
+   }
+   JSON
+   ```
+
+   `required_approving_review_count: 0` exige **Pull Request** para entrar na
+   `main`, sem exigir aprovação de terceiro — funciona igual para quem faz
+   sozinho e para dupla. `enforce_admins: true` faz a regra valer também para o
+   dono do repositório: sem isso, o aluno é justamente quem fura a regra sem
+   perceber. Para destravar uma emergência ele desliga a proteção
+   conscientemente, e isso fica registrado no log do repositório.
+
+   **Se a API recusar**, quase sempre é conta gratuita com repositório privado —
+   proteção de branch exige repositório público ou plano pago. Relate e siga;
+   não insista.
 4. `specs/README.md` — o índice de specs, com a tabela vazia:
 
    ```markdown
@@ -105,7 +138,7 @@ O scaffold precisa nascer **verde**. É esse verde que dá sentido ao RED do TDD
 partir da primeira tarefa: um teste que falha só é informação num repositório onde
 os testes comprovadamente rodam.
 
-**Regra das 2 rodadas:** se um gerador ou a suíte falhar duas vezes pelo mesmo
+**Mesmo princípio das 2 rodadas:** se um gerador ou a suíte falhar duas vezes pelo mesmo
 motivo, **PARE** e relate. Não tente uma terceira abordagem.
 
 ## Passo 6 — Entrega
@@ -119,11 +152,9 @@ motivo, **PARE** e relate. Não tente uma terceira abordagem.
    branch**, antes do PR — documento e scaffold entram juntos, contando a mesma
    história.
 3. Instrua o usuário a abrir o PR com a etiqueta **`manutencao`** — setup é Task,
-   não história. Explique os dois detalhes que ninguém adivinha:
-   - **O template de PR só carrega da branch padrão.** Como o
-     `pull_request_template.md` está nascendo **neste** PR, ele ainda não
-     existe na `main` — no primeiro PR, cole o modelo à mão no corpo. Do
-     segundo em diante, o GitHub preenche sozinho.
+   não história. O corpo já vem preenchido pelo
+   `.github/pull_request_template.md`, que está na `main` desde o template.
+   Explique o detalhe que ninguém adivinha:
    - **`Closes #<n>` no corpo do PR** liga o PR à Issue e a fecha no merge — é
      esse elo que fecha a rastreabilidade Issue → spec → código exigida na
      avaliação. O PR do setup não fecha Issue nenhuma, então não leva

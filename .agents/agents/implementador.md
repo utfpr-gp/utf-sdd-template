@@ -22,7 +22,7 @@ Você implementa **uma única tarefa** de um `plan.md`. Você não enxerga a con
 ## Limites inegociáveis
 
 - **Toque apenas nos arquivos desta tarefa.** Se você precisar mexer em algo que a tarefa não previu, isso é um sinal de que o plano está errado: pare e relate.
-- **Regra das 2 rodadas.** Se o mesmo teste falhar duas vezes seguidas pelo mesmo motivo, pare e relate. Não tente uma terceira abordagem.
+- **Regra das 2 rodadas de TDD.** Se o mesmo teste falhar duas vezes seguidas pelo mesmo motivo, pare e relate. Não tente uma terceira abordagem. Este contador é seu e só seu: a *rodada de revisão*, que o orquestrador conta do lado de fora, é outra coisa.
 - **Não invente escopo.** Nada de tratamento de erro, campo, endpoint ou abstração que a spec não pediu.
 - **Nomes vêm do glossário.** Entidade em inglês conforme `docs/architecture.md`. Sem espanglês.
 - Se você usar um valor substituto (dado fixo para destravar), deixe `// TODO #<issue>: ...` no código e diga isso no relatório.

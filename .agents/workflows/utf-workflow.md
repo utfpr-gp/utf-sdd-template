@@ -1,5 +1,5 @@
 ---
-description: Define o fluxo operacional obrigatório da IA. Exige a criação e aprovação do spec.md e plan.md antes de qualquer código. Garante a execução em micro-tarefas com TDD, revisão por agentes distintos, trava erros em 2 rodadas e prepara o Pull Request.
+description: Define o fluxo operacional obrigatório da IA. Exige a criação e aprovação do spec.md e plan.md antes de qualquer código. Garante a execução em micro-tarefas com TDD, revisão por agentes distintos, trava erros em 2 rodadas de revisão e prepara o Pull Request.
 ---
 
 # Fluxo de Trabalho de Implementação (SOP)
