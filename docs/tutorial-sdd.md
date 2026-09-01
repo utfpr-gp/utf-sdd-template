@@ -19,10 +19,11 @@ Quatro comandos, nesta ordem, cada um fechando num portão seu:
 | --- | --- | --- | --- |
 | 1 | `/utf-prd` | `docs/prd.md` — entrevista de requisitos | Lê o documento inteiro, ajusta e **commita**; leva o tema ao professor |
 | 2 | `/utf-backlog` | Issues (uma por story `Ready`) + Kanban no Projects | **Aprova a lista** antes de as Issues serem criadas |
-| 3 | `/utf-architecture` | `docs/architecture.md` — entrevista técnica | Lê e **commita** |
-| 4 | `/utf-setup` | `apps/` — o monorepo nascendo com testes verdes | Ratifica as decisões relatadas e abre o **1º PR** (`manutencao`) |
+| 3 | `/utf-flows` | `docs/user-flows.md` e `docs/design-tokens.md` — jornadas e tokens | Decide o que acontece em cada ponto de desistência e **commita** |
+| 4 | `/utf-architecture` | `docs/architecture.md` — entrevista técnica | Lê e **commita** |
+| 5 | `/utf-setup` | `apps/` — o monorepo nascendo com testes verdes | Ratifica as decisões relatadas e abre o **1º PR** (`manutencao`) |
 
-Pré-requisito dos passos 2 e 4: `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
+Pré-requisito dos passos 2 e 5: `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
 pode rodar de novo mais tarde, a cada leva de stories promovidas a `Ready`.
 
 ---
@@ -109,8 +110,9 @@ palavras, lista os apontamentos aceitos e recusados (saem dos arquivos
 | --- | --- |
 | `/utf-prd` | Fase 0, etapa 1 — a entrevista que gera o `docs/prd.md` |
 | `/utf-backlog` | Fase 0, etapa 2 — PRD aprovado vira Issues + Kanban (e roda de novo a cada leva de stories `Ready`) |
-| `/utf-architecture` | Fase 0, etapa 3 — a entrevista que gera o `docs/architecture.md` |
-| `/utf-setup` | Fase 0, etapa 4 — gera o scaffold do monorepo |
+| `/utf-flows` | Fase 0, etapa 3 — desenha as jornadas e os tokens de design |
+| `/utf-architecture` | Fase 0, etapa 4 — a entrevista que gera o `docs/architecture.md` |
+| `/utf-setup` | Fase 0, etapa 5 — gera o scaffold do monorepo |
 | `/utf-issue <n>` | Uma vez, para iniciar o ciclo da Issue (spec → plano) |
 | `/utf-task [n]` | Uma vez **por tarefa** do plano — sem número, executa a próxima pendente |
 | `/utf-tutor spec` | Antes de aprovar a spec |
