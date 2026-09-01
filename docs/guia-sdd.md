@@ -57,15 +57,16 @@ por isso que existe o `docs/architecture.md`: para escrever, uma vez, quais são
 
 ## 2. Os artefatos
 
-Todo trabalho gira em torno de onze artefatos. Eles são a matéria-prima da sua nota.
+Todo trabalho gira em torno de doze artefatos. Eles são a matéria-prima da sua nota.
 
 | Artefato | Onde fica | Para que serve |
 | --- | --- | --- |
 | **`README.md`** | raiz | A vitrine: o que é, quem fez, como rodar, link em produção. |
 | **`prd.md`** | `docs/` | O que o produto faz: glossário, atores, histórias. |
 | **`architecture.md`** | `docs/` | Onde as coisas estão: estrutura, entidades, estados, contratos. |
+| **`checklist.md`** | `docs/` | A ficha da disciplina: regras do projeto, IDs e entregas — a régua dos workflows. |
 | **`user-flows.md`** | `docs/` | O que a pessoa vive na tela, e onde ela desiste. |
-| **Tokens de design** | `docs/` ou `apps/web/` | Cores, espaçamento, tipografia — para a IA não inventar um botão por tela. |
+| **`design-tokens.md`** | `docs/` | Cores, espaçamento, tipografia — para a IA não inventar um botão por tela. |
 | **Issue** | GitHub Projects | A unidade de trabalho. Uma história de usuário. |
 | **`spec.md`** | `specs/<issue>-<slug>/` | O que precisa existir e como saber que ficou pronto. |
 | **`plan.md`** | `specs/<issue>-<slug>/` | Como será construído, em tarefas pequenas. |
@@ -73,10 +74,10 @@ Todo trabalho gira em torno de onze artefatos. Eles são a matéria-prima da sua
 | **Código** | `apps/api`, `apps/web` | O que a IA escreve seguindo o plano. |
 | **Pull Request** | GitHub | Onde você explica, com suas palavras, o que foi feito. |
 
-Desses onze itens, a IA produz sozinha apenas **o código, o plano e os pareceres**.
-Todo o resto precisa da sua direção.
+Desses doze itens, a IA produz sozinha apenas **o código, o plano e os pareceres**.
+A ficha vem pronta com o template; todo o resto precisa da sua direção.
 
-E existe um décimo-segundo, que é um índice e não um artefato: o `specs/README.md`,
+E existe um décimo-terceiro, que é um índice e não um artefato: o `specs/README.md`,
 descrito no fim do §4.
 
 ---
@@ -346,6 +347,7 @@ confiar.
 | `docs/architecture.md` | **onde as coisas estão** — estrutura, entidades, contratos, estados |
 | `docs/user-flows.md` | **o que a pessoa vive** — jornadas e pontos de desistência |
 | `docs/design-tokens.md` | **como o produto se parece** — paleta, espaçamento, tipografia |
+| `docs/checklist.md` | **o que a disciplina exige** — regras, IDs e entregas |
 | `specs/` | **o que está sendo construído agora** — uma pasta por história |
 
 Se você precisa saber o status do pedido, existe **um** lugar: a máquina de estados no
@@ -489,7 +491,7 @@ status: rascunho   # rascunho | aprovada
 > o pedido permanece AGUARDANDO e reaparece no painel dele com o botão de retomar"* —
 > isso é testável. *"Tratar o abandono"* não é.
 
-### Passo 3 — 🚪 Primeiro portão humano: você aprova a spec
+### Passo 3 — 🚪 Portão: você aprova a spec
 
 **Você lê a especificação inteira e decide se ela está certa.** Não é carimbo. É aqui
 que você define o que conta como "certo" — e tudo depois disso obedece a essa definição.
@@ -638,8 +640,10 @@ Duas coisas, nessa ordem:
 
 1. **Chame o tutor** (§6) e entenda o que foi feito. É agora, com a tarefa fresca e
    pequena, que entender custa barato.
-2. **Pare.** O orquestrador marca a tarefa como feita no `plan.md`, faz o commit, e
-   devolve o controle. Você pede a próxima quando quiser.
+2. **Pare — 🚪 o commit é um portão.** O orquestrador apresenta o resumo do diff e os
+   dois pareceres, e espera o seu **"pode commitar"**. Só então ele marca a tarefa
+   como feita no `plan.md`, faz o commit e devolve o controle. Revisor aprovar não
+   substitui o olho do dono. Você pede a próxima quando quiser.
 
 > **Você trabalha na sua branch, na sua IDE, com os arquivos à vista.** Esta disciplina
 > **não** usa worktrees nem ambientes isolados. Worktree serve para deixar vários
@@ -668,7 +672,7 @@ O auditor também confere quatro coisas que ninguém mais confere:
   uma Issue aberta correspondente?
 - **Escopo do PR:** entrou no diff algo que a spec não pedia?
 
-### Passo 7 — 🚪 Segundo portão humano: você abre o PR
+### Passo 7 — 🚪 Portão final: você abre o PR
 
 Você lê o diff, escreve a explicação com suas palavras e abre o Pull Request com
 `Closes #27`.
