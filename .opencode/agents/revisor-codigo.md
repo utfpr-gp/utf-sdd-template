@@ -1,6 +1,10 @@
 ---
 description: Revisa a qualidade do código de uma tarefa contra docs/architecture.md. Somente leitura — aponta, nunca corrige.
 mode: subagent
+tools:
+  write: false
+  edit: false
+  patch: false
 permission:
   edit: deny
   bash:

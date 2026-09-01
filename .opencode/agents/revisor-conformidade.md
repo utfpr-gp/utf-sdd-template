@@ -1,6 +1,10 @@
 ---
 description: Compara o diff de uma tarefa contra os critérios de aceite do spec.md. Somente leitura — aponta, nunca corrige.
 mode: subagent
+tools:
+  write: false
+  edit: false
+  patch: false
 permission:
   edit: deny
   bash:

@@ -1,6 +1,10 @@
 ---
 description: Compara o diff inteiro da branch contra o spec.md original, antes do Pull Request. Somente leitura.
 mode: subagent
+tools:
+  write: false
+  edit: false
+  patch: false
 permission:
   edit: deny
   bash:
