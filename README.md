@@ -41,10 +41,22 @@ reescreve nada: o miolo é o mesmo.
 | Antigravity | `.agents/rules/` | `.agents/workflows/` | `.agents/agents/` |
 | OpenCode | `AGENTS.md` | `.opencode/command/` | `.opencode/agents/` |
 
-O **OpenCode funciona com modelos gratuitos** e é o único dos quatro que libera
-comandos específicos do terminal em vez de ligar ou desligar o terminal inteiro —
-a trava mais fechada das quatro. Ajuste a lista de comandos de teste em
-`.opencode/agents/` à stack do seu `docs/architecture.md`.
+Nas quatro, os revisores e o tutor nascem **sem poder de escrita**; só o
+implementador escreve. A trava tem forças diferentes, e vale saber qual você tem:
+
+- **Claude Code, Cursor e Antigravity** negam a ferramenta de edição, mas precisam
+  liberar o terminal para o revisor rodar `git diff`. Quem tem terminal poderia, em
+  tese, escrever com `sed` ou redirecionamento — o que fecha isso ali é a proibição
+  escrita no prompt do agente.
+- **O OpenCode fecha por configuração:** é o único que libera comandos específicos em
+  vez de ligar ou desligar o terminal inteiro. E **funciona com modelos gratuitos**,
+  o que faz dele o caminho de custo zero mais completo da disciplina. Ajuste a lista
+  de comandos de teste em `.opencode/agents/` à stack do seu `docs/architecture.md`:
+  comando que não estiver liberado não roda, e o parecer sai incompleto sem avisar.
+
+> Se o seu OpenCode não listar os agentes ou os comandos, é diferença de versão nos
+> nomes das pastas: renomeie `.opencode/agents/` para `.opencode/agent/` e
+> `.opencode/command/` para `.opencode/commands/`. O conteúdo é o mesmo.
 
 O passo a passo detalhado está em [`docs/tutorial-sdd.md`](docs/tutorial-sdd.md);
 o porquê de cada regra, em [`docs/guia-sdd.md`](docs/guia-sdd.md).

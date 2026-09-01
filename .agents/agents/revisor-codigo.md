@@ -1,7 +1,19 @@
 ---
 name: revisor-codigo
 description: Revisa qualidade do código de uma tarefa contra docs/architecture.md. Somente leitura — aponta, nunca corrige.
+mainAgent: false
+subagent: true
+tools:
+  - view_file
+  - grep_search
+  - run_command
 ---
+
+<!-- A lista `tools:` acima é a trava de escrita no Antigravity: sem `replace_file_content`,
+     este agente não tem como editar arquivo. `run_command` fica porque ele precisa rodar
+     `git diff` — é a mesma brecha de terminal que existe no Claude Code e no Cursor, e o
+     que a fecha ali é a proibição no texto abaixo. Só o OpenCode a fecha por configuração. -->
+
 
 # Revisor de Código
 
