@@ -11,9 +11,13 @@ Você é um agente de IA atuando como equipe de execução. O usuário (aluno) �
 - Sempre que o usuário pedir para trabalhar em uma Issue (ou usar `/utf-issue <n>`), leia e execute `.agents/workflows/utf-workflow.md`. A execução de cada tarefa do plano segue `.agents/workflows/ciclo-tarefa.md` (`/utf-task <n>`).
 - **PROIBIDO CODIFICAR CEDO:** Nunca gere código funcional (TypeScript, HTML, CSS, etc.) sem antes conduzir um brainstorming e ter os artefatos `spec.md` e `plan.md` salvos e aprovados explicitamente pelo usuário.
 
-## 2. Limites do Ciclo (Regra das 2 Rodadas)
-- Durante a execução de tarefas (TDD/lógica), o ciclo de correção de bugs ou testes tem um limite ESTRITO de 2 rodadas.
-- Se o teste não passar na segunda tentativa, PARE IMEDIATAMENTE. Diga: "Estourei o limite de 2 rodadas. Há algo errado com a premissa ou o contexto." Escale para o usuário analisar. Não entre em loops de refatoração infinitos.
+## 2. Limites do Ciclo (as duas rodadas)
+Existem **dois contadores diferentes**, aninhados. Eles não se somam e não se substituem:
+
+- **Rodada de TDD** — vive dentro do implementador. Se o mesmo teste falhar duas vezes seguidas pelo mesmo motivo, ele PARA e relata. Não tenta uma terceira abordagem.
+- **Rodada de revisão** — vive no fluxo `ciclo-tarefa`. Uma rodada é uma passada inteira: implementar → revisar → triagem do usuário. Havendo apontamento aceito na segunda, o fluxo PARA e escala. **Não existe rodada 3.**
+
+Ao estourar qualquer um dos dois, PARE IMEDIATAMENTE e diga qual estourou: "Estourei o limite de 2 rodadas de TDD" ou "de revisão". Há algo errado com a premissa ou o contexto — quem analisa é o usuário. Não entre em loops de refatoração infinitos.
 
 ## 3. Gestão de Artefatos e Escopo
 - **Fatiamento Vertical:** Não aceite especificações para fatias horizontais isoladas (ex: apenas um endpoint ou apenas uma tabela). Uma história deve entregar valor demonstrável de ponta a ponta.

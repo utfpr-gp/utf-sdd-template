@@ -1,5 +1,5 @@
 ---
-description: Executa UMA tarefa do plan.md com o ciclo completo do Passo 5 — tutor explica antes e o usuário aceita, implementador com contexto limpo, dois revisores distintos e somente-leitura, máximo de 2 rodadas. Recebe o número da tarefa; sem número, resolve a próxima pendente do plan.md.
+description: Executa UMA tarefa do plan.md com o ciclo completo do Passo 5 — tutor explica antes e o usuário aceita, implementador com contexto limpo, dois revisores distintos e somente-leitura, máximo de 2 rodadas de revisão. Recebe o número da tarefa; sem número, resolve a próxima pendente do plan.md.
 ---
 
 # Ciclo de uma tarefa
@@ -17,9 +17,9 @@ Tarefa a executar: **$1**
 3. **Se o comando veio sem número**, resolva-o pelo `plan.md`: a tarefa é a **primeira ainda não marcada como feita**, na ordem do plano. Anuncie ao usuário qual número foi resolvido (ex.: *"Próxima pendente: tarefa 3 — <título>"*) antes de seguir — daqui em diante, esse número é o `$1` em tudo (pareceres, decisões, commit). **Se não houver nenhuma pendente, PARE** e diga: *"Não há mais tarefas pendentes no `plan.md`. O próximo passo é o auditor final e o Pull Request, pelo fluxo da Issue."* Não invente tarefa nova.
 4. Extraia do `plan.md` o **texto literal** da tarefa `$1`.
 5. Guarde o ponto de partida: `git rev-parse HEAD`. Ele é a base de todos os diffs desta tarefa.
-6. Descubra em que rodada você está: conte os arquivos `specs/<slug>/reviews/tarefa-$1-conformidade-r*.md`. **Nenhum = rodada 1.** Não confie na sua memória para isso; o disco é a fonte da verdade.
+6. Descubra em que **rodada de revisão** você está: conte os arquivos `specs/<slug>/reviews/tarefa-$1-conformidade-r*.md`. **Nenhum = rodada 1.** Não confie na sua memória para isso; o disco é a fonte da verdade.
 
-## Passo 1 — Ensinar antes de implementar (só na rodada 1)
+## Passo 1 — Ensinar antes de implementar (só na rodada de revisão 1)
 
 Antes de qualquer código, o aluno precisa entender o que vai ser construído. Despache o subagente **tutor** em modo `antes`, com:
 
@@ -29,9 +29,9 @@ Antes de qualquer código, o aluno precisa entender o que vai ser construído. D
 
 Apresente a explicação do tutor ao usuário **na íntegra, sem resumir**.
 
-**PAUSA OBRIGATÓRIA:** espere o usuário aceitar ("pode implementar") ou tirar dúvidas. Dúvida agora custa cinco minutos; depois do diff, custa uma rodada. Só despache o implementador depois do aceite.
+**PAUSA OBRIGATÓRIA:** espere o usuário aceitar ("pode implementar") ou tirar dúvidas. Dúvida agora custa cinco minutos; depois do diff, custa uma rodada de revisão inteira. Só despache o implementador depois do aceite.
 
-Na **rodada 2**, pule este passo — a tarefa já foi explicada; vá direto ao Passo 2 com os apontamentos.
+Na **rodada de revisão 2**, pule este passo — a tarefa já foi explicada; vá direto ao Passo 2 com os apontamentos.
 
 ## Passo 2 — Implementar
 
@@ -42,7 +42,7 @@ Despache o subagente **implementador**. O único canal entre vocês é a string 
 - os critérios de aceite da spec ligados a esta tarefa, transcritos
 - "toque apenas nos arquivos desta tarefa"
 
-Se for rodada 2, inclua também os apontamentos da rodada 1 **aceitos na triagem** (Passo 5), transcritos — os recusados não vão: a decisão sobre eles já foi tomada e registrada. E **despache um implementador novo** — não continue o anterior.
+Se for rodada de revisão 2, inclua também os apontamentos da rodada 1 **aceitos na triagem** (Passo 5), transcritos — os recusados não vão: a decisão sobre eles já foi tomada e registrada. E **despache um implementador novo** — não continue o anterior.
 
 ## Passo 3 — Revisar
 
@@ -64,7 +64,7 @@ specs/<slug>/reviews/tarefa-$1-conformidade-r<N>.md
 specs/<slug>/reviews/tarefa-$1-codigo-r<N>.md
 ```
 
-O sufixo `r<N>` é o contador de rodadas — por isso ele não precisa de arquivo de estado separado: a contagem *é* a listagem do diretório, e ela fica versionada no git como prova de que a revisão aconteceu e de quem a fez.
+O sufixo `r<N>` é o contador de **rodadas de revisão** — por isso ele não precisa de arquivo de estado separado: a contagem *é* a listagem do diretório, e ela fica versionada no git como prova de que a revisão aconteceu e de quem a fez.
 
 ## Passo 5 — Triagem dos apontamentos
 
@@ -91,14 +91,14 @@ Havendo apontamentos, **quem decide o destino de cada um é o usuário, não voc
 | Situação | O que fazer |
 | --- | --- |
 | Ambos **APROVADO**, ou **todos os apontamentos recusados** na triagem | **PAUSA OBRIGATÓRIA — nada de commit ainda.** Apresente ao usuário: o resumo do diff (arquivos e o que mudou em cada um), o veredito dos dois revisores e o convite para **conferir o diff na IDE** (ofereça `/utf-tutor $1` para a explicação didática). Revisor aprovar não substitui o olho do dono: **espere o aceite explícito** ("pode commitar"). Só então marque a tarefa como feita no `plan.md` e faça o commit (incluindo pareceres e decisões) com a mensagem começando por `tarefa $1: ` — é essa convenção que permite ao `/utf-tutor $1` achar o diff depois. Feche o relato com a **listinha das tarefas restantes** do `plan.md` (número e título, na ordem), dizendo qual é a próxima — ou, se não restar nenhuma, que o plano acabou e o próximo passo é o auditor final e o PR. Espere ele pedir a próxima (`/utf-task` sem número já a pega). |
-| Algum apontamento **aceito**, rodada 1 | Volte ao Passo 2 com um implementador novo (sem repetir o tutor), transcrevendo **apenas os apontamentos aceitos**. |
-| Algum apontamento **aceito**, rodada 2 | **PARE. Não existe rodada 3.** |
+| Algum apontamento **aceito**, rodada de revisão 1 | Volte ao Passo 2 com um implementador novo (sem repetir o tutor), transcrevendo **apenas os apontamentos aceitos**. |
+| Algum apontamento **aceito**, rodada de revisão 2 | **PARE. Não existe rodada 3.** |
 
-### Ao estourar as 2 rodadas
+### Ao estourar as 2 rodadas de revisão
 
 Não tente de novo, não reformule, não peça "só mais uma". Escreva ao usuário:
 
-> Estourei o limite de 2 rodadas na tarefa `$1`. Os pareceres estão em `specs/<slug>/reviews/`.
+> Estourei o limite de 2 rodadas de revisão na tarefa `$1`. Os pareceres estão em `specs/<slug>/reviews/`.
 > Causas prováveis, em ordem de frequência:
 > 1. a spec está ambígua neste ponto — o revisor e o implementador leram coisas diferentes
 > 2. a tarefa é grande demais e deveria virar duas
