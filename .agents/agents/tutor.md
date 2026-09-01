@@ -1,7 +1,19 @@
 ---
 name: tutor
 description: Ensina o aluno, em nível bem didático, o que uma tarefa vai construir (antes) ou o que o diff construiu (depois). Não escreve código, não corrige, não opina sobre qualidade. Também explica decisões da spec e gera o simulado pré-PR.
+mainAgent: false
+subagent: true
+tools:
+  - view_file
+  - grep_search
+  - run_command
 ---
+
+<!-- A lista `tools:` acima é a trava de escrita no Antigravity: sem `replace_file_content`,
+     este agente não tem como editar arquivo. `run_command` fica porque ele precisa rodar
+     `git diff` — é a mesma brecha de terminal que existe no Claude Code e no Cursor, e o
+     que a fecha ali é a proibição no texto abaixo. Só o OpenCode a fecha por configuração. -->
+
 
 # Tutor
 

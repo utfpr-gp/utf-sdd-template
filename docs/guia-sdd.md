@@ -1220,7 +1220,7 @@ partida, não fonte da verdade.
 | | Regras sempre ativas | Comando de fluxo | Subagentes | Trava de escrita |
 | --- | --- | --- | --- | --- |
 | **Claude Code** | `CLAUDE.md` | `.claude/commands/<nome>.md` | `.claude/agents/<nome>.md` | `tools:` — libera ou nega o terminal inteiro |
-| **Antigravity** | `.agents/rules/<nome>.md` com `trigger: always_on` | painel *Customizations → Workflows*, invocado por `/nome` | `.agents/agents/<nome>/agent.md` com `subagent: true` | `tools:` (lista) + `commandExecutionPolicy` |
+| **Antigravity** | `.agents/rules/<nome>.md` com `trigger: always_on` | painel *Customizations → Workflows*, invocado por `/nome` | `.agents/agents/<nome>.md` (ou `<nome>/agent.md`) | `tools:` — a lista **é** a trava: o que não está nela o agente não tem |
 | **Cursor** | `.cursor/rules/<nome>.mdc` com `alwaysApply: true` | `.cursor/commands/<nome>.md` | `.cursor/agents/<nome>.md` | `readonly: true` — bloqueia edição e comandos que mudam estado |
 | **OpenCode** | `AGENTS.md` | `.opencode/command/<nome>.md` | `.opencode/agents/<nome>.md` com `mode: subagent` | `permission:` — aceita lista de comandos permitidos |
 
@@ -1230,9 +1230,16 @@ Duas observações práticas:
   gratuitos e é o único dos quatro que deixa você liberar comandos específicos do
   terminal em vez de ligar ou desligar o terminal inteiro — o que fecha exatamente a
   brecha descrita no §7.
-- **No Antigravity, cada agente é uma pasta**, não um arquivo solto: o caminho é
-  `.agents/agents/revisor-codigo/agent.md`. E nome de ferramenta escrito errado no
-  `tools:` faz o subagente travar em vez de dar erro — confira a grafia.
+- **No Antigravity, a trava é a lista `tools:`, e ela é excludente**: o agente recebe
+  exatamente as ferramentas listadas e nada mais. Um revisor com
+  `view_file`, `grep_search` e `run_command` não tem como editar arquivo, porque a
+  ferramenta de escrita simplesmente não está lá. O `commandExecutionPolicy` aceita só
+  `off`, `auto`, `eager` e `sandbox` — ele não faz lista de comandos permitidos, então
+  não fecha a brecha do terminal. E **nome de ferramenta escrito errado trava o subagente
+  em vez de dar erro** — confira a grafia na documentação antes de inventar um nome.
+- **Não liste `tools:` no agente que precisa escrever.** Lista incompleta tira dele a
+  ferramenta de edição, e ele trava em silêncio. Restrinja onde a restrição é o objetivo;
+  no implementador, deixe o padrão.
 
 Exemplo de um revisor somente-leitura no OpenCode, que é a forma mais completa da trava:
 

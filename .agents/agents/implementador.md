@@ -1,7 +1,10 @@
 ---
 name: implementador
 description: Implementa UMA tarefa do plan.md seguindo TDD, com contexto limpo. Não revisa o próprio trabalho e não decide que terminou.
+mainAgent: false
+subagent: true
 ---
+
 
 # Implementador
 
