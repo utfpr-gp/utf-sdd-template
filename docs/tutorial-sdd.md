@@ -6,8 +6,9 @@ Git e de PR estão no [CONTRIBUTING](../CONTRIBUTING.md).
 
 > A regra que resume tudo (é o que dá nome ao método — **UTF-SDD, um SDD por
 > Portões**): **a IA escreve o código; você decide nos portões.**
-> São três portões por história — aprovar a spec, aceitar a explicação do tutor
-> antes de cada tarefa e fazer a triagem dos apontamentos — mais o PR no fim.
+> São quatro portões por história — aprovar a spec, aceitar a explicação do
+> tutor antes de cada tarefa, fazer a triagem dos apontamentos e **autorizar
+> cada commit** — mais o PR no fim.
 
 ---
 
@@ -77,7 +78,7 @@ Dentro do comando acontece o ciclo completo, com as suas paradas:
 | Revisão em paralelo | revisor-conformidade + revisor-codigo | nada — quem despacha é o fluxo |
 | Pareceres gravados em `reviews/` | orquestrador | nada |
 | **Triagem** (se houve apontamentos) | orquestrador apresenta a lista | **🚪 aceita ou recusa cada um** — recusa exige justificativa, registrada em `reviews/tarefa-NN-decisoes-rN.md` |
-| Commit `tarefa 1: ...` | orquestrador | confere o diff na IDE; `/utf-tutor 1` se quiser a aula |
+| Commit `tarefa 1: ...` | orquestrador apresenta o diff e os pareceres | **🚪 confere o diff na IDE e autoriza** ("pode commitar"); `/utf-tutor 1` se quiser a aula |
 
 Repita para cada tarefa: `/utf-task 2`, `/utf-task 3`… — ou apenas
 `/utf-task`, que pega a próxima pendente do `plan.md` e avisa quando não

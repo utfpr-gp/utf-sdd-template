@@ -18,7 +18,7 @@ Você é o Engenheiro e o Arquiteto; a IA é a sua equipe de execução.
 
 - **A branch `main` é sagrada:** Ela reflete a produção e possui bloqueio de commits diretos.
 - **Trabalho:** Crie uma branch curta **a partir da `main`** para cada Issue (feature branch).
-- **Integração:** Ao finalizar, abra um Pull Request contra a `main` com `Closes #<n>`. O CI (Jest + lint, contra um PostgreSQL em container) precisa passar antes do merge.
+- **Integração:** Ao finalizar, abra um Pull Request contra a `main` com `Closes #<n>`. O CI (testes + lint, contra um PostgreSQL em container) precisa passar antes do merge.
 
 ---
 
@@ -32,6 +32,7 @@ Nada é duplicado neste projeto. Informação repetida diverge.
 | **Produto**       | `docs/prd.md`           | O que o sistema faz (Glossário, Atores, Histórias).                    |
 | **Arquitetura**   | `docs/architecture.md`  | Onde as coisas estão (estrutura, entidades, contratos).                |
 | **Jornadas**      | `docs/user-flows.md`    | O caminho do usuário e onde ele desiste.                               |
+| **Ficha**         | `docs/checklist.md`     | As regras da disciplina, os IDs e as entregas — a régua dos workflows. |
 | **Especificação** | `specs/<issue>-<slug>/` | O `spec.md` (o que fazer), o `plan.md` (tarefas técnicas) e `reviews/` (pareceres e triagem). |
 | **Leis da IA**    | `.agents/`              | `rules/utf-rules.md` (constituição, carregada via `CLAUDE.md`), `workflows/` (ciclos) e `agents/` (prompts dos subagentes). |
 
@@ -39,16 +40,18 @@ Nada é duplicado neste projeto. Informação repetida diverge.
 
 ## 🔄 O Ciclo de Trabalho
 
-Todo trabalho que altera o comportamento do sistema segue o ciclo SDD, orquestrado pelos agentes do repositório: `/utf-issue <n>` inicia (spec → plano), `/utf-task <n>` executa cada tarefa com tutor, implementador de contexto limpo e dois revisores distintos, e o auditor final confere o diff inteiro antes do PR.
+Todo trabalho que altera o comportamento do sistema segue o ciclo UTF-SDD, orquestrado pelos agentes do repositório: `/utf-issue <n>` inicia (spec → plano), `/utf-task <n>` executa cada tarefa com tutor, implementador de contexto limpo e dois revisores distintos, e o auditor final confere o diff inteiro antes do PR.
 
 - **O passo a passo operacional** (comandos e o que fazer em cada pausa) está no [Tutorial do Método](./docs/tutorial-sdd.md).
 - **O porquê de cada regra** está no [Guia da Disciplina](./docs/guia-sdd.md).
 
-O que é **norma inegociável** deste repositório são os três portões humanos — nenhum agente passa por eles em seu lugar:
+O que é **norma inegociável** deste repositório são os cinco portões humanos — nenhum agente passa por eles em seu lugar:
 
 1. **🚪 Spec:** só você aprova, trocando `status: rascunho` → `status: aprovada` num commit seu.
-2. **🚪 Triagem:** só você aceita ou recusa apontamentos de revisão (recusa exige justificativa, registrada em `specs/<issue>-<slug>/reviews/tarefa-NN-decisoes-rN.md`).
-3. **🚪 Pull Request:** só você escreve a explicação, com as suas palavras, listando os apontamentos aceitos e recusados.
+2. **🚪 Explicação do tutor:** cada tarefa só é implementada depois do seu "pode implementar" — dúvida agora custa cinco minutos; depois do diff, custa uma rodada.
+3. **🚪 Triagem:** só você aceita ou recusa apontamentos de revisão (recusa exige justificativa, registrada em `specs/<issue>-<slug>/reviews/tarefa-NN-decisoes-rN.md`).
+4. **🚪 Commit:** revisores aprovarem não basta — o orquestrador apresenta o diff e os pareceres e só commita com o seu "pode commitar".
+5. **🚪 Pull Request:** só você escreve a explicação, com as suas palavras, listando os apontamentos aceitos e recusados.
 
 ---
 
