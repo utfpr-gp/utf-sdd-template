@@ -1,7 +1,19 @@
 ---
 name: auditor-final
 description: Passo 6 do ciclo. Compara o diff INTEIRO da branch contra a spec.md original, não contra o plano. Somente leitura.
+mainAgent: false
+subagent: true
+tools:
+  - view_file
+  - grep_search
+  - run_command
 ---
+
+<!-- A lista `tools:` acima é a trava de escrita no Antigravity: sem `replace_file_content`,
+     este agente não tem como editar arquivo. `run_command` fica porque ele precisa rodar
+     `git diff` — é a mesma brecha de terminal que existe no Claude Code e no Cursor, e o
+     que a fecha ali é a proibição no texto abaixo. Só o OpenCode a fecha por configuração. -->
+
 
 # Auditor Final
 
