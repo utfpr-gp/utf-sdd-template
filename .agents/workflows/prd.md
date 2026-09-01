@@ -1,5 +1,5 @@
 ---
-description: Conduz a entrevista que produz o docs/prd.md — tema, glossário, atores, user stories com critérios verificáveis, regras de negócio, fora de escopo e NFRs. Uma pergunta por vez; o aluno decide, o agente escreve. Roda antes do /utf-architecture.
+description: Conduz a entrevista que produz o docs/prd.md — tema, glossário, atores, user stories com critérios verificáveis, regras de negócio, fora de escopo e NFRs. Uma pergunta por vez; o aluno decide, o agente escreve. Roda antes do /utf-flows e do /utf-architecture.
 ---
 
 # Gerar o PRD
@@ -48,7 +48,7 @@ Percorra o `docs/checklist.md` e confira o rascunho contra **todo ID cuja sement
 
 1. Grave `docs/prd.md` completo.
 2. **PARE.** O aluno lê o documento inteiro, fora do chat. Ajuste agora custa uma conversa; depois, custa uma spec.
-3. O commit do `prd.md` é **dele**. Próximos passos, nesta ordem: com o **aceite do professor** e stories `Ready`, `/utf-backlog` leva as stories para o GitHub (Issues + Kanban); depois, `/utf-architecture`.
+3. O commit do `prd.md` é **dele**. Próximos passos, nesta ordem: com o **aceite do professor** e stories `Ready`, `/utf-backlog` leva as stories para o GitHub (Issues + Kanban); depois `/utf-flows`, que desenha as jornadas e acha os pontos de desistência; e só então `/utf-architecture`.
 
 ## Proibições
 

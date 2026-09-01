@@ -19,6 +19,7 @@ nunca é quem escreveu, e todo artefato é evidência para a defesa.
 | --- | --- | --- |
 | Requisitos | `/utf-prd` | `docs/prd.md` — o QUE o produto faz |
 | Backlog | `/utf-backlog` | Issues no GitHub + Kanban no Projects |
+| Jornadas e tokens | `/utf-flows` | `docs/user-flows.md` e `docs/design-tokens.md` — o que a pessoa vive na tela |
 | Arquitetura | `/utf-architecture` | `docs/architecture.md` — onde as coisas moram |
 | Scaffold | `/utf-setup` | `apps/` — o monorepo, nascendo verde |
 | Cada história | `/utf-issue <n>` → `/utf-task` | spec, plano e código, tarefa a tarefa |

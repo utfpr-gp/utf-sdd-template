@@ -1,5 +1,5 @@
 ---
-description: Conduz a entrevista que produz o docs/architecture.md a partir do prd.md — stack, estrutura do monorepo, testes, glossário técnico, diagrama ER e os padrões estruturais cobrados pelos IDs. Garante as quatro declarações que o /utf-setup exige. Roda depois do /utf-prd.
+description: Conduz a entrevista que produz o docs/architecture.md a partir do prd.md — stack, estrutura do monorepo, testes, glossário técnico, diagrama ER e os padrões estruturais cobrados pelos IDs. Garante as quatro declarações que o /utf-setup exige. Roda depois do /utf-prd e do /utf-flows.
 ---
 
 # Gerar o architecture.md
@@ -15,6 +15,7 @@ Você é o entrevistador técnico. O aluno é o Arquiteto: **ele decide; você a
 
 ## Passo 0 — Pré-condições
 
+0. `docs/user-flows.md` tem pelo menos uma jornada desenhada, com o parágrafo de decisão sobre o nó vermelho. Se não tiver, **PARE** e mande rodar `/utf-flows`: é lá que aparecem os estados que faltam ("o pedido fica AGUARDANDO para sempre?"), e estado esquecido aqui vira retrabalho na primeira spec.
 1. `docs/prd.md` existe, com glossário, atores e stories. Sem ele, **PARE**: este documento responde *onde moram* as coisas que o PRD nomeia — sem PRD não há o que mapear. Mande rodar `/utf-prd` antes.
 2. Leia `docs/checklist.md` **inteiro** — a seção *Regras da disciplina* diz o que é stack fixa e o que é escolha do aluno, e vários IDs são padrões estruturais que este documento precisa declarar.
 
