@@ -3,13 +3,15 @@ Closes #
 ## O que este PR faz e por quê
 
 <!-- Com as suas palavras. Não cole o diff nem a saída da IA.
-     Mínimo de 400 caracteres — é o que o Portão de Entendimento verifica.
-     Se a mudança é puramente técnica (dependência, renomeação, formatação),
-     aplique a etiqueta `manutencao` e o portão é dispensado. -->
+     Mínimo de 400 caracteres — é o que o Portão de Entendimento verifica,
+     em TODO PR, inclusive nos de manutenção. A etiqueta `manutencao` decide
+     outra coisa: se o PR precisava ou não de `spec.md`. São duas perguntas
+     independentes. -->
 
 ## Apontamentos da revisão
 
-<!-- Fonte: specs/<issue>-<slug>/reviews/tarefa-NN-decisoes-rN.md -->
+<!-- Fonte: specs/<issue>-<slug>/reviews/tarefa-NN-decisoes-rN.md
+     Só nos PRs de história. Em PR de manutenção, escreva "não se aplica". -->
 
 **Aceitos:**
 

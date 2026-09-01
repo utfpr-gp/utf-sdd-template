@@ -94,8 +94,14 @@ fecha:
 | --- | --- | --- | --- |
 | 1 | Requisitos (`docs/prd.md`) | `/utf-prd` | Você lê, ajusta e **commita**; o professor aceita o tema |
 | 2 | Backlog (Issues + Kanban no Projects) | `/utf-backlog` | Você aprova a lista de Issues **antes** de elas serem criadas |
-| 3 | Arquitetura (`docs/architecture.md`) | `/utf-architecture` | Você lê e **commita** |
-| 4 | Scaffold (`apps/`, verde) | `/utf-setup` | Ratificações + o primeiro PR (`manutencao`) |
+| 3 | Jornadas e tokens (`docs/user-flows.md`, `docs/design-tokens.md`) | `/utf-flows` | Você decide o que acontece em cada ponto de desistência e **commita** |
+| 4 | Arquitetura (`docs/architecture.md`) | `/utf-architecture` | Você lê e **commita** |
+| 5 | Scaffold (`apps/`, verde) | `/utf-setup` | Ratificações + o primeiro PR (`manutencao`) |
+
+A etapa 3 vem **antes** da arquitetura de propósito: um nó vermelho quase sempre revela
+um estado que faltava (*"o pedido fica AGUARDANDO para sempre?"*), e estado é matéria do
+`architecture.md`. Desenhar a jornada depois é descobrir o estado com o documento já
+fechado.
 
 Os comandos são entrevistas: **uma pergunta por vez, quem decide é você** — o agente
 organiza e escreve. As seções seguintes explicam o que cada documento contém e por quê.
@@ -316,12 +322,14 @@ quando o usuário fecha a aba, e quem realmente decide que o pedido foi pago.
 Não se espera um design system completo — isso não cabe em 30 horas. O que resolve o
 problema real, que é a IA inventar um botão diferente a cada tela, é bem menor:
 
-- **Um arquivo de tokens**: paleta de cores, escala de espaçamento, tipografia,
-  estados de botão
+- **Um arquivo de tokens** em `docs/design-tokens.md`: paleta de cores com nome
+  semântico, escala de espaçamento, tipografia e estados de botão
 - **De três a cinco telas** do protótipo, das principais jornadas
 
 Com isso no repositório, a prototipagem assistida por IA tem a que obedecer. Sem isso,
 cada tela nasce de um gosto diferente.
+
+Os dois artefatos desta seção e da anterior saem do mesmo comando, o `/utf-flows`.
 
 ### 3.6 A regra de ouro dos documentos
 
@@ -337,6 +345,7 @@ confiar.
 | `docs/prd.md` | **o que o produto faz** — histórias, critérios e o que já está pronto |
 | `docs/architecture.md` | **onde as coisas estão** — estrutura, entidades, contratos, estados |
 | `docs/user-flows.md` | **o que a pessoa vive** — jornadas e pontos de desistência |
+| `docs/design-tokens.md` | **como o produto se parece** — paleta, espaçamento, tipografia |
 | `specs/` | **o que está sendo construído agora** — uma pasta por história |
 
 Se você precisa saber o status do pedido, existe **um** lugar: a máquina de estados no
