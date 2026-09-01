@@ -10,7 +10,9 @@ nunca é quem escreveu, e todo artefato é evidência para a defesa.
 
 1. Clique em **Use this template → Create a new repository** (não faça fork).
    O repositório criado é seu.
-2. Clone o seu repositório e abra-o na sua IDE agêntica (Claude Code, Cursor…).
+2. Clone o seu repositório e abra-o na sua IDE agêntica. **Claude Code, Cursor,
+   Antigravity e OpenCode já vêm configurados** — inclusive a trava que impede os
+   revisores de editar arquivo. Veja *Um método, quatro ferramentas*, abaixo.
 3. Leia `docs/checklist.md` — é a **ficha da disciplina**: as regras do projeto,
    os Indicadores de Desempenho (IDs) e as entregas.
 4. Siga o fluxo, um comando por fase:
@@ -24,6 +26,25 @@ nunca é quem escreveu, e todo artefato é evidência para a defesa.
 | Scaffold | `/utf-setup` | `apps/` — o monorepo, nascendo verde |
 | Cada história | `/utf-issue <n>` → `/utf-task` | spec, plano e código, tarefa a tarefa |
 | Aprender | `/utf-tutor` | a explicação didática de cada passo |
+
+### Um método, quatro ferramentas
+
+O conteúdo de verdade — constituição, fluxos e subagentes — vive uma vez só, em
+`.agents/`. Cada ferramenta tem apenas uma casca de poucas linhas que aponta para
+lá, com a sintaxe de permissão dela. Trocar de ferramenta no meio do semestre não
+reescreve nada: o miolo é o mesmo.
+
+| Ferramenta | Regras | Comandos | Subagentes |
+| --- | --- | --- | --- |
+| Claude Code | `CLAUDE.md` | `.claude/commands/` | `.claude/agents/` |
+| Cursor | `.cursor/rules/` | `.cursor/commands/` | `.cursor/agents/` |
+| Antigravity | `.agents/rules/` | `.agents/workflows/` | `.agents/agents/` |
+| OpenCode | `AGENTS.md` | `.opencode/command/` | `.opencode/agents/` |
+
+O **OpenCode funciona com modelos gratuitos** e é o único dos quatro que libera
+comandos específicos do terminal em vez de ligar ou desligar o terminal inteiro —
+a trava mais fechada das quatro. Ajuste a lista de comandos de teste em
+`.opencode/agents/` à stack do seu `docs/architecture.md`.
 
 O passo a passo detalhado está em [`docs/tutorial-sdd.md`](docs/tutorial-sdd.md);
 o porquê de cada regra, em [`docs/guia-sdd.md`](docs/guia-sdd.md).
