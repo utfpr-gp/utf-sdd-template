@@ -12,6 +12,12 @@ A regra número um deste repositório é:
 
 Você é o Engenheiro e o Arquiteto; a IA é a sua equipe de execução.
 
+**Quem assina o quê.** O **Pull Request é sempre seu** — o agente prepara os fatos, você
+escreve a explicação e abre. Nos **commits**, a decisão é sempre sua, e a execução muda
+de mão conforme o artefato: na Fase 0 e na aprovação da spec **você commita**, porque a
+autoria precisa estar no `git log` com o seu nome; dentro do ciclo de implementação o
+agente executa o commit, mas só depois do seu "pode commitar".
+
 ---
 
 ## 🌳 Fluxo Git e Proteção da Produção (GitHub Flow)

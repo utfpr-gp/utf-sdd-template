@@ -35,7 +35,7 @@ Uma seção por vez; feche cada uma mostrando o texto e colhendo o OK antes de s
    - **Prioridade (MoSCoW):** `Must Have` | `Should Have` | `Could Have`. **O conjunto de Must Have É o escopo do projeto** — as stories que o escopo mínimo da ficha exige são `Must Have` por definição. `Should`/`Could` ficam documentadas e entram se sobrar tempo: escopo flexível, nada se perde. O `Won't Have` não vira story — vira item da seção *Fora de Escopo*.
    - **Tamanho (esforço):** `S` cabe numa sessão | `M` vira algumas tarefas no plano | `L` é sinal de dividir a história antes de implementar.
 
-   Toda story nasce `Draft` — **só o aluno promove a `Ready`**; `Live` só depois do PR mesclado (o auditor final confere).
+   Os três status são `⚪ Draft`, `🟡 Ready` e `🟢 Live`, com o emoji. Toda story nasce `⚪ Draft` — **só o aluno promove a `🟡 Ready`**; `🟢 Live` só depois do PR mesclado (o auditor final confere).
 5. **Regras de Negócio** — `RNnn`, cada uma referenciada pelas stories que a usam.
 6. **Fora de Escopo** — o que o produto deliberadamente não faz neste semestre (o `Won't Have` do MoSCoW mora aqui, com o motivo).
 7. **Requisitos Não Funcionais** — só os que o aluno consegue justificar na defesa.

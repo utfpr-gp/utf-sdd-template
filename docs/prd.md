@@ -56,7 +56,9 @@
 > Toda story nasce `Draft` — **só você promove a `Ready`**; `Live` é quando o PR
 > da história mescla (o auditor final confere).
 
-### US01 — [título] · `Must|Should|Could Have` · `S|M|L` · Status: `Draft`
+### US01 — [título] · `Must|Should|Could Have` · `S|M|L` · Status: `⚪ Draft`
+
+<!-- Status: `⚪ Draft` (não codificar) · `🟡 Ready` (vira Issue) · `🟢 Live` (PR mesclado) -->
 
 **Como** [perfil], **eu quero** [ação] **para que** [objetivo].
 

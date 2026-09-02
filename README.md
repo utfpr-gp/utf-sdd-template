@@ -27,6 +27,11 @@ nunca é quem escreveu, e todo artefato é evidência para a defesa.
 | Cada história | `/utf-issue <n>` → `/utf-task` | spec, plano e código, tarefa a tarefa |
 | Aprender | `/utf-tutor` | a explicação didática de cada passo |
 
+Bug e tarefa técnica não entram nessa tabela: eles nascem como Issue direto no GitHub
+(há um modelo para cada em `.github/ISSUE_TEMPLATE/`), não têm `spec.md` e o PR leva a
+etiqueta `manutencao`. O tutorial tem o passo a passo. Os modelos comentados de
+`spec.md` e `plan.md` ficam em `specs/_modelo/`.
+
 ### Um método, quatro ferramentas
 
 O conteúdo de verdade — constituição, fluxos e subagentes — vive uma vez só, em

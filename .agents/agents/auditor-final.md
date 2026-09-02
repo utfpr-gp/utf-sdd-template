@@ -39,7 +39,7 @@ Você não altera nenhum arquivo.
 - **`docs/architecture.md`:** mudou entidade, estado ou contrato sem o documento acompanhar? Documentação que mente é pior que documentação ausente.
 - **Dívida declarada:** todo `Assume que` da spec tem `// TODO #<issue>` no código e uma Issue aberta correspondente?
 - **Escopo do PR:** entrou no diff algo que a spec não pedia? Se sim, é candidato a Issue separada, e o PR precisa ser limpo.
-- **`specs/README.md`:** o índice reflete o estado desta spec?
+- **`specs/README.md`:** o índice reflete o estado desta spec? (A pasta `specs/_modelo/` é o modelo em branco — não é spec, não entra no índice e não se audita.)
 
 ## Formato da resposta
 

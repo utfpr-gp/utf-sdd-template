@@ -423,7 +423,7 @@ cada leva de stories promovidas. Bugs e Tasks nascem à mão, direto no GitHub.
 
 Se o `prd.md` é a "planta da casa", o GitHub Projects é o seu "canteiro de obras". É
 vital entender o que pertence a cada lugar para não duplicar trabalho. No GitHub, ao
-criar uma Issue, você escolhe um **Type** — e o tipo dita como você usa o PRD:
+criar uma Issue, você escolhe um dos **modelos de Issue** do repositório (ou nenhum, no caso das histórias) — e esse tipo dita como você usa o PRD:
 
 **🔵 Feature (histórias de usuário)**
 
@@ -508,6 +508,11 @@ A aprovação tem uma forma concreta, e é só ela que vale:
 
 > **Você — não o agente — troca `status: rascunho` por `status: aprovada` e faz um
 > commit dessa linha, na branch da Issue.**
+
+Vale a distinção geral, porque ela confunde: **o Pull Request é sempre seu**, e nos
+commits a decisão é sempre sua. Quem digita o `git commit` é que varia — na Fase 0 e
+nesta aprovação é você, porque a autoria é o que está sendo provada; dentro do ciclo é
+o agente, depois do seu "pode commitar", para o fluxo não parar a cada arquivo.
 
 Isso não é cerimônia. É o que dá **data, autor e diff** para a decisão mais importante
 do ciclo. Sem esse commit, no fim do semestre não existe nenhuma diferença observável
@@ -1359,3 +1364,75 @@ Closes #
 
 **Recusados (com o motivo):**
 ```
+
+---
+
+## Apêndice C — A esteira de testes, como referência
+
+O template **não** traz este arquivo, e o `/utf-setup` não o gera: montar a esteira é
+uma **tarefa técnica sua** (ID18), com Issue e PR próprios. O que segue é referência
+para essa Issue — leia antes de pedir para a IA gerar, para conseguir revisar o que
+ela gerar.
+
+O ponto que quase todo mundo erra é o banco. O teste que toca o Prisma precisa de um
+PostgreSQL de verdade, e ele não pode ser o de produção. O GitHub Actions resolve isso
+com um *service container*: um Postgres descartável que sobe junto com o job e morre
+com ele.
+
+```yaml
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:                       # banco descartável, só deste job
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        # sem o health check, os testes começam antes de o banco aceitar conexão
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      # a URL do banco de teste é pública de propósito: ele é descartável.
+      # A DATABASE_URL de produção NUNCA aparece aqui — ela é um secret.
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/teste
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/api/package-lock.json
+
+      - run: npm ci
+        working-directory: apps/api
+      - run: npx prisma migrate deploy   # cria o schema no banco descartável
+        working-directory: apps/api
+      - run: npm run lint
+        working-directory: apps/api
+      - run: npm test
+        working-directory: apps/api
+```
+
+Três coisas para conferir quando for adaptar:
+
+- **Um job por app.** Duplique o bloco para `apps/web` (sem o serviço de banco) em vez
+  de misturar os dois no mesmo job: assim o log diz qual dos dois quebrou.
+- **Os comandos vêm do `docs/architecture.md`.** Se lá está escrito `npm run test:ci`,
+  é isso que entra aqui — o documento é a fonte, não o hábito.
+- **Ligue o check na proteção da `main`.** Igual ao Portão de Entendimento: acrescente o
+  nome do job em `contexts` (veja o Passo 4 do `/utf-setup`). Esteira que não bloqueia
+  merge é decoração.

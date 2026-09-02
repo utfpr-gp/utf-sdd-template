@@ -77,15 +77,16 @@ dentro da estrutura de pastas que o documento descreve.
 
 ## Passo 4 — As ferramentas do método
 
-O `.github/` **já vem no template**: `pull_request_template.md` e
-`workflows/portao-de-entendimento.yml` estão na `main` desde o primeiro commit.
+O `.github/` **já vem no template**: `pull_request_template.md`,
+`workflows/portao-de-entendimento.yml` e os modelos de Issue de bug e tarefa
+técnica estão na `main` desde o primeiro commit.
 Você não os gera — você **confere** que existem. Copiar YAML de dentro da prosa
 do guia é exatamente como o Portão nasce parafraseado e sem efeito.
 
-1. Confira que `.github/pull_request_template.md` e
-   `.github/workflows/portao-de-entendimento.yml` existem. Se faltar algum,
-   **PARE** e avise: o repositório não veio do template, e os dois são
-   pré-requisito do método — não subproduto do setup.
+1. Confira que `.github/pull_request_template.md`,
+   `.github/workflows/portao-de-entendimento.yml` e `.github/ISSUE_TEMPLATE/`
+   existem. Se faltar algum, **PARE** e avise: o repositório não veio do
+   template, e eles são pré-requisito do método — não subproduto do setup.
 2. A etiqueta de manutenção no GitHub (é ela que marca PRs sem spec, a começar
    pelo deste setup):
 
@@ -135,6 +136,7 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
    | --- | --- | --- | --- |
 
    Estados: `rascunho` · `aprovada` · `implementada` · `bloqueada`
+   (a pasta `specs/_modelo/` não entra no índice)
    ```
 
 ## Passo 5 — Prova de vida

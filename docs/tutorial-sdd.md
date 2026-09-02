@@ -135,6 +135,27 @@ Dizer "vamos trabalhar na Issue 12" em linguagem natural também dispara o fluxo
 
 ---
 
+## Fora do ciclo — bug e tarefa técnica
+
+Nem todo trabalho é história. **Bug** (algo que já deveria funcionar e não funciona) e
+**tarefa técnica** (atualizar versão, refatorar, configurar a esteira) não têm `spec.md`
+e não passam pelo `/utf-issue`. O caminho é mais curto, e mesmo assim tem regras:
+
+1. **Abra a Issue direto no GitHub**, escolhendo o modelo (🔴 Bug ou 🟡 Tarefa técnica).
+   Aqui a descrição é detalhada — passos, logs, evidência. É ela que faz o papel da spec.
+2. **Branch a partir da `main`**, como sempre.
+3. **No bug, o primeiro commit é um teste que reproduz a falha e falha de verdade.**
+   Sem esse teste, nada prova que o bug foi embora nem que ele não volta. Só depois vem
+   a correção. É o mesmo RED → GREEN do ciclo, sem a papelada.
+4. **PR com a etiqueta `manutencao`**, `Closes #<n>` e a explicação de 400 caracteres.
+   A etiqueta dispensa a spec, **nunca** o Portão de Entendimento.
+
+Se, ao investigar, você descobrir que o `docs/prd.md` nunca disse o que o sistema
+deveria fazer ali, então não era bug: é história nova. Feche a Issue, escreva a story
+no PRD e volte para o ciclo normal.
+
+---
+
 ## Quando algo dá errado
 
 - **Estourou as 2 rodadas de revisão:** o ciclo para sozinho e te chama, com os
