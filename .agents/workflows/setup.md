@@ -136,7 +136,6 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
    | --- | --- | --- | --- |
 
    Estados: `rascunho` · `aprovada` · `implementada` · `bloqueada`
-   (a pasta `specs/_modelo/` não entra no índice)
    ```
 
 ## Passo 5 — Prova de vida

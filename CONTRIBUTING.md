@@ -39,6 +39,7 @@ Nada é duplicado neste projeto. Informação repetida diverge.
 | **Arquitetura**   | `docs/architecture.md`  | Onde as coisas estão (estrutura, entidades, contratos).                |
 | **Jornadas**      | `docs/user-flows.md`    | O caminho do usuário e onde ele desiste.                               |
 | **Ficha**         | `docs/checklist.md`     | As regras da disciplina, os IDs e as entregas — a régua dos workflows. |
+| **Modelos**       | `docs/modelo-spec.md` e `docs/modelo-plan.md` | A forma do `spec.md` e do `plan.md`, comentada. Não são specs — são a régua. |
 | **Especificação** | `specs/<issue>-<slug>/` | O `spec.md` (o que fazer), o `plan.md` (tarefas técnicas) e `reviews/` (pareceres e triagem). |
 | **Leis da IA**    | `.agents/`              | `rules/utf-rules.md` (constituição, carregada via `CLAUDE.md`), `workflows/` (ciclos) e `agents/` (prompts dos subagentes). |
 

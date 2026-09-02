@@ -3,10 +3,10 @@ issue: 00
 status: rascunho   # rascunho | aprovada
 ---
 
-<!-- 📐 MODELO — não é uma spec de verdade.
-     A pasta `_modelo/` fica de fora do índice `specs/README.md` e o auditor a ignora.
+<!-- 📐 MODELO — não é uma spec de verdade, e por isso mora em `docs/`, e não em
+     `specs/` (lá só existem specs reais, uma pasta por história).
      O `/utf-issue <n>` copia esta estrutura para `specs/<NNN>-<slug>/spec.md`.
-     Leia os comentários: eles dizem por que cada seção existe. -->
+     Leia os comentários: eles dizem por que cada seção existe, e são apagados na cópia. -->
 
 # US00 — [título da história]
 

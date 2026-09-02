@@ -9,7 +9,7 @@ Sempre que o usuário pedir para trabalhar em uma Issue (Feature), você atuará
 **Passo 0: Pré-condições**
 - Acesso ao GitHub: MCP do GitHub disponível **ou** `gh` autenticado (`gh auth status`). Sem um dos dois, **PARE** — este fluxo lê Issues e prepara PR.
 - A Issue existe no GitHub. Se as Issues das stories ainda não foram criadas, mande rodar `/utf-backlog` primeiro.
-- **Retomada.** Se `specs/<NNN>-<slug>/` já existe (a pasta `specs/_modelo/` não conta — é o modelo em branco), **não recomece**: descubra o estado e entre no passo certo — spec `rascunho` → pausa do Passo 1; `aprovada` sem `plan.md` → Passo 2; plano com tarefa pendente → Passo 3; todas feitas → Passo 4. É assim que `/utf-issue <n>` fecha a Issue depois da última tarefa.
+- **Retomada.** Se `specs/<NNN>-<slug>/` já existe, **não recomece**: descubra o estado e entre no passo certo — spec `rascunho` → pausa do Passo 1; `aprovada` sem `plan.md` → Passo 2; plano com tarefa pendente → Passo 3; todas feitas → Passo 4. É assim que `/utf-issue <n>` fecha a Issue depois da última tarefa.
 
 **Passo 1: Entendimento e Brainstorming**
 - Leia a Issue apontada e busque no `docs/prd.md` os critérios e o Glossário Ubíquo.
@@ -30,7 +30,7 @@ status: rascunho   # rascunho | aprovada
 ---
 ```
 
-  **A estrutura é a de `specs/_modelo/spec.md`** — copie-a e preencha; os comentários dela explicam cada seção e são apagados no caminho. Não invente seções novas nem pule as existentes.
+  **A estrutura é a de `docs/modelo-spec.md`** — copie-a e preencha; os comentários dela explicam cada seção e são apagados no caminho. Não invente seções novas nem pule as existentes.
 
   Se `docs/user-flows.md` tem jornada desta história, cada nó vermelho dela vira pelo menos um critério de aceite. Acrescente a linha desta spec em `specs/README.md`, com estado `rascunho` (os estados são `rascunho`, `aprovada`, `implementada` e `bloqueada`).
 
@@ -41,7 +41,7 @@ status: rascunho   # rascunho | aprovada
 **Passo 2: Planejamento**
 - Com o `spec.md` aprovado, quebre o trabalho em tarefas curtas e encadeadas — cada uma é **um critério de aceite inteiro**, ponta a ponta, ou um passo técnico que sozinho não prova nada mas destrava o próximo. Se ao descrevê-la você usa "e" duas vezes, são duas tarefas.
 - Cada tarefa deve prever a criação de testes primeiro (TDD).
-- Formato do `plan.md`: o de `specs/_modelo/plan.md` — checklist `- [ ] **Tarefa N — <título>**`, cada uma citando o critério de aceite que cobre e o teste que nasce primeiro. Tarefa feita vira `- [x]`: é essa marcação que o `/utf-task` sem número lê. A seção *Critérios sem tarefa* precisa terminar vazia.
+- Formato do `plan.md`: o de `docs/modelo-plan.md` — checklist `- [ ] **Tarefa N — <título>**`, cada uma citando o critério de aceite que cobre e o teste que nasce primeiro. Tarefa feita vira `- [x]`: é essa marcação que o `/utf-task` sem número lê. A seção *Critérios sem tarefa* precisa terminar vazia.
 - Se o plano passar de **10 tarefas**, pare: a história é grande demais. Proponha dividi-la em duas Issues antes de continuar.
 - Salve o resultado no caminho `specs/<numero-da-issue>-<slug>/plan.md`.
 - **PAUSA OBRIGATÓRIA:** Peça a aprovação do usuário para o plano.

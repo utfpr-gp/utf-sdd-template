@@ -12,7 +12,7 @@ Tarefa a executar: **$1**
 
 ## Passo 0 — Localizar e travar
 
-1. Descubra a pasta `specs/<issue>-<slug>/` da branch atual (`specs/_modelo/` é o modelo em branco — ignore-a).
+1. Descubra a pasta `specs/<issue>-<slug>/` da branch atual.
 2. Abra o `spec.md` e confira `status: aprovada` no frontmatter. **Se não estiver, PARE** e diga: *"A spec ainda não foi aprovada por você. O portão de aprovação da spec não passou."*
 3. **Se o comando veio sem número**, resolva-o pelo `plan.md`: a tarefa é a **primeira ainda não marcada como feita** (`- [ ]`), na ordem do plano. Anuncie ao usuário qual número foi resolvido (ex.: *"Próxima pendente: tarefa 3 — <título>"*) antes de seguir — daqui em diante, esse número é o `$1` em tudo (pareceres, decisões, commit). **Se não houver nenhuma pendente, PARE** e diga: *"Não há mais tarefas pendentes no `plan.md`. O próximo passo é o auditor final e o Pull Request: rode `/utf-issue <n>` de novo — ele detecta que o plano acabou e retoma no fechamento."* Não invente tarefa nova.
 4. **Se o comando veio com número e a tarefa `$1` já está marcada como feita** (`- [x]`), **PARE** e diga isso — não há o que executar; `/utf-tutor $1` explica o que foi feito.

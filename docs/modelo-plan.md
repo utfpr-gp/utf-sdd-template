@@ -1,4 +1,4 @@
-<!-- 📐 MODELO — não é um plano de verdade.
+<!-- 📐 MODELO — não é um plano de verdade, e por isso mora em `docs/`, e não em `specs/`.
      O `/utf-issue <n>` gera `specs/<NNN>-<slug>/plan.md` com esta forma, depois de
      você aprovar a spec. O `/utf-task` lê as caixas `- [ ]` daqui para saber qual é
      a próxima tarefa, e marca `- [x]` quando você autoriza o commit. -->

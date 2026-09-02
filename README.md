@@ -30,7 +30,7 @@ nunca é quem escreveu, e todo artefato é evidência para a defesa.
 Bug e tarefa técnica não entram nessa tabela: eles nascem como Issue direto no GitHub
 (há um modelo para cada em `.github/ISSUE_TEMPLATE/`), não têm `spec.md` e o PR leva a
 etiqueta `manutencao`. O tutorial tem o passo a passo. Os modelos comentados de
-`spec.md` e `plan.md` ficam em `specs/_modelo/`.
+`spec.md` e `plan.md` ficam em `docs/modelo-spec.md` e `docs/modelo-plan.md`.
 
 ### Um método, quatro ferramentas
 
