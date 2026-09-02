@@ -40,14 +40,14 @@ Nada é duplicado neste projeto. Informação repetida diverge.
 
 ## 🔄 O Ciclo de Trabalho
 
-Todo trabalho que altera o comportamento do sistema segue o ciclo UTF-SDD, orquestrado pelos agentes do repositório: `/utf-issue <n>` inicia (spec → plano), `/utf-task <n>` executa cada tarefa com tutor, implementador de contexto limpo e dois revisores distintos, e o auditor final confere o diff inteiro antes do PR.
+Todo trabalho que altera o comportamento do sistema segue o ciclo UTF-SDD, orquestrado pelos agentes do repositório: `/utf-issue <n>` inicia (spec → plano), `/utf-task <n>` executa cada tarefa com tutor, implementador de contexto limpo e dois revisores distintos, e `/utf-issue <n>` rodado de novo fecha a Issue: docs, auditor final sobre o diff inteiro e PR.
 
 - **O passo a passo operacional** (comandos e o que fazer em cada pausa) está no [Tutorial do Método](./docs/tutorial-sdd.md).
 - **O porquê de cada regra** está no [Guia da Disciplina](./docs/guia-sdd.md).
 
 O que é **norma inegociável** deste repositório são os portões humanos — quatro por história e um quinto no Pull Request. Nenhum agente passa por eles em seu lugar:
 
-1. **🚪 Spec:** só você aprova, trocando `status: rascunho` → `status: aprovada` num commit seu.
+1. **🚪 Spec e plano:** só você aprova a spec, trocando `status: rascunho` → `status: aprovada` num commit seu, e dá o OK ao plano derivado dela.
 2. **🚪 Explicação do tutor:** cada tarefa só é implementada depois do seu "pode implementar" — dúvida agora custa cinco minutos; depois do diff, custa uma rodada.
 3. **🚪 Triagem:** só você aceita ou recusa apontamentos de revisão (recusa exige justificativa, registrada em `specs/<issue>-<slug>/reviews/tarefa-NN-decisoes-rN.md`).
 4. **🚪 Commit:** revisores aprovarem não basta — o orquestrador apresenta o diff e os pareceres e só commita com o seu "pode commitar".

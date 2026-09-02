@@ -25,7 +25,7 @@ que foi decidida. O que não estiver escrito lá, você pergunta; não escolhe.
 4. O `gh` está autenticado (`gh auth status`) **ou** o MCP do GitHub está
    disponível — sem um dos dois, a etiqueta e o Pull Request do fim não saem.
    Se faltar, **PARE** e oriente: instalar o `gh`, `gh auth login`, com os
-   escopos `repo` e `workflow`.
+   escopos `repo`, `workflow` e `project`.
 
 ## Passo 1 — Branch
 
@@ -122,8 +122,10 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
    conscientemente, e isso fica registrado no log do repositório.
 
    **Se a API recusar**, quase sempre é conta gratuita com repositório privado —
-   proteção de branch exige repositório público ou plano pago. Relate e siga;
-   não insista.
+   proteção de branch exige repositório público ou plano pago. Não insista na
+   API: oriente a tornar o repositório público (*Settings → General → Danger
+   Zone → Change visibility*) e rode este passo de novo — a ficha exige a
+   proteção na Entrega 1.
 4. `specs/README.md` — o índice de specs, com a tabela vazia:
 
    ```markdown
@@ -131,6 +133,8 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
 
    | Issue | Spec | Estado | Observação |
    | --- | --- | --- | --- |
+
+   Estados: `rascunho` · `aprovada` · `implementada` · `bloqueada`
    ```
 
 ## Passo 5 — Prova de vida

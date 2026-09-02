@@ -24,7 +24,7 @@ Sem argumento, pergunte ao usuário qual modo ele quer.
 1. Descubra a pasta `specs/<issue>-<slug>/` da branch atual.
 2. Todo despacho leva os caminhos completos de `spec.md`, `plan.md` e `docs/architecture.md`, além do **modo**.
 3. Conforme o modo, acrescente:
-   - **`depois`**: número e texto literal da tarefa, e o comando de diff. Encontre o commit da tarefa com `git log --oneline --grep "tarefa <n>"` (convenção de commit do ciclo-tarefa) e monte `git diff <sha>^..<sha>`. Se a tarefa tiver mais de um commit ou o commit não for encontrado, monte o intervalo à mão e confirme com o usuário antes de despachar.
+   - **`depois`**: número e texto literal da tarefa, e o comando de diff. Encontre o commit da tarefa com `git log --oneline --grep "^tarefa <n>:"` (convenção de commit do ciclo-tarefa; o `^` e o `:` impedem que `tarefa 1` case com `tarefa 10`) e monte `git diff <sha>^..<sha>`. Se a tarefa **ainda não foi commitada** (o aluno quer a aula antes de autorizar o commit), o diff é o working tree: `git add -A && git diff HEAD`. Se a tarefa tiver mais de um commit ou o commit não for encontrado, monte o intervalo à mão e confirme com o usuário antes de despachar.
    - **`antes`**: número e texto literal da tarefa, e os critérios de aceite ligados a ela, transcritos.
    - **`prova`**: o comando do diff completo da branch: `git diff main..HEAD`.
 

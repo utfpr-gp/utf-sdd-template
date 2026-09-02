@@ -11,8 +11,8 @@ nunca é quem escreveu, e todo artefato é evidência para a defesa.
 1. Clique em **Use this template → Create a new repository** (não faça fork).
    O repositório criado é seu.
 2. Clone o seu repositório e abra-o na sua IDE agêntica. **Claude Code, Cursor,
-   Antigravity e OpenCode já vêm configurados** — inclusive a trava que impede os
-   revisores de editar arquivo. Veja *Um método, quatro ferramentas*, abaixo.
+   Antigravity e OpenCode já vêm configurados** — inclusive a trava que tira dos
+   revisores a ferramenta de edição. Veja *Um método, quatro ferramentas*, abaixo.
 3. Leia `docs/checklist.md` — é a **ficha da disciplina**: as regras do projeto,
    os Indicadores de Desempenho (IDs) e as entregas.
 4. Siga o fluxo, um comando por fase:
@@ -20,7 +20,7 @@ nunca é quem escreveu, e todo artefato é evidência para a defesa.
 | Fase | Comando | Produz |
 | --- | --- | --- |
 | Requisitos | `/utf-prd` | `docs/prd.md` — o QUE o produto faz |
-| Backlog | `/utf-backlog` | Issues no GitHub + Kanban no Projects |
+| Backlog | `/utf-backlog` | Issues no GitHub + o roteiro do Kanban no Projects |
 | Jornadas e tokens | `/utf-flows` | `docs/user-flows.md` e `docs/design-tokens.md` — o que a pessoa vive na tela |
 | Arquitetura | `/utf-architecture` | `docs/architecture.md` — onde as coisas moram |
 | Scaffold | `/utf-setup` | `apps/` — o monorepo, nascendo verde |
@@ -48,8 +48,9 @@ implementador escreve. A trava tem forças diferentes, e vale saber qual você t
   liberar o terminal para o revisor rodar `git diff`. Quem tem terminal poderia, em
   tese, escrever com `sed` ou redirecionamento — o que fecha isso ali é a proibição
   escrita no prompt do agente.
-- **O OpenCode fecha por configuração:** é o único que libera comandos específicos em
-  vez de ligar ou desligar o terminal inteiro. E **funciona com modelos gratuitos**,
+- **O OpenCode estreita por configuração:** é o único que libera comandos específicos
+  em vez de ligar ou desligar o terminal inteiro (o curinga `git diff*` ainda aceita
+  redirecionamento, então a proibição no prompt vale lá também). E **funciona com modelos gratuitos**,
   o que faz dele o caminho de custo zero mais completo da disciplina. Ajuste a lista
   de comandos de teste em `.opencode/agents/` à stack do seu `docs/architecture.md`:
   comando que não estiver liberado não roda, e o parecer sai incompleto sem avisar.

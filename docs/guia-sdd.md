@@ -21,7 +21,7 @@ Para materializar isso, adotaremos o **Spec-Driven Development (SDD)** — ou
 Desenvolvimento Dirigido por Especificação — como metodologia central, na
 variante desta disciplina: o **UTF-SDD**, um **SDD por Portões** (*Gated SDD*).
 O que o distingue dos SDDs de mercado são três compromissos: **nada avança sem
-um portão de decisão humana registrada** (aprovar a spec, aceitar a explicação
+um portão de decisão humana registrada** (aprovar a spec e o plano, aceitar a explicação
 do tutor, triar apontamentos, autorizar cada commit — quatro por história — e um
 quinto ao abrir o Pull Request); **quem revisa nunca é
 quem escreveu** (implementador de contexto limpo, revisores somente-leitura,
@@ -95,7 +95,7 @@ fecha:
 | # | Etapa | Comando | 🚪 Portão |
 | --- | --- | --- | --- |
 | 1 | Requisitos (`docs/prd.md`) | `/utf-prd` | Você lê, ajusta e **commita**; o professor aceita o tema |
-| 2 | Backlog (Issues + Kanban no Projects) | `/utf-backlog` | Você aprova a lista de Issues **antes** de elas serem criadas |
+| 2 | Backlog (Issues no GitHub + o roteiro do Kanban, que você monta) | `/utf-backlog` | Você aprova a lista de Issues **antes** de elas serem criadas |
 | 3 | Jornadas e tokens (`docs/user-flows.md`, `docs/design-tokens.md`) | `/utf-flows` | Você decide o que acontece em cada ponto de desistência e **commita** |
 | 4 | Arquitetura (`docs/architecture.md`) | `/utf-architecture` | Você lê e **commita** |
 | 5 | Scaffold (`apps/`, verde) | `/utf-setup` | Ratificações + o primeiro PR (`manutencao`) |
@@ -569,19 +569,22 @@ Aqui acontece o que muita gente entende errado. **Não é** "o agente escreve tu
 depois alguém revisa tudo". É um ciclo curto, repetido para cada tarefa do plano — e
 quem conduz o ciclo é um **orquestrador**, que não implementa e não revisa:
 
-1. O orquestrador despacha um **implementador novo**, com contexto limpo, para aquela
+1. O orquestrador despacha o **tutor** (modo *antes*), que explica o que a tarefa vai
+   construir e deixa um roteiro para você conferir o diff — **você aceita** antes de
+   qualquer código
+2. O orquestrador despacha um **implementador novo**, com contexto limpo, para aquela
    tarefa e só ela
-2. O teste vem antes da lógica — **RED → GREEN → REFACTOR**, e o RED precisa **falhar
+3. O teste vem antes da lógica — **RED → GREEN → REFACTOR**, e o RED precisa **falhar
    de verdade**. Se o teste passa de primeira, o teste está errado, não o código
-3. O orquestrador despacha, em paralelo, um **revisor de conformidade** (atende à
+4. O orquestrador despacha, em paralelo, um **revisor de conformidade** (atende à
    spec?) e um **revisor de código** (respeita o `architecture.md`?)
-4. Os dois pareceres são **gravados em arquivo, sem edição**
-5. Se houver apontamento, **você faz a triagem**: aceita ou recusa cada um — recusa
+5. Os dois pareceres são **gravados em arquivo, sem edição**
+6. Se houver apontamento, **você faz a triagem**: aceita ou recusa cada um — recusa
    exige justificativa, e tudo fica registrado em `tarefa-NN-decisoes-rN.md`. Se você
    recusar todos, a tarefa está aprovada; não existe correção sem a sua decisão
-6. Para os aceitos, o orquestrador despacha **um implementador novo** com esses
+7. Para os aceitos, o orquestrador despacha **um implementador novo** com esses
    apontamentos transcritos — nunca o mesmo que escreveu
-7. **No máximo 2 rodadas de revisão.** Se a segunda não fechar, para e chama você
+8. **No máximo 2 rodadas de revisão.** Se a segunda não fechar, para e chama você
 
 #### Os pareceres vão para o disco
 
@@ -626,7 +629,7 @@ que travou quando não travou:
 
 | Contador | Onde acontece | Limite | O que fazer ao estourar |
 | --- | --- | --- | --- |
-| **Tentativa de teste** | Dentro do implementador | 2 | Se o mesmo teste falha duas vezes pelo mesmo motivo, o implementador para e relata. Não tenta uma terceira abordagem. |
+| **Rodada de TDD** | Dentro do implementador | 2 | Se o mesmo teste falha duas vezes pelo mesmo motivo, o implementador para e relata. Não tenta uma terceira abordagem. |
 | **Rodada de revisão** | No orquestrador | 2 | Se ainda há apontamento **aceito na triagem** depois da segunda rodada, **para e escala para você**. Não existe rodada 3. |
 
 **O loop é contado.** Não existe "roda até o revisor ficar satisfeito". Sem limite, duas
@@ -646,14 +649,18 @@ ganha abstrações inventadas que ninguém pediu.
 
 #### Ao fim de cada tarefa
 
-Duas coisas, nessa ordem:
+Três coisas, nessa ordem:
 
-1. **Chame o tutor** (§6) e entenda o que foi feito. É agora, com a tarefa fresca e
-   pequena, que entender custa barato.
+1. **Confira o diff na IDE** com o roteiro que o tutor deixou antes da tarefa. É agora,
+   com a tarefa fresca e pequena, que entender custa barato.
 2. **Pare — 🚪 o commit é um portão.** O orquestrador apresenta o resumo do diff e os
    dois pareceres, e espera o seu **"pode commitar"**. Só então ele marca a tarefa
    como feita no `plan.md`, faz o commit e devolve o controle. Revisor aprovar não
-   substitui o olho do dono. Você pede a próxima quando quiser.
+   substitui o olho do dono.
+3. **Chame o tutor** (§6) — `/utf-tutor <n>` — para a aula sobre o diff que acabou de
+   entrar no histórico (ele localiza a tarefa pelo commit, por isso vem depois). Se
+   não souber responder às três perguntas dele, o trabalho não acabou. Você pede a
+   próxima tarefa quando quiser.
 
 > **Você trabalha na sua branch, na sua IDE, com os arquivos à vista.** Esta disciplina
 > **não** usa worktrees nem ambientes isolados. Worktree serve para deixar vários
@@ -851,8 +858,10 @@ atrás. Não é teimosia — é o material que está na frente dele.
 **Insistir na mesma conversa piora.** Cada nova rodada acrescenta mais ruído ao que já
 estava sujo. A saída é o contrário do instinto:
 
-1. **Descarte o que a tentativa falha deixou no working tree** (`git restore .` para o
-   que não foi commitado). Sessão nova com arquivo sujo herda o mesmo problema.
+1. **Descarte o que a tentativa falha deixou no working tree** (`git restore . &&
+   git clean -fd apps/` para o que não foi commitado) — **depois** de o orquestrador
+   ter commitado os pareceres, que são a prova da rodada. Sessão nova com arquivo
+   sujo herda o mesmo problema.
 2. **Feche a conversa.**
 3. **Abra uma sessão nova entregando só o `spec.md` corrigido e o `plan.md`.**
 
@@ -884,7 +893,9 @@ Com quinze pastas em `specs/`, ninguém sabe o que está vivo. Mantenha um
 | --- | --- | --- | --- |
 | #12 | `012-criar-pedido` | implementada | — |
 | #27 | `027-pagamento-do-pedido` | bloqueada | espera #31 |
-| #31 | `031-estado-de-falha-do-gateway` | aberta | descoberta durante #27 |
+| #31 | `031-estado-de-falha-do-gateway` | rascunho | descoberta durante #27 |
+
+Os estados são quatro: `rascunho`, `aprovada`, `implementada`, `bloqueada`.
 
 ---
 
@@ -1043,7 +1054,7 @@ saídas, nessa ordem de preferência:
    rodar os testes; é proibido usá-lo para alterar qualquer arquivo"*.
 
 **Um detalhe prático:** neste projeto os quatro agentes somente-leitura (dois
-revisores, auditor e tutor) têm terminal. No OpenCode ele é fechado por lista de comandos
+revisores, auditor e tutor) têm terminal. No OpenCode ele é estreitado por lista de comandos
 (saída 1); no Claude Code, no Cursor e no Antigravity, por prompt (saída 2): o shell
 existe só para `git diff` e para rodar testes, e os pareceres ficam versionados em
 `specs/<issue>-<slug>/reviews/` como prova de que a revisão aconteceu. Se preferir a
@@ -1130,8 +1141,9 @@ esse check, o PR reprovado **não mescla**.
 É uma regra só, e ela vale para **todos** os PRs, inclusive os de manutenção. Se a
 mudança é pequena, a explicação é curta e específica — *"o `ValidationPipe` estava sem
 `whitelist: true`, então campos extras no body passavam direto para o service; ativei a
-flag e ajustei dois testes que dependiam do comportamento antigo"* já passa dos 400
-caracteres e diz algo.
+flag e ajustei dois testes que dependiam do comportamento antigo"* é o começo;
+acrescente o que você conferiu e o que poderia ter quebrado, e os 400 caracteres vêm
+sozinhos — dizendo algo.
 
 A etiqueta `manutencao` **não dispensa a explicação**. Ela decide outra coisa: se o PR
 precisava ou não de `spec.md` (veja o §12). São duas perguntas independentes, e
@@ -1170,7 +1182,8 @@ ela faz.
 
 Antes de abrir cada Pull Request, confira:
 
-- [ ] Existe uma Issue e o PR referencia ela (`Closes #27`)
+- [ ] Existe uma Issue e o PR referencia ela (`Closes #27`) — exceto o PR do setup,
+      que não fecha Issue
 - [ ] `specs/<issue>-<slug>/spec.md` está com `status: aprovada`, e o commit que trocou
       esse campo é **seu**
 - [ ] Spec e plano são os primeiros commits da branch, antes de qualquer código
@@ -1260,8 +1273,9 @@ Duas observações práticas:
 
 - **O OpenCode é a opção de custo zero mais completa.** Ele funciona com modelos
   gratuitos e é o único dos quatro que deixa você liberar comandos específicos do
-  terminal em vez de ligar ou desligar o terminal inteiro — o que fecha exatamente a
-  brecha descrita no §7.
+  terminal em vez de ligar ou desligar o terminal inteiro — o que estreita a brecha
+  descrita no §7, sem fechá-la: o curinga de `git diff*` também aceita `git diff >
+  arquivo`, então a proibição no prompt continua valendo lá.
 - **No Antigravity, a trava é a lista `tools:`, e ela é excludente**: o agente recebe
   exatamente as ferramentas listadas e nada mais. Um revisor com
   `view_file`, `grep_search` e `run_command` não tem como editar arquivo, porque a
@@ -1296,8 +1310,9 @@ Você não escreve nem altera nenhum arquivo. Aponta; não corrige.
 ## Apêndice B — O Portão de Entendimento, inteiro
 
 Ele já vem no template, em `.github/workflows/portao-de-entendimento.yml`. São vinte
-linhas e não há nada escondido nelas: o passo recorta o texto entre o título da seção e o próximo título,
-conta os caracteres que não são espaço, e reprova se for pouco.
+linhas e não há nada escondido nelas: o passo recorta o texto entre o título da seção e o próximo título, descarta os
+comentários HTML do modelo (senão eles contariam), conta os caracteres que não são
+espaço, e reprova se for pouco.
 
 ```yaml
 name: Portão de Entendimento
@@ -1317,7 +1332,8 @@ jobs:
           TEXTO=$(printf '%s' "$CORPO" \
             | sed -n '/O que este PR faz e por quê/,$p' \
             | tail -n +2 \
-            | sed '/^##/,$d')
+            | sed '/^##/,$d' \
+            | perl -0pe 's/<!--.*?-->//gs')
           TAMANHO=$(printf '%s' "$TEXTO" | tr -d '[:space:]' | wc -c)
           echo "Caracteres na explicação: $TAMANHO (mínimo 400)"
           if [ "$TAMANHO" -lt 400 ]; then

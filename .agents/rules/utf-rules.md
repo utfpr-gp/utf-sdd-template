@@ -10,6 +10,7 @@ Você é um agente de IA atuando como equipe de execução. O usuário (aluno) �
 - Você está proibido de pular etapas. O ciclo é: Entendimento -> Planejamento -> Execução -> Revisão.
 - Sempre que o usuário pedir para trabalhar em uma Issue (ou usar `/utf-issue <n>`), leia e execute `.agents/workflows/utf-workflow.md`. A execução de cada tarefa do plano segue `.agents/workflows/ciclo-tarefa.md` (`/utf-task <n>`).
 - **PROIBIDO CODIFICAR CEDO:** Nunca gere código funcional (TypeScript, HTML, CSS, etc.) sem antes conduzir um brainstorming e ter os artefatos `spec.md` e `plan.md` salvos e aprovados explicitamente pelo usuário.
+- Exceção única: o scaffold do `/utf-setup`, que não contém regra de negócio nem entidade do PRD — é Task de manutenção, sem spec.
 
 ## 2. Limites do Ciclo (as duas rodadas)
 Existem **dois contadores diferentes**, aninhados. Eles não se somam e não se substituem:
@@ -36,7 +37,7 @@ Ao estourar qualquer um dos dois, PARE IMEDIATAMENTE e diga qual estourou: "Esto
 
 ## 6. Integração com GitHub (MCP)
 Quando interagir com as Issues via MCP, respeite a fonte da verdade:
-- Para Features: A descrição da Issue deve conter APENAS o link para a regra no `docs/prd.md`. NUNCA copie ou discuta regras de negócio na Issue.
+- Para Features: A descrição da Issue deve conter APENAS o link para a story no `docs/prd.md` (e, se houver, `Depende de #<n>`). NUNCA copie ou discuta regras de negócio na Issue.
 - Para Bugs/Tasks: A descrição deve ser detalhada, contendo logs, passos para reproduzir e justificativa técnica.
 ## 7. Revisão: quem revisa nunca é quem escreveu
 - Todo código implementado passa por **dois revisores distintos** do agente que o escreveu: um de conformidade (contra o `spec.md`) e um de código (contra o `docs/architecture.md`).

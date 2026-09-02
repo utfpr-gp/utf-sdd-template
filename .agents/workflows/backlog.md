@@ -13,7 +13,7 @@ fica velha, e a IA lê a versão errada.
 
 1. Acesso ao GitHub: MCP do GitHub disponível **ou** `gh` autenticado
    (`gh auth status`). Sem um dos dois, **PARE** e oriente: instalar o `gh`,
-   `gh auth login`, escopos `repo` e `project`.
+   `gh auth login`, escopos `repo`, `workflow` e `project`.
 2. `docs/prd.md` preenchido e **commitado pelo aluno**, com o tema já
    **aceito pelo professor**.
 3. Existe ao menos uma story com `Status: Ready`. Story `Draft` não vira

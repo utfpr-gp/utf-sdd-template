@@ -8,7 +8,7 @@
 > moram e como se chamam_.** Detalhe de tela — rota, componente, contrato —
 > **não** se decide aqui: isso é trabalho da spec de cada história.
 >
-> ✍️ **Não preencha na mão:** rode `/utf-architecture` (depois do `/utf-prd`).
+> ✍️ **Não preencha na mão:** rode `/utf-architecture` (depois do `/utf-prd` e do `/utf-flows`).
 > A entrevista decide com você cada seção e garante as quatro declarações que o
 > `/utf-setup` exige: **framework do backend, framework do frontend, estrutura
 > do monorepo e como rodar os testes.**

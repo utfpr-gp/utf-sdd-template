@@ -17,6 +17,4 @@ permission:
 ---
 Leia `.agents/agents/tutor.md` e siga-o integralmente antes de qualquer outra ação.
 
-> A lista de comandos liberados acima cobre git e os testes mais comuns.
-> **Ajuste-a à stack declarada no `docs/architecture.md`** — comando de teste
-> que não estiver liberado simplesmente não roda, e o parecer sai incompleto.
+> A lista acima libera só git: o tutor não roda testes — quem roda são os revisores.

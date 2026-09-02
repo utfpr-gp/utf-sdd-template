@@ -12,6 +12,8 @@ permission:
     "git diff*": allow
     "git log*": allow
     "git status*": allow
+    "gh issue list*": allow
+    "gh issue view*": allow
     "ls*": allow
     "cat*": allow
     "npm test*": allow
