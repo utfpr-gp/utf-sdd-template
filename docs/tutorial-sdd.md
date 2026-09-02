@@ -128,6 +128,11 @@ palavras, lista os apontamentos aceitos e recusados (saem dos arquivos
 Dizer "vamos trabalhar na Issue 12" em linguagem natural também dispara o fluxo
 (`utf-rules.md` §1) — os comandos são só o caminho mais curto.
 
+> **No Antigravity o comando é o nome do arquivo em `.agents/workflows/`**, não o
+> `/utf-*`: `/prd`, `/backlog`, `/user-flows`, `/architecture`, `/setup`,
+> `/utf-workflow` (a Issue), `/ciclo-tarefa` (a tarefa) e `/tutor`. O conteúdo é
+> o mesmo — onde este tutorial diz `/utf-<x>`, leia o equivalente.
+
 ---
 
 ## Quando algo dá errado

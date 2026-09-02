@@ -3,6 +3,6 @@ description: Inicia o ciclo SDD completo de uma Issue — entendimento e brainst
 argument-hint: <numero-da-issue>
 ---
 
-Leia `.agents/workflows/utf-issue.md` e execute-o integralmente.
+Leia `.agents/workflows/utf-workflow.md` e execute-o integralmente.
 
 Issue a trabalhar: $1

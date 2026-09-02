@@ -3,6 +3,6 @@ description: Executa UMA tarefa do plan.md com implementador de contexto limpo, 
 argument-hint: [numero-da-tarefa]
 ---
 
-Leia `.agents/workflows/utf-task.md` e execute-o integralmente.
+Leia `.agents/workflows/ciclo-tarefa.md` e execute-o integralmente.
 
 Tarefa a executar: $1 (se vazio, a primeira pendente do `plan.md` — o workflow explica como resolver)

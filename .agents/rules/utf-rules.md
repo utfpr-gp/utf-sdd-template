@@ -8,7 +8,7 @@ Você é um agente de IA atuando como equipe de execução. O usuário (aluno) �
 
 ## 1. Fases Estritas do Spec-Driven Development (SDD)
 - Você está proibido de pular etapas. O ciclo é: Entendimento -> Planejamento -> Execução -> Revisão.
-- Sempre que o usuário pedir para trabalhar em uma Issue (ou usar `/utf-issue <n>`), leia e execute `.agents/workflows/utf-issue.md`. A execução de cada tarefa do plano segue `.agents/workflows/utf-task.md` (`/utf-task <n>`).
+- Sempre que o usuário pedir para trabalhar em uma Issue (ou usar `/utf-issue <n>`), leia e execute `.agents/workflows/utf-workflow.md`. A execução de cada tarefa do plano segue `.agents/workflows/ciclo-tarefa.md` (`/utf-task <n>`).
 - **PROIBIDO CODIFICAR CEDO:** Nunca gere código funcional (TypeScript, HTML, CSS, etc.) sem antes conduzir um brainstorming e ter os artefatos `spec.md` e `plan.md` salvos e aprovados explicitamente pelo usuário.
 - Exceção única: o scaffold do `/utf-setup`, que não contém regra de negócio nem entidade do PRD — é Task de manutenção, sem spec.
 
@@ -16,7 +16,7 @@ Você é um agente de IA atuando como equipe de execução. O usuário (aluno) �
 Existem **dois contadores diferentes**, aninhados. Eles não se somam e não se substituem:
 
 - **Rodada de TDD** — vive dentro do implementador. Se o mesmo teste falhar duas vezes seguidas pelo mesmo motivo, ele PARA e relata. Não tenta uma terceira abordagem.
-- **Rodada de revisão** — vive no fluxo `/utf-task`. Uma rodada é uma passada inteira: implementar → revisar → triagem do usuário. Havendo apontamento aceito na segunda, o fluxo PARA e escala. **Não existe rodada 3.**
+- **Rodada de revisão** — vive no fluxo `ciclo-tarefa`. Uma rodada é uma passada inteira: implementar → revisar → triagem do usuário. Havendo apontamento aceito na segunda, o fluxo PARA e escala. **Não existe rodada 3.**
 
 Ao estourar qualquer um dos dois, PARE IMEDIATAMENTE e diga qual estourou: "Estourei o limite de 2 rodadas de TDD" ou "de revisão". Há algo errado com a premissa ou o contexto — quem analisa é o usuário. Não entre em loops de refatoração infinitos.
 

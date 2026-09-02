@@ -2,4 +2,4 @@
 description: Gera o docs/architecture.md por entrevista guiada a partir do prd.md — stack, monorepo, testes, glossário técnico, diagrama ER e os padrões cobrados pelos IDs. Garante o que o /utf-setup exige. Roda depois do /utf-prd e do /utf-flows.
 ---
 
-Leia `.agents/workflows/utf-architecture.md` e execute-o integralmente.
+Leia `.agents/workflows/architecture.md` e execute-o integralmente.
