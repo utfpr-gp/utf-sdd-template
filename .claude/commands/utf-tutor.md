@@ -3,6 +3,6 @@ description: Chama o agente tutor — /utf-tutor <n> explica a tarefa n já impl
 argument-hint: <n | antes <n> | spec | prova>
 ---
 
-Leia `.agents/workflows/tutor.md` e execute-o integralmente.
+Leia `.agents/workflows/utf-tutor.md` e execute-o integralmente.
 
 Argumento: $ARGUMENTS
