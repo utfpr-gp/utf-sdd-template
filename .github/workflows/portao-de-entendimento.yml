@@ -15,7 +15,8 @@ jobs:
           TEXTO=$(printf '%s' "$CORPO" \
             | sed -n '/O que este PR faz e por quê/,$p' \
             | tail -n +2 \
-            | sed '/^##/,$d')
+            | sed '/^##/,$d' \
+            | perl -0pe 's/<!--.*?-->//gs')
           TAMANHO=$(printf '%s' "$TEXTO" | tr -d '[:space:]' | wc -c)
           echo "Caracteres na explicação: $TAMANHO (mínimo 400)"
           if [ "$TAMANHO" -lt 400 ]; then

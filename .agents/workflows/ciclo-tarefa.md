@@ -1,5 +1,5 @@
 ---
-description: Executa UMA tarefa do plan.md com o ciclo completo do Passo 5 — tutor explica antes e o usuário aceita, implementador com contexto limpo, dois revisores distintos e somente-leitura, máximo de 2 rodadas de revisão. Recebe o número da tarefa; sem número, resolve a próxima pendente do plan.md.
+description: Executa UMA tarefa do plan.md com o ciclo completo de uma tarefa — tutor explica antes e o usuário aceita, implementador com contexto limpo, dois revisores distintos e somente-leitura, máximo de 2 rodadas de revisão. Recebe o número da tarefa; sem número, resolve a próxima pendente do plan.md.
 ---
 
 # Ciclo de uma tarefa
@@ -13,11 +13,13 @@ Tarefa a executar: **$1**
 ## Passo 0 — Localizar e travar
 
 1. Descubra a pasta `specs/<issue>-<slug>/` da branch atual.
-2. Abra o `spec.md` e confira `status: aprovada` no frontmatter. **Se não estiver, PARE** e diga: *"A spec ainda não foi aprovada por você. O portão do Passo 3 não passou."*
-3. **Se o comando veio sem número**, resolva-o pelo `plan.md`: a tarefa é a **primeira ainda não marcada como feita**, na ordem do plano. Anuncie ao usuário qual número foi resolvido (ex.: *"Próxima pendente: tarefa 3 — <título>"*) antes de seguir — daqui em diante, esse número é o `$1` em tudo (pareceres, decisões, commit). **Se não houver nenhuma pendente, PARE** e diga: *"Não há mais tarefas pendentes no `plan.md`. O próximo passo é o auditor final e o Pull Request, pelo fluxo da Issue."* Não invente tarefa nova.
-4. Extraia do `plan.md` o **texto literal** da tarefa `$1`.
-5. Guarde o ponto de partida: `git rev-parse HEAD`. Ele é a base de todos os diffs desta tarefa.
-6. Descubra em que **rodada de revisão** você está: conte os arquivos `specs/<slug>/reviews/tarefa-$1-conformidade-r*.md`. **Nenhum = rodada 1.** Não confie na sua memória para isso; o disco é a fonte da verdade.
+2. Abra o `spec.md` e confira `status: aprovada` no frontmatter. **Se não estiver, PARE** e diga: *"A spec ainda não foi aprovada por você. O portão de aprovação da spec não passou."*
+3. **Se o comando veio sem número**, resolva-o pelo `plan.md`: a tarefa é a **primeira ainda não marcada como feita** (`- [ ]`), na ordem do plano. Anuncie ao usuário qual número foi resolvido (ex.: *"Próxima pendente: tarefa 3 — <título>"*) antes de seguir — daqui em diante, esse número é o `$1` em tudo (pareceres, decisões, commit). **Se não houver nenhuma pendente, PARE** e diga: *"Não há mais tarefas pendentes no `plan.md`. O próximo passo é o auditor final e o Pull Request: rode `/utf-issue <n>` de novo — ele detecta que o plano acabou e retoma no fechamento."* Não invente tarefa nova.
+4. **Se o comando veio com número e a tarefa `$1` já está marcada como feita** (`- [x]`), **PARE** e diga isso — não há o que executar; `/utf-tutor $1` explica o que foi feito.
+5. Extraia do `plan.md` o **texto literal** da tarefa `$1`.
+6. Normalize o número: nos **nomes de arquivo** ele tem dois dígitos (`<NN>` = `03` para a tarefa 3); na **mensagem de commit**, sem zero à esquerda (`tarefa 3: `). Misturar os dois formatos faz a contagem do item 8 não enxergar a rodada anterior.
+7. Guarde o ponto de partida: `git rev-parse HEAD`. Ele é a base de todos os diffs desta tarefa.
+8. Descubra em que **rodada de revisão** você está: conte os arquivos `specs/<issue>-<slug>/reviews/tarefa-<NN>-conformidade-r*.md`. **Nenhum = rodada 1.** Não confie na sua memória para isso; o disco é a fonte da verdade.
 
 ## Passo 1 — Ensinar antes de implementar (só na rodada de revisão 1)
 
@@ -42,6 +44,8 @@ Despache o subagente **implementador**. O único canal entre vocês é a string 
 - os critérios de aceite da spec ligados a esta tarefa, transcritos
 - "toque apenas nos arquivos desta tarefa"
 
+Quando o implementador devolver o relatório, rode `git add -A` — só para pôr os arquivos novos no índice; **não commite**. Sem isso, arquivo novo não aparece no diff que os revisores vão ler.
+
 Se for rodada de revisão 2, inclua também os apontamentos da rodada 1 **aceitos na triagem** (Passo 5), transcritos — os recusados não vão: a decisão sobre eles já foi tomada e registrada. E **despache um implementador novo** — não continue o anterior.
 
 ## Passo 3 — Revisar
@@ -50,7 +54,7 @@ Despache **revisor-conformidade** e **revisor-codigo** na **mesma mensagem**, pa
 
 - caminho do `spec.md`
 - número e texto literal da tarefa
-- o comando de diff exato: `git diff <SHA-do-passo-0>..HEAD`
+- o comando de diff exato: `git diff <SHA-do-passo-0>` — **sem** `..HEAD`: o trabalho ainda não está commitado, está no working tree, e é ele que esse comando compara com o SHA
 - o comando para rodar os testes
 
 Antes de despachar, não emita opinião sobre o código. O parecer deles precisa ser independente do seu.
@@ -60,8 +64,8 @@ Antes de despachar, não emita opinião sobre o código. O parecer deles precisa
 Grave o texto devolvido por cada revisor **sem editar**, em:
 
 ```
-specs/<slug>/reviews/tarefa-$1-conformidade-r<N>.md
-specs/<slug>/reviews/tarefa-$1-codigo-r<N>.md
+specs/<issue>-<slug>/reviews/tarefa-<NN>-conformidade-r<N>.md
+specs/<issue>-<slug>/reviews/tarefa-<NN>-codigo-r<N>.md
 ```
 
 O sufixo `r<N>` é o contador de **rodadas de revisão** — por isso ele não precisa de arquivo de estado separado: a contagem *é* a listagem do diretório, e ela fica versionada no git como prova de que a revisão aconteceu e de quem a fez.
@@ -74,7 +78,7 @@ Havendo apontamentos, **quem decide o destino de cada um é o usuário, não voc
 
 1. Apresente ao usuário a lista numerada de **todos os apontamentos bloqueantes** dos dois pareceres, cada um com a evidência do revisor. Não emita recomendação de aceite ou recusa — a leitura é dele. (As *sugestões* do revisor de código não entram na triagem; relate-as, e o usuário pode promover uma a apontamento aceito se quiser.)
 2. Para cada apontamento, o usuário decide: **aceitar** ou **recusar com justificativa** — recusa sem justificativa não existe.
-3. Registre as decisões em `specs/<issue>-<slug>/reviews/tarefa-$1-decisoes-r<N>.md`:
+3. Registre as decisões em `specs/<issue>-<slug>/reviews/tarefa-<NN>-decisoes-r<N>.md`:
 
 ```
 # Decisões — Tarefa $1, rodada <N>
@@ -90,7 +94,7 @@ Havendo apontamentos, **quem decide o destino de cada um é o usuário, não voc
 
 | Situação | O que fazer |
 | --- | --- |
-| Ambos **APROVADO**, ou **todos os apontamentos recusados** na triagem | **PAUSA OBRIGATÓRIA — nada de commit ainda.** Apresente ao usuário: o resumo do diff (arquivos e o que mudou em cada um), o veredito dos dois revisores e o convite para **conferir o diff na IDE** (ofereça `/utf-tutor $1` para a explicação didática). Revisor aprovar não substitui o olho do dono: **espere o aceite explícito** ("pode commitar"). Só então marque a tarefa como feita no `plan.md` e faça o commit (incluindo pareceres e decisões) com a mensagem começando por `tarefa $1: ` — é essa convenção que permite ao `/utf-tutor $1` achar o diff depois. Feche o relato com a **listinha das tarefas restantes** do `plan.md` (número e título, na ordem), dizendo qual é a próxima — ou, se não restar nenhuma, que o plano acabou e o próximo passo é o auditor final e o PR. Espere ele pedir a próxima (`/utf-task` sem número já a pega). |
+| Ambos **APROVADO**, ou **todos os apontamentos recusados** na triagem | **PAUSA OBRIGATÓRIA — nada de commit ainda.** Apresente ao usuário: o resumo do diff (arquivos e o que mudou em cada um), o veredito dos dois revisores e o convite para **conferir o diff na IDE** com o roteiro que o tutor deu no Passo 1. Revisor aprovar não substitui o olho do dono: **espere o aceite explícito** ("pode commitar"). Só então marque a tarefa como feita no `plan.md` (`- [x]`) e faça o commit (incluindo pareceres e decisões) com a mensagem começando por `tarefa $1: ` — é essa convenção que permite ao `/utf-tutor $1` achar o diff. **Depois do commit**, ofereça `/utf-tutor $1` para a aula sobre o diff — antes dele o tutor não tem commit para localizar. Feche o relato com a **listinha das tarefas restantes** do `plan.md` (número e título, na ordem), dizendo qual é a próxima — ou, se não restar nenhuma, que o plano acabou e que `/utf-issue <n>` retoma no fechamento (auditor final e PR). Espere ele pedir a próxima (`/utf-task` sem número já a pega). |
 | Algum apontamento **aceito**, rodada de revisão 1 | Volte ao Passo 2 com um implementador novo (sem repetir o tutor), transcrevendo **apenas os apontamentos aceitos**. |
 | Algum apontamento **aceito**, rodada de revisão 2 | **PARE. Não existe rodada 3.** |
 
@@ -98,7 +102,7 @@ Havendo apontamentos, **quem decide o destino de cada um é o usuário, não voc
 
 Não tente de novo, não reformule, não peça "só mais uma". Escreva ao usuário:
 
-> Estourei o limite de 2 rodadas de revisão na tarefa `$1`. Os pareceres estão em `specs/<slug>/reviews/`.
+> Estourei o limite de 2 rodadas de revisão na tarefa `$1`. Os pareceres estão em `specs/<issue>-<slug>/reviews/`.
 > Causas prováveis, em ordem de frequência:
 > 1. a spec está ambígua neste ponto — o revisor e o implementador leram coisas diferentes
 > 2. a tarefa é grande demais e deveria virar duas
@@ -106,7 +110,11 @@ Não tente de novo, não reformule, não peça "só mais uma". Escreva ao usuár
 >
 > Meu palpite é <qual, e por quê>. A decisão é sua.
 
+Antes de qualquer limpeza, **salve a prova**: proponha um commit só com `specs/<issue>-<slug>/reviews/` (`tarefa $1: pareceres — estouro das 2 rodadas`), com o OK do usuário. Sem isso, o `git clean` que descarta o código leva os pareceres junto — e eles são a prova da rodada na defesa.
+
 E então **espere**. Contexto já sujo não melhora com mais uma tentativa: se o usuário decidir corrigir a spec, o certo é abrir sessão nova entregando só a spec corrigida e o plano.
+
+Quando a spec corrigida for aprovada de novo (novo commit do usuário) e a tarefa recomeçar, ela recomeça **do zero**: mova os pareceres e decisões dela para `specs/<issue>-<slug>/reviews/arquivo/<AAAA-MM-DD>/`, em commit próprio, e a contagem de rodadas volta a ser a listagem vazia. Não apague — arquive.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: auditor-final
-description: Passo 6 do ciclo. Compara o diff INTEIRO da branch contra a spec.md original, não contra o plano. Somente leitura.
+description: Roda uma vez, ao fim de todas as tarefas do plan.md e antes do Pull Request. Compara o diff INTEIRO da branch contra a spec.md original, não contra o plano. Somente leitura.
 mainAgent: false
 subagent: true
 tools:

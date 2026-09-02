@@ -1,5 +1,5 @@
 ---
-description: Gera a estrutura inicial do monorepo a partir do docs/architecture.md — apps via geradores oficiais, scripts da raiz, template de PR, Portão de Entendimento e índice de specs. Roda UMA vez, antes da primeira Issue. É uma Task de manutenção — sem spec.
+description: Gera a estrutura inicial do monorepo a partir do docs/architecture.md — apps via geradores oficiais, scripts da raiz, etiqueta e proteção da main, índice de specs — e confere que o template de PR e o Portão de Entendimento vieram com o template. Roda UMA vez, antes da primeira Issue. É uma Task de manutenção — sem spec.
 ---
 
 # Setup do monorepo
@@ -25,7 +25,7 @@ que foi decidida. O que não estiver escrito lá, você pergunta; não escolhe.
 4. O `gh` está autenticado (`gh auth status`) **ou** o MCP do GitHub está
    disponível — sem um dos dois, a etiqueta e o Pull Request do fim não saem.
    Se faltar, **PARE** e oriente: instalar o `gh`, `gh auth login`, com os
-   escopos `repo` e `workflow`.
+   escopos `repo`, `workflow` e `project`.
 
 ## Passo 1 — Branch
 
@@ -77,15 +77,16 @@ dentro da estrutura de pastas que o documento descreve.
 
 ## Passo 4 — As ferramentas do método
 
-O `.github/` **já vem no template**: `pull_request_template.md` e
-`workflows/portao-de-entendimento.yml` estão na `main` desde o primeiro commit.
+O `.github/` **já vem no template**: `pull_request_template.md`,
+`workflows/portao-de-entendimento.yml` e os modelos de Issue de bug e tarefa
+técnica estão na `main` desde o primeiro commit.
 Você não os gera — você **confere** que existem. Copiar YAML de dentro da prosa
 do guia é exatamente como o Portão nasce parafraseado e sem efeito.
 
-1. Confira que `.github/pull_request_template.md` e
-   `.github/workflows/portao-de-entendimento.yml` existem. Se faltar algum,
-   **PARE** e avise: o repositório não veio do template, e os dois são
-   pré-requisito do método — não subproduto do setup.
+1. Confira que `.github/pull_request_template.md`,
+   `.github/workflows/portao-de-entendimento.yml` e `.github/ISSUE_TEMPLATE/`
+   existem. Se faltar algum, **PARE** e avise: o repositório não veio do
+   template, e eles são pré-requisito do método — não subproduto do setup.
 2. A etiqueta de manutenção no GitHub (é ela que marca PRs sem spec, a começar
    pelo deste setup):
 
@@ -101,7 +102,7 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
    ```
    gh api -X PUT repos/{owner}/{repo}/branches/main/protection --input - <<'JSON'
    {
-     "required_status_checks": null,
+     "required_status_checks": { "strict": false, "contexts": ["explicacao"] },
      "enforce_admins": true,
      "required_pull_request_reviews": { "required_approving_review_count": 0 },
      "restrictions": null,
@@ -113,14 +114,19 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
 
    `required_approving_review_count: 0` exige **Pull Request** para entrar na
    `main`, sem exigir aprovação de terceiro — funciona igual para quem faz
-   sozinho e para dupla. `enforce_admins: true` faz a regra valer também para o
+   sozinho e para dupla. `contexts: ["explicacao"]` é o nome do job do Portão
+   de Entendimento: com ele na lista, PR com a explicação curta **não mescla**.
+   Sem isso o check fica vermelho e o botão de merge continua verde — a regra
+   viraria sugestão. `enforce_admins: true` faz a regra valer também para o
    dono do repositório: sem isso, o aluno é justamente quem fura a regra sem
    perceber. Para destravar uma emergência ele desliga a proteção
    conscientemente, e isso fica registrado no log do repositório.
 
    **Se a API recusar**, quase sempre é conta gratuita com repositório privado —
-   proteção de branch exige repositório público ou plano pago. Relate e siga;
-   não insista.
+   proteção de branch exige repositório público ou plano pago. Não insista na
+   API: oriente a tornar o repositório público (*Settings → General → Danger
+   Zone → Change visibility*) e rode este passo de novo — a ficha exige a
+   proteção na Entrega 1.
 4. `specs/README.md` — o índice de specs, com a tabela vazia:
 
    ```markdown
@@ -128,6 +134,8 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
 
    | Issue | Spec | Estado | Observação |
    | --- | --- | --- | --- |
+
+   Estados: `rascunho` · `aprovada` · `implementada` · `bloqueada`
    ```
 
 ## Passo 5 — Prova de vida

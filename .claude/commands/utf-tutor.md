@@ -5,4 +5,4 @@ argument-hint: <n | antes <n> | spec | prova>
 
 Leia `.agents/workflows/tutor.md` e execute-o integralmente.
 
-Argumento: $1
+Argumento: $ARGUMENTS

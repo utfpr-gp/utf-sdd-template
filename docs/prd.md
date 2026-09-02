@@ -53,9 +53,12 @@
 > entram se sobrar tempo, mas ficam documentadas — nada se perde; o
 > `Won't Have` vira item da seção *Fora de Escopo* — e **Tamanho (esforço)** —
 > `S` cabe numa sessão, `M` vira algumas tarefas no plano, `L` pede divisão.
-> Toda story nasce `Draft` — **só você promove a `Ready`**.
+> Toda story nasce `Draft` — **só você promove a `Ready`**; `Live` é quando o PR
+> da história mescla (o auditor final confere).
 
-### US01 — [título] · `Must|Should|Could Have` · `S|M|L` · Status: `Draft`
+### US01 — [título] · `Must|Should|Could Have` · `S|M|L` · Status: `⚪ Draft`
+
+<!-- Status: `⚪ Draft` (não codificar) · `🟡 Ready` (vira Issue) · `🟢 Live` (PR mesclado) -->
 
 **Como** [perfil], **eu quero** [ação] **para que** [objetivo].
 

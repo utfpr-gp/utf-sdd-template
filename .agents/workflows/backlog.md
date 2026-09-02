@@ -13,7 +13,7 @@ fica velha, e a IA lê a versão errada.
 
 1. Acesso ao GitHub: MCP do GitHub disponível **ou** `gh` autenticado
    (`gh auth status`). Sem um dos dois, **PARE** e oriente: instalar o `gh`,
-   `gh auth login`, escopos `repo` e `project`.
+   `gh auth login`, escopos `repo`, `workflow` e `project`.
 2. `docs/prd.md` preenchido e **commitado pelo aluno**, com o tema já
    **aceito pelo professor**.
 3. Existe ao menos uma story com `Status: Ready`. Story `Draft` não vira
@@ -44,8 +44,9 @@ usuário — Issue criada aparece para a turma e para o professor.
 
 A criação do board é **manual** (a interface do Projects muda rápido e o
 aluno precisa conhecê-la): oriente-o a criar um Project no repositório com as
-colunas `Backlog`, `Ready`, `In Progress`, `Done`, e a adicionar as Issues
-recém-criadas — `Must Have` primeiro no topo do `Backlog`.
+colunas `Backlog`, `Ready`, `In Progress`, `Blocked`, `Done`, e a adicionar as
+Issues recém-criadas — `Must Have` primeiro no topo do `Backlog`. (`Blocked` é
+onde uma história espera outra; o guia explica quando isso acontece.)
 
 Se o MCP/`gh` da sessão conseguir adicionar as Issues ao Project, ofereça
 fazer isso; se não conseguir, não é erro — siga com a orientação manual.
