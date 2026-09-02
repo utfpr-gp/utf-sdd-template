@@ -360,8 +360,9 @@ Se você precisa saber o status do pedido, existe **um** lugar: a máquina de es
 
 ### 3.7 O portão da Fase 0
 
-A Fase 0 é a base da **Entrega 1** — que soma a ela a primeira spec, nascida da
-primeira Issue. Os artefatos da fase são revisados antes de você abrir essa Issue.
+A Fase 0 mais o setup (§3.8) são a **Entrega 1 — Planejamento e Setup**. Os
+artefatos são revisados antes de você abrir a primeira Issue de implementação; a
+primeira spec já conta para a Entrega 2.
 
 Depois dela, a lógica se inverte: documentação deixa de ser etapa e passa a andar junto
 de cada PR, atualizada no mesmo commit que muda o comportamento. A Fase 0 é o único

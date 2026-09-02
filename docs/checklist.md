@@ -64,13 +64,17 @@
 
 ---
 
-## 📦 As três entregas
+## 📦 As entregas
+
+A nota soma **atividades semanais (10 pontos)** e **três entregas de 10 pontos**
+cada. Cada entrega exige o vídeo correspondente — **entrega sem vídeo não é
+pontuada**.
 
 | Entrega | O que sobe | Vídeo |
 | --- | --- | --- |
-| **E1 — Documentação e Backlog** | `docs/prd.md` + `docs/architecture.md`, Kanban no GitHub Projects e ≥ 1 spec em `specs/` | Vídeo 1: regras de negócio, Diagrama ER e como a spec foi derivada da Issue |
-| **E2 — Backend e TDD** | API NestJS com Prisma, JWT e testes; PRs com a revisão do agente juiz | Vídeo 2: TDD rodando e a estrutura de Controllers, Services e Guards |
-| **E3 — Frontend e Nuvem** | Front consumindo a API, pagamento sandbox (ordem criada no servidor + webhook), GitHub Actions e deploy público | Vídeo 3: sistema em produção e um pedido mudando de estado pela notificação do gateway |
+| **E1 — Planejamento e Setup** | `docs/prd.md`, `docs/user-flows.md`, `docs/design-tokens.md` e `docs/architecture.md` commitados; Kanban no GitHub Projects com as Issues das stories `Ready`; PR do `/utf-setup` mesclado (monorepo verde, `main` protegida, Portão de Entendimento ativo) | Vídeo 1: regras de negócio, a jornada com o nó vermelho, o Diagrama ER, o Kanban e a suíte rodando verde |
+| **E2 — Backend e TDD** | API NestJS com Prisma, JWT e testes; specs em `specs/` e PRs com os pareceres dos revisores e as decisões de triagem | Vídeo 2: uma spec derivada da Issue, o TDD rodando e a estrutura de Controllers, Services e Guards |
+| **E3 — Frontend, Pagamento e Deploy** | Front consumindo a API, pagamento sandbox (ordem criada no servidor + webhook), GitHub Actions e deploy público | Vídeo 3: sistema em produção e um pedido mudando de estado pela notificação do gateway |
 
 > ⚠️ Serviços gratuitos hibernam por inatividade — acesse a aplicação minutos
 > antes de gravar o vídeo ou defender, para "acordá-la".
