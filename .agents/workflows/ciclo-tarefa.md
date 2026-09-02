@@ -1,5 +1,5 @@
 ---
-description: Executa UMA tarefa do plan.md com o ciclo completo do Passo 5 — tutor explica antes e o usuário aceita, implementador com contexto limpo, dois revisores distintos e somente-leitura, máximo de 2 rodadas de revisão. Recebe o número da tarefa; sem número, resolve a próxima pendente do plan.md.
+description: Executa UMA tarefa do plan.md com o ciclo completo de uma tarefa — tutor explica antes e o usuário aceita, implementador com contexto limpo, dois revisores distintos e somente-leitura, máximo de 2 rodadas de revisão. Recebe o número da tarefa; sem número, resolve a próxima pendente do plan.md.
 ---
 
 # Ciclo de uma tarefa
@@ -13,7 +13,7 @@ Tarefa a executar: **$1**
 ## Passo 0 — Localizar e travar
 
 1. Descubra a pasta `specs/<issue>-<slug>/` da branch atual.
-2. Abra o `spec.md` e confira `status: aprovada` no frontmatter. **Se não estiver, PARE** e diga: *"A spec ainda não foi aprovada por você. O portão do Passo 3 não passou."*
+2. Abra o `spec.md` e confira `status: aprovada` no frontmatter. **Se não estiver, PARE** e diga: *"A spec ainda não foi aprovada por você. O portão de aprovação da spec não passou."*
 3. **Se o comando veio sem número**, resolva-o pelo `plan.md`: a tarefa é a **primeira ainda não marcada como feita**, na ordem do plano. Anuncie ao usuário qual número foi resolvido (ex.: *"Próxima pendente: tarefa 3 — <título>"*) antes de seguir — daqui em diante, esse número é o `$1` em tudo (pareceres, decisões, commit). **Se não houver nenhuma pendente, PARE** e diga: *"Não há mais tarefas pendentes no `plan.md`. O próximo passo é o auditor final e o Pull Request, pelo fluxo da Issue."* Não invente tarefa nova.
 4. Extraia do `plan.md` o **texto literal** da tarefa `$1`.
 5. Guarde o ponto de partida: `git rev-parse HEAD`. Ele é a base de todos os diffs desta tarefa.

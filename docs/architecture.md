@@ -23,8 +23,8 @@
 | Fonte | Onde configurar | Serve para |
 | :---- | :-------------- | :--------- |
 | Constituição da IA | `.agents/rules/utf-rules.md` (via `CLAUDE.md`) | Regras inegociáveis: fases do SDD, 2 rodadas, revisores distintos, Git |
-| Fluxos da IA | `.agents/workflows/` | PRD, architecture, setup, ciclo por Issue, ciclo por tarefa, tutor |
-| Agentes (subagentes) | `.agents/agents/` (cascas em `.claude/agents/`) | Implementador, revisores, auditor final e tutor |
+| Fluxos da IA | `.agents/workflows/` | PRD, backlog, jornadas e tokens, architecture, setup, ciclo por Issue, ciclo por tarefa, tutor |
+| Agentes (subagentes) | `.agents/agents/` (cascas em `.claude/`, `.cursor/` e `.opencode/`) | Implementador, revisores, auditor final e tutor |
 | Ficha da disciplina | `docs/checklist.md` | Regras do projeto, IDs e entregas |
 | Design (Figma/Stitch) | [link] | Cores, tipografia, hierarquia visual |
 
@@ -37,8 +37,8 @@
 > O que a ficha da disciplina fixa entra como está; o que ela deixa livre é
 > decidido na entrevista.
 
-- **Backend:** [conforme a ficha — framework + ORM + banco, com versões]
-- **Frontend:** [a escolha entre as opções da ficha, com versão]
+- **Backend:** [conforme a ficha — framework + ORM + banco, com a versão principal; o pin exato vive no `package.json`]
+- **Frontend:** [a escolha entre as opções da ficha, com a versão principal]
 - **Padrões de código do frontend:** [o bloco da stack escolhida, gravado pelo `/utf-architecture`]
 - **Estilo:** [CSS/framework de estilo]
 - **Testes:** [ferramenta em cada app + comandos exatos de suíte e lint]
@@ -71,10 +71,11 @@
 ```text
 .
 ├── .agents/               # constituição, workflows e prompts dos agentes (§1)
-├── .claude/               # cascas dos agentes e comandos para o harness
-├── CLAUDE.md              # carrega a constituição em toda sessão
+├── .claude/ .cursor/ .opencode/   # cascas de cada ferramenta — só apontam para .agents/
+├── .github/               # template de PR e o Portão de Entendimento
+├── CLAUDE.md  AGENTS.md   # carregam a constituição em toda sessão
 ├── README.md              # a vitrine: o que é e como rodar
-├── docs/                  # prd.md, este arquivo, checklist.md e guias
+├── docs/                  # prd.md, user-flows.md, design-tokens.md, este arquivo, checklist.md e guias
 ├── specs/                 # uma pasta por história implementada
 └── apps/
     ├── [app]/             # [preencher na entrevista]
@@ -126,14 +127,15 @@ erDiagram
 
 ---
 
-## 🗺️ 6. Mapa de Domínios e Rotas
+## 🗺️ 6. Mapa de Domínios
 
 > **Este índice cresce.** Não é para preencher agora: **uma linha por história
-> implementada** — a spec é que define rota e contrato. Aqui fica só o mapa de
-> quem já existe.
+> implementada**. Ele diz **onde mora** cada domínio e quem o protege — rota e
+> contrato ficam na documentação viva da API (§2.2) e na spec de cada história,
+> nunca copiados aqui.
 
-| Domínio | Rota | Guard | Dados (repository) | US |
-| :------ | :--- | :---- | :----------------- | :-- |
+| Domínio | Módulo (pasta) | Guard | Dados (repository) | US |
+| :------ | :------------- | :---- | :----------------- | :-- |
 | | | | | |
 
 ---

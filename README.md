@@ -58,6 +58,11 @@ implementador escreve. A trava tem forças diferentes, e vale saber qual você t
 > nomes das pastas: renomeie `.opencode/agents/` para `.opencode/agent/` e
 > `.opencode/command/` para `.opencode/commands/`. O conteúdo é o mesmo.
 
+> No **Antigravity**, o comando é o nome do arquivo em `.agents/workflows/`:
+> `/prd`, `/backlog`, `/user-flows`, `/architecture`, `/setup`, `/utf-workflow`
+> (= `/utf-issue`), `/ciclo-tarefa` (= `/utf-task`) e `/tutor`. Onde os guias
+> dizem `/utf-<x>`, leia o equivalente.
+
 O passo a passo detalhado está em [`docs/tutorial-sdd.md`](docs/tutorial-sdd.md);
 o porquê de cada regra, em [`docs/guia-sdd.md`](docs/guia-sdd.md).
 

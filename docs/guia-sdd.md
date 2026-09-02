@@ -22,7 +22,8 @@ Desenvolvimento Dirigido por Especificação — como metodologia central, na
 variante desta disciplina: o **UTF-SDD**, um **SDD por Portões** (*Gated SDD*).
 O que o distingue dos SDDs de mercado são três compromissos: **nada avança sem
 um portão de decisão humana registrada** (aprovar a spec, aceitar a explicação
-do tutor, triar apontamentos, autorizar cada commit); **quem revisa nunca é
+do tutor, triar apontamentos, autorizar cada commit — quatro por história — e um
+quinto ao abrir o Pull Request); **quem revisa nunca é
 quem escreveu** (implementador de contexto limpo, revisores somente-leitura,
 auditor final); e **todo artefato é evidência para a defesa** — pareceres,
 decisões e commits existem para provar que você entendeu o que assinou. É o
@@ -138,16 +139,18 @@ visão, as histórias de usuário (com status de rascunho até concluído) e um 
 **Visão e objetivo.** Um ou dois parágrafos: que problema o sistema resolve, para quem.
 
 **Glossário ubíquo.** A parte mais subestimada do PRD, e a que mais economiza tempo
-depois. Uma tabela ligando o termo do negócio, em português, ao nome da entidade no
-código:
+depois. Uma tabela com o termo do negócio, em português, o que ele significa e com o
+que **não** se confunde:
 
-| Termo do negócio | Entidade no código | Atributos principais |
+| Termo | Significa | Não confundir com |
 | --- | --- | --- |
-| Pedido | `Order` | `id, cliente, itens, total, status` |
-| Pagamento | `Payment` | `id, pedido, valor, status, referenciaExterna` |
+| Pedido | Os itens que o cliente fechou e precisa pagar | Carrinho (ainda aberto), Orçamento (ainda não aceito) |
+| Pagamento | Uma tentativa de quitar um pedido junto ao gateway | Pedido (um pedido pode ter várias tentativas) |
 
-Sem isso, a IA cria `Pedido`, `Order` e `ServiceRequest` na mesma base, em semanas
-diferentes, e cada um parece razoável no contexto em que nasceu.
+Tecnologia não entra aqui. A ponte entre esses termos e o nome da entidade no código
+(`Order`, `Payment`) é o glossário técnico do `architecture.md` (§3.3) — um lugar só,
+para não duplicar. Sem o glossário, a IA cria `Pedido`, `Order` e `ServiceRequest` na
+mesma base, em semanas diferentes, e cada um parece razoável no contexto em que nasceu.
 
 **Atores e permissões.** Quem usa o sistema e o que cada perfil pode fazer.
 
@@ -172,8 +175,8 @@ que já existe e do que ainda falta no projeto.
 Contém:
 
 - **Stack tecnológica e ambiente.** Os frameworks e paradigmas. *Declare a tecnologia
-  aqui, mas deixe a versão exata do ambiente viver no `.tool-versions` e as
-  bibliotecas no `package.json`.*
+  e a linha principal de cada framework aqui; a versão exata das bibliotecas vive no
+  `package.json`.*
 - **Estrutura do monorepo.** Que pasta guarda o quê — `apps/api` em NestJS,
   `apps/web` no framework que você escolheu.
 - **Diagrama de contexto (opcional).** Quem é o front, quem é o back, banco e
@@ -214,9 +217,11 @@ direto e a outra metade não.
 
 #### O que o documento NÃO contém (anti-padrões)
 
-- 🚫 **Versões exatas de bibliotecas.** Versão escrita em prosa envelhece em silêncio.
-  O documento continua afirmando "NestJS 10" meses depois de o projeto ter atualizado
-  no `package.json`, e algum subagente confia no texto, gerando código legado.
+- 🚫 **Versões exatas de bibliotecas.** O documento declara a **linha principal** de
+  cada framework ("NestJS 11", "Angular 20") — é dela que o `/utf-setup` escolhe o
+  gerador e que os padrões de código dependem. O pin exato (`11.0.7`) vive só no
+  `package.json`: versão de patch escrita em prosa envelhece em silêncio, e algum
+  subagente confia no texto em vez do lockfile.
 - 🚫 **Detalhes de funcionalidades.** Diagramas de sequência específicos, máquinas de
   estado isoladas e DTOs de endpoints. Tudo isso é criado sob demanda no `spec.md` de
   cada história. Colocar aqui polui o documento e estoura a janela de contexto da IA
@@ -355,8 +360,8 @@ Se você precisa saber o status do pedido, existe **um** lugar: a máquina de es
 
 ### 3.7 O portão da Fase 0
 
-A Fase 0 é a **Entrega 1**. Os artefatos são revisados antes de você abrir a primeira
-Issue de implementação.
+A Fase 0 é a base da **Entrega 1** — que soma a ela a primeira spec, nascida da
+primeira Issue. Os artefatos da fase são revisados antes de você abrir essa Issue.
 
 Depois dela, a lógica se inverte: documentação deixa de ser etapa e passa a andar junto
 de cada PR, atualizada no mesmo commit que muda o comportamento. A Fase 0 é o único
@@ -372,8 +377,9 @@ dia em que o PR é mesclado.
 ### 3.8 Entre a Fase 0 e a primeira Issue: o setup
 
 Existe um trabalho que não é documento nem história: gerar o monorepo. As pastas de
-app pelos geradores oficiais da stack, os scripts da raiz, o template de PR, o Portão
-de Entendimento e o índice de specs.
+app pelos geradores oficiais da stack, os scripts da raiz, a etiqueta `manutencao`, a
+proteção da `main` e o índice de specs. (O template de PR e o Portão de Entendimento já
+vêm no repositório criado a partir do template — o setup só confere que estão lá.)
 
 Ele **não tem spec**, e o motivo é o teste de uma linha do §4: ninguém demonstra um
 scaffold para alguém que não programa. Logo, não é história — é a primeira **Task de
@@ -423,8 +429,8 @@ criar uma Issue, você escolhe um **Type** — e o tipo dita como você usa o PR
 - **O que é:** um pedido, ideia ou nova funcionalidade (pagar com Pix, fazer login).
 - **Onde nasce:** **sempre** no `docs/prd.md`. É lá que a história vive completa, com
   critérios de aceitação e status (⚪ Draft, 🟡 Ready, 🟢 Live).
-- **Como usar no GitHub:** a Issue é apenas um apontador. Título (*Implementar US05 —
-  Pagamento*) e, na descrição, o link para a história no `docs/prd.md`. **Nunca
+- **Como usar no GitHub:** a Issue é apenas um apontador. Título (*US05 — Pagamento do
+  pedido*, como o `/utf-backlog` gera) e, na descrição, o link para a história no `docs/prd.md`. **Nunca
   duplique regras de negócio na Issue.**
 - **Exige `spec.md`?** Sim. O ciclo completo é obrigatório.
 
@@ -454,8 +460,9 @@ criar uma Issue, você escolhe um **Type** — e o tipo dita como você usa o PR
 
 Aqui começa o trabalho com a IA, e **este é o passo mais importante da disciplina**.
 
-Você conversa com o agente sobre a história. Um bom agente vai fazer perguntas antes de
-escrever qualquer coisa: o que acontece se o pagamento for recusado? O pedido pode ser
+O agente cria a branch da Issue a partir da `main` — a `main` é bloqueada, e tudo que
+vem daqui nasce na branch — e você conversa com ele sobre a história. Um bom agente vai
+fazer perguntas antes de escrever qualquer coisa: o que acontece se o pagamento for recusado? O pedido pode ser
 pago duas vezes? O preço vem de onde?
 
 Dessa conversa sai o `spec.md`, em `specs/<numero-da-issue>-<slug>/`, contendo:
@@ -499,7 +506,7 @@ que você define o que conta como "certo" — e tudo depois disso obedece a essa
 A aprovação tem uma forma concreta, e é só ela que vale:
 
 > **Você — não o agente — troca `status: rascunho` por `status: aprovada` e faz um
-> commit dessa linha.**
+> commit dessa linha, na branch da Issue.**
 
 Isso não é cerimônia. É o que dá **data, autor e diff** para a decisão mais importante
 do ciclo. Sem esse commit, no fim do semestre não existe nenhuma diferença observável
@@ -510,7 +517,7 @@ circunstância.
 Se você aprovar sem ler, perdeu a disciplina. Todo o resto do ciclo vai construir, com
 perfeição, uma ideia errada.
 
-### Passo 4 — Do plano à branch
+### Passo 4 — Do plano ao primeiro código
 
 Aprovada a spec, o agente deriva o `plan.md`: decisões técnicas (entidades, endpoints,
 DTOs, módulos afetados) e as tarefas em ordem.
@@ -535,23 +542,25 @@ você usa a palavra "e" duas vezes, são duas tarefas.
 
 **PAUSA OBRIGATÓRIA:** peça a aprovação do plano.
 
-Aprovado, **crie a branch a partir da `main`** e faça o primeiro commit:
+Aprovado, o agente commita o plano. A branch, a essa altura, tem três commits e nenhum
+código:
 
-```bash
-git switch main && git pull
-git switch -c 27-pagamento-do-pedido
-git add specs/027-pagamento-do-pedido/
-git commit -m "spec: pagamento do pedido (#27)"
+```
+$ git log --oneline
+a1b2c3d plan: pagamento do pedido (#27)              ← o agente, com o seu OK
+9f8e7d6 spec: aprova pagamento do pedido (#27)       ← você, trocando o status
+5c4b3a2 spec: pagamento do pedido (#27) — rascunho   ← o agente, com o seu OK
 ```
 
-> **Por que a spec e o plano são o primeiro commit da branch.** Porque é isso que prova
-> que a especificação veio antes do código. Se eles forem commitados junto com a
+> **Por que a spec e o plano são os primeiros commits da branch.** Porque é isso que
+> prova que a especificação veio antes do código. Se eles forem commitados junto com a
 > implementação, no fim, o `git log` não sustenta a afirmação central do método — e é o
 > `git log` que você vai mostrar na defesa. Dois minutos aqui economizam uma discussão
 > inteira depois.
 
-> **A `main` é bloqueada.** Nenhum commit vai direto para ela. Toda implementação nasce
-> em branch própria e entra por Pull Request.
+> **A `main` é bloqueada.** Nenhum commit vai direto para ela — por isso a branch nasce
+> no começo do `/utf-issue`, antes do primeiro arquivo, e não depois do plano. Toda
+> implementação entra por Pull Request.
 
 ### Passo 5 — Execução, tarefa por tarefa
 
@@ -681,8 +690,8 @@ No corpo do PR vão os **apontamentos aceitos e recusados**, com o motivo de cad
 Eles estão em `specs/<slug>/reviews/` — você não precisa lembrar de nada.
 
 O merge acontece depois que o Portão de Entendimento (§9) passa. **Você não mescla o
-próprio PR sem que ele tenha passado**; a `main` é protegida justamente para que essa
-regra não dependa da sua disciplina no dia.
+próprio PR sem que ele tenha passado**; a proteção da `main` que o `/utf-setup` liga
+exige esse check justamente para que a regra não dependa da sua disciplina no dia.
 
 ### Quando o ciclo não é linear
 
@@ -882,13 +891,13 @@ Com quinze pastas em `specs/`, ninguém sabe o que está vivo. Mantenha um
 
 ```mermaid
 flowchart TD
-    A["Issue no GitHub Projects"] --> B["Conversa com a IA<br/>perguntas antes do código"]
+    A["Issue no GitHub Projects"] --> F["Branch a partir da main"]
+    F --> B["Conversa com a IA<br/>perguntas antes do código"]
     B --> C["spec.md<br/>status: rascunho"]
     C --> D{"🚪 Você lê e aprova<br/>commit trocando para aprovada"}
     D -->|"ajustar"| B
-    D -->|"aprovada"| E["plan.md<br/>todo critério vira tarefa"]
-    E --> F["Branch a partir da main<br/>spec e plano no 1º commit"]
-    F --> T["Tutor explica a tarefa<br/>bem mastigado, antes do código"]
+    D -->|"aprovada"| E["plan.md<br/>todo critério vira tarefa<br/>spec e plano: os primeiros commits"]
+    E --> T["Tutor explica a tarefa<br/>bem mastigado, antes do código"]
     T --> U{"🚪 Você aceita?"}
     U -->|"dúvidas"| T
     U -->|"aceito"| G["Implementador novo<br/>uma tarefa — TDD"]
@@ -896,7 +905,7 @@ flowchart TD
     H -->|"🚪 triagem: aceitos<br/>— rodada 1"| G
     H -->|"🚪 triagem: aceitos<br/>na rodada 2"| I["PARE<br/>descarte o contexto<br/>e escale para você"]
     I --> B
-    H -->|"aprovado"| J["Você confere o diff na IDE<br/>/utf-tutor n explica o que foi feito"]
+    H -->|"aprovado"| J{"🚪 Você confere o diff na IDE<br/>(/utf-tutor n explica)<br/>e autoriza o commit"}
     J --> K{"Faltam tarefas?"}
     K -->|"sim"| T
     K -->|"não"| L["Auditoria do diff inteiro<br/>contra a spec aprovada"]
@@ -994,8 +1003,9 @@ inegociáveis do projeto: não codificar antes da spec aprovada, TDD obrigatóri
 dia e o agente esquece na terceira mensagem.
 
 **2. Um comando de fluxo.** Um arquivo de instruções que você dispara com uma linha —
-`/utf-task 3` — e que executa o Passo 5 inteiro: despacha o implementador, despacha
-os dois revisores, grava os pareceres, conta a rodada, decide. Você digita um comando; a
+`/utf-task 3` — e que executa o Passo 5 inteiro: despacha o tutor e espera o seu
+aceite, despacha o implementador, despacha os dois revisores, grava os pareceres,
+conta a rodada, decide. Você digita um comando; a
 orquestração inteira é o arquivo.
 
 **3. Subagentes com ferramentas restritas.** É aqui que mora a parte que não pode faltar.
@@ -1031,12 +1041,14 @@ saídas, nessa ordem de preferência:
    precisa e escreva no prompt do que precisa: *"o terminal existe para `git diff` e para
    rodar os testes; é proibido usá-lo para alterar qualquer arquivo"*.
 
-**Um detalhe prático:** neste projeto os três agentes de revisão têm terminal com
-restrição por prompt (saída 2 acima): o shell existe só para `git diff` e para rodar
-testes, e os pareceres ficam versionados em `specs/<issue>-<slug>/reviews/` como prova de
-que a revisão aconteceu. Se preferir a trava máxima, a alternativa é tirar o terminal do
-`revisor-codigo` e quem despacha **colar o texto do diff dentro do prompt** — mais
-seguro, porém com despacho mais trabalhoso.
+**Um detalhe prático:** neste projeto os quatro agentes somente-leitura (dois
+revisores, auditor e tutor) têm terminal. No OpenCode ele é fechado por lista de comandos
+(saída 1); no Claude Code, no Cursor e no Antigravity, por prompt (saída 2): o shell
+existe só para `git diff` e para rodar testes, e os pareceres ficam versionados em
+`specs/<issue>-<slug>/reviews/` como prova de que a revisão aconteceu. Se preferir a
+trava máxima nessas três, a alternativa é tirar o terminal do `revisor-codigo` e quem
+despacha **colar o texto do diff dentro do prompt** — mais seguro, porém com despacho
+mais trabalhoso.
 
 ### Sem worktree, sem ambiente isolado
 
@@ -1062,7 +1074,9 @@ Nenhum arquivo → rodada 1. Um par de arquivos `-r1` → você está na rodada 
 ### O mínimo que você precisa escrever
 
 Cinco arquivos de agente (os da tabela acima), um arquivo de regras e um arquivo de
-fluxo. Sete arquivos, escritos uma vez, no começo do semestre.
+fluxo para o ciclo da tarefa. Sete arquivos, escritos uma vez, no começo do semestre —
+o template traz mais fluxos (PRD, backlog, jornadas, arquitetura, setup, Issue, tutor)
+porque cada fase da disciplina ganhou o seu, mas o ciclo roda com esses sete.
 
 > 💡 **Se você usa mais de uma ferramenta** (a IDE no laboratório e outra em casa),
 > escreva os prompts longos uma vez em `.agents/`, versionado no Git, e deixe em cada
@@ -1109,7 +1123,8 @@ você travou para escrever, volte e leia o código antes de insistir no texto.
 
 Todo Pull Request precisa ter, no corpo, a seção **"O que este PR faz e por quê"**
 preenchida com pelo menos **400 caracteres** — o que dá, na prática, um parágrafo de
-verdade. Uma verificação automática confere isso e reprova o PR se faltar.
+verdade. Uma verificação automática confere isso e, como a proteção da `main` exige
+esse check, o PR reprovado **não mescla**.
 
 É uma regra só, e ela vale para **todos** os PRs, inclusive os de manutenção. Se a
 mudança é pequena, a explicação é curta e específica — *"o `ValidationPipe` estava sem
@@ -1136,7 +1151,7 @@ ela faz.
 | --- | --- | --- |
 | Aprovar a spec sem ler | O sistema constrói, com perfeição, uma ideia errada | Leia inteira. Discorde de alguma coisa — sempre tem o que ajustar. |
 | Deixar o agente trocar o `status` da spec | A aprovação deixa de ser sua e o `git log` deixa de provar qualquer coisa | Só você troca esse campo, e num commit seu. |
-| Commitar a spec junto com o código, no fim | O histórico não prova que a especificação veio antes | Spec e plano são o **primeiro** commit da branch. |
+| Commitar a spec junto com o código, no fim | O histórico não prova que a especificação veio antes | Spec e plano são os **primeiros** commits da branch, antes de qualquer código. |
 | Histórias grandes demais | O agente se perde, estoura as rodadas e consome muito token | Se o plano tem mais de 10 tarefas, quebre a história em duas e reescreva a spec. |
 | Critérios de aceite vagos | Nada é verificável, e o revisor inventa critério a cada rodada | Escreva pensando no teste que provaria aquilo. |
 | Deixar o caso de abandono só na prosa | Não vira teste, e volta no dia da apresentação | Todo caso de abandono também é critério de aceite. |
@@ -1186,13 +1201,16 @@ você entendeu; aceitar tudo é sinal contrário.
 **Preciso de spec para qualquer mudança?**
 Não. A regra é o impacto no produto.
 
-*Precisa de spec* toda mudança que cria um recurso novo, altera uma regra de negócio ou
-conserta um bug de comportamento (exemplo: "o cliente não consegue aprovar o orçamento").
-Essas nascem como Issue no GitHub Projects e o ciclo completo — conversa → spec → plano →
-execução — é obrigatório.
+*Precisa de spec* toda mudança que cria um recurso novo ou altera uma regra de negócio —
+ou seja, toda **história**. Essas nascem no `docs/prd.md`, viram Issue pelo
+`/utf-backlog`, e o ciclo completo — conversa → spec → plano → execução — é obrigatório.
 
-*Não precisa de spec* a mudança puramente técnica. Abra o PR e aplique a etiqueta
-`manutencao`. Exemplos clássicos:
+*Não precisa de spec* o **bug** nem a **Task** de manutenção (§4, Passo 1). O bug é um
+desvio do que o PRD já descreve: a Issue, aberta direto no GitHub, traz os passos para
+reproduzir, os logs e a justificativa técnica — isso é a especificação dele. Se, ao
+investigar, você descobrir que o PRD não dizia o que o sistema deveria fazer, não é bug:
+é história nova, e volta para o ciclo com spec. Abra o PR com a etiqueta `manutencao`.
+Exemplos clássicos de manutenção:
 
 - Atualizar a versão de uma dependência
 - Corrigir erros de digitação em comentários ou textos estáticos
@@ -1276,8 +1294,8 @@ Você não escreve nem altera nenhum arquivo. Aponta; não corrige.
 
 ## Apêndice B — O Portão de Entendimento, inteiro
 
-Salve como `.github/workflows/portao-de-entendimento.yml`. São vinte linhas e não há nada
-escondido nelas: o passo recorta o texto entre o título da seção e o próximo título,
+Ele já vem no template, em `.github/workflows/portao-de-entendimento.yml`. São vinte
+linhas e não há nada escondido nelas: o passo recorta o texto entre o título da seção e o próximo título,
 conta os caracteres que não são espaço, e reprova se for pouco.
 
 ```yaml
@@ -1307,8 +1325,9 @@ jobs:
           fi
 ```
 
-Para que o título da seção nunca falte, deixe um modelo em
-`.github/pull_request_template.md`:
+Para que o título da seção nunca falte, o template também traz o modelo
+`.github/pull_request_template.md` (a versão do repositório tem comentários a mais,
+explicando cada campo):
 
 ```markdown
 Closes #

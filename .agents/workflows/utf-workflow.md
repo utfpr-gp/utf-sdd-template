@@ -13,7 +13,14 @@ Sempre que o usuário pedir para trabalhar em uma Issue (Feature), você atuará
 **Passo 1: Entendimento e Brainstorming**
 - Leia a Issue apontada e busque no `docs/prd.md` os critérios e o Glossário Ubíquo.
 - Faça perguntas ao usuário de forma proativa. Questione sobre casos de borda, caminhos tristes (ex: falhas de rede, dados inválidos) e como validar os critérios de aceite.
-- Após sanar as dúvidas, redija o documento e salve no caminho `specs/<numero-da-issue>-<slug>/spec.md`, com este frontmatter:
+- **Crie a branch da Issue antes de salvar qualquer arquivo.** A `main` é bloqueada, e o commit de aprovação do usuário precisa de um lugar para viver:
+
+```bash
+git switch main && git pull
+git switch -c <numero-da-issue>-<slug>
+```
+
+- Após sanar as dúvidas, redija o documento e salve no caminho `specs/<numero-da-issue>-<slug>/spec.md`, com este frontmatter e estas seções, nesta ordem:
 
 ```yaml
 ---
@@ -22,7 +29,19 @@ status: rascunho   # rascunho | aprovada
 ---
 ```
 
-- **PAUSA OBRIGATÓRIA:** Pare de gerar respostas e exija que o usuário leia e aprove o `spec.md`. Ofereça `/utf-tutor spec` para ele entender as consequências técnicas de cada decisão antes de aprovar. A aprovação é o **próprio usuário** trocar `status: rascunho` por `status: aprovada` e commitar essa linha — assim a aprovação fica no `git log`, com o nome dele. Você não altera esse campo em hipótese nenhuma.
+  1. **O problema**, em um parágrafo
+  2. **A história**: "como *(perfil)*, quero *(ação)*, para *(objetivo)*"
+  3. **Critérios de aceite**, um por linha, cada um verificável por teste — **incluindo os casos de abandono** (fechar a aba, perder a conexão, sessão expirar) reescritos como critério
+  4. **Fora de escopo**
+  5. **Abandono no meio** — o raciocínio em prosa que deu origem aos critérios de abandono
+  6. **Assume que** — premissas que ainda não são verdade, cada uma com a Issue que a fecha
+  7. **Dúvidas em aberto** — precisa estar vazia antes da aprovação
+
+  Se `docs/user-flows.md` tem jornada desta história, cada nó vermelho dela vira pelo menos um critério de aceite. Acrescente a linha desta spec em `specs/README.md`, com estado `rascunho`.
+
+- Proponha o commit do rascunho (`spec: <slug> (#<n>) — rascunho`) e faça-o **só com o OK do usuário**.
+
+- **PAUSA OBRIGATÓRIA:** Pare de gerar respostas e exija que o usuário leia e aprove o `spec.md`. Ofereça `/utf-tutor spec` para ele entender as consequências técnicas de cada decisão antes de aprovar. A aprovação é o **próprio usuário** trocar `status: rascunho` por `status: aprovada` e commitar essa linha, **na branch da Issue** — assim a aprovação fica no `git log`, com o nome dele. Você não altera esse campo em hipótese nenhuma.
 
 **Passo 2: Planejamento**
 - Com o `spec.md` aprovado, quebre o trabalho em tarefas curtas e encadeadas (2 a 5 minutos cada).
@@ -30,9 +49,9 @@ status: rascunho   # rascunho | aprovada
 - Se o plano passar de **10 tarefas**, pare: a história é grande demais. Proponha dividi-la em duas Issues antes de continuar.
 - Salve o resultado no caminho `specs/<numero-da-issue>-<slug>/plan.md`.
 - **PAUSA OBRIGATÓRIA:** Peça a aprovação do usuário para o plano.
+- Aprovado, proponha o commit do plano (`plan: <slug> (#<n>)`) e faça-o com o OK do usuário. Spec e plano são os primeiros commits da branch, **antes de qualquer código** — é o `git log` que prova que a especificação veio primeiro.
 
 **Passo 3: Execução (uma tarefa por vez)**
-- Crie a branch da Issue a partir da `main`.
 - Execute **uma tarefa por vez** através do fluxo `ciclo-tarefa` (`.agents/workflows/ciclo-tarefa.md`), que despacha o subagente **implementador** com contexto limpo e, depois dele, dois revisores distintos e somente-leitura: **revisor-conformidade** (diff × critérios de aceite da `spec.md`) e **revisor-codigo** (diff × `docs/architecture.md`).
 - **Você nunca revisa o código que você mesmo despachou.** Revisor é sempre outro agente, sem permissão de escrita. Auto-auditoria não conta como revisão: quem escreveu carrega os mesmos pontos cegos.
 - Ao fim de cada tarefa, pare e devolva o controle ao usuário. Ele pede a próxima.
@@ -41,6 +60,6 @@ status: rascunho   # rascunho | aprovada
 - Terminadas todas as tarefas, despache o subagente **auditor-final**, que compara o diff **inteiro** contra o `spec.md` original — nunca contra o `plan.md`.
 - Atualize, no mesmo commit do comportamento: o status da história no `docs/prd.md`, os diagramas do `docs/architecture.md` que mudaram, e o `specs/README.md`.
 - Antes de o usuário escrever o PR, sugira `/utf-tutor prova` — o simulado interativo sobre o diff inteiro, que é o ensaio da defesa presencial.
-- Prepare as alterações (commit) e lembre o usuário de abrir o Pull Request com `Closes #<n>`.
+- Proponha o commit dessas alterações e faça-o **só com o "pode commitar" do usuário** — o portão do commit vale aqui como em cada tarefa. Depois lembre o usuário de abrir o Pull Request com `Closes #<n>`.
 - A seção **"O que este PR faz e por quê"** é escrita **pelo usuário, com as palavras dele**. Ofereça os fatos do diff; não ofereça o texto pronto.
 - No corpo do PR devem constar os apontamentos **aceitos e recusados**, com o motivo de cada recusa. A fonte é `specs/<issue>-<slug>/reviews/`: os pareceres (`tarefa-NN-<tipo>-r<N>.md`) e as decisões de triagem (`tarefa-NN-decisoes-r<N>.md`).

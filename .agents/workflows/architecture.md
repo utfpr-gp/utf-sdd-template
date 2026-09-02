@@ -21,7 +21,7 @@ Você é o entrevistador técnico. O aluno é o Arquiteto: **ele decide; você a
 
 ## Passo 1 — As decisões, uma por vez
 
-1. **Frontend** — apresente as opções que as *Regras da disciplina* permitem. Registre a versão e grave no documento **só o bloco de padrões da stack escolhida**, partindo destes (o aluno ratifica ou ajusta):
+1. **Frontend** — apresente as opções que as *Regras da disciplina* permitem. Registre a **versão principal** (a linha *major* — é dela que o setup escolhe o gerador; o pin exato fica no `package.json`) e grave no documento **só o bloco de padrões da stack escolhida**, partindo destes (o aluno ratifica ou ajusta):
    - **Angular:** componentes standalone (padrão atual — não se escreve `standalone: true`), signals para estado, `@if`/`@for`/`@switch` (não `*ngIf`/`*ngFor`), `input()`/`output()` como funções, `inject()` (não injeção por construtor), lazy loading por rota de feature.
    - **React:** componentes de função com hooks (sem classes), estado do servidor separado do estado de UI, roteamento com lazy loading por rota, componentes de página distintos de componentes reutilizáveis.
    - **Vue:** Composition API com `<script setup>` (não Options API), `ref`/`computed` para estado, roteamento com lazy loading por rota, props e emits tipados.

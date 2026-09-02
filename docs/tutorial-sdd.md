@@ -14,7 +14,7 @@ Git e de PR estão no [CONTRIBUTING](../CONTRIBUTING.md).
 
 ## Fase 0 — Iniciar o projeto (uma vez por projeto)
 
-Quatro comandos, nesta ordem, cada um fechando num portão seu:
+Cinco comandos, nesta ordem, cada um fechando num portão seu:
 
 | # | Comando | O que sai | 🚪 Você faz o quê |
 | --- | --- | --- | --- |
@@ -24,7 +24,7 @@ Quatro comandos, nesta ordem, cada um fechando num portão seu:
 | 4 | `/utf-architecture` | `docs/architecture.md` — entrevista técnica | Lê e **commita** |
 | 5 | `/utf-setup` | `apps/` — o monorepo nascendo com testes verdes | Ratifica as decisões relatadas e abre o **1º PR** (`manutencao`) |
 
-Pré-requisito dos passos 2 e 5: `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
+Pré-requisito dos passos 2 e 5 (e, depois, de cada `/utf-issue`): `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
 pode rodar de novo mais tarde, a cada leva de stories promovidas a `Ready`.
 
 ---
@@ -44,9 +44,10 @@ pode rodar de novo mais tarde, a cada leva de stories promovidas a `Ready`.
 /utf-issue 12
 ```
 
-O agente vira orquestrador: lê a Issue e o PRD e **faz perguntas** sobre casos de
-borda e caminhos tristes (brainstorming). Da conversa sai
-`specs/012-<slug>/spec.md` com `status: rascunho` — e ele **para**.
+O agente vira orquestrador: **cria a branch da Issue a partir da `main`**, lê a
+Issue e o PRD e **faz perguntas** sobre casos de borda e caminhos tristes
+(brainstorming). Da conversa sai `specs/012-<slug>/spec.md` com
+`status: rascunho`, commitado na branch com o seu OK — e ele **para**.
 
 ## Passo 2 — 🚪 Aprovar a spec (fora do chat)
 
@@ -54,14 +55,16 @@ Leia o arquivo **inteiro**. Em dúvida sobre alguma decisão técnica, rode
 `/utf-tutor spec` antes.
 
 A aprovação é **você** trocar `status: rascunho` por `status: aprovada` no
-frontmatter e **commitar essa linha** — ela fica no `git log`, com o seu nome.
+frontmatter e **commitar essa linha na branch da Issue** — ela fica no `git log`,
+com o seu nome.
 Nenhum agente altera esse campo.
 
 ## Passo 3 — Aprovar o plano
 
 Avise que aprovou; o agente gera o `plan.md` (tarefas de 2–5 minutos — mais de
 10, a história é grande demais e ele propõe dividir). Você lê, dá o OK na
-conversa, e ele cria a branch a partir da `main`.
+conversa, e ele commita o plano: spec e plano são os primeiros commits da
+branch, antes de qualquer código.
 
 ## Passo 4 — Implementar, uma tarefa por vez
 
@@ -123,6 +126,11 @@ palavras, lista os apontamentos aceitos e recusados (saem dos arquivos
 
 Dizer "vamos trabalhar na Issue 12" em linguagem natural também dispara o fluxo
 (`utf-rules.md` §1) — os comandos são só o caminho mais curto.
+
+> **No Antigravity o comando é o nome do arquivo em `.agents/workflows/`**, não o
+> `/utf-*`: `/prd`, `/backlog`, `/user-flows`, `/architecture`, `/setup`,
+> `/utf-workflow` (a Issue), `/ciclo-tarefa` (a tarefa) e `/tutor`. O conteúdo é
+> o mesmo — onde este tutorial diz `/utf-<x>`, leia o equivalente.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: Gera a estrutura inicial do monorepo a partir do docs/architecture.md — apps via geradores oficiais, scripts da raiz, template de PR, Portão de Entendimento e índice de specs. Roda UMA vez, antes da primeira Issue. É uma Task de manutenção — sem spec.
+description: Gera a estrutura inicial do monorepo a partir do docs/architecture.md — apps via geradores oficiais, scripts da raiz, etiqueta e proteção da main, índice de specs — e confere que o template de PR e o Portão de Entendimento vieram com o template. Roda UMA vez, antes da primeira Issue. É uma Task de manutenção — sem spec.
 ---
 
 # Setup do monorepo
@@ -101,7 +101,7 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
    ```
    gh api -X PUT repos/{owner}/{repo}/branches/main/protection --input - <<'JSON'
    {
-     "required_status_checks": null,
+     "required_status_checks": { "strict": false, "contexts": ["explicacao"] },
      "enforce_admins": true,
      "required_pull_request_reviews": { "required_approving_review_count": 0 },
      "restrictions": null,
@@ -113,7 +113,10 @@ do guia é exatamente como o Portão nasce parafraseado e sem efeito.
 
    `required_approving_review_count: 0` exige **Pull Request** para entrar na
    `main`, sem exigir aprovação de terceiro — funciona igual para quem faz
-   sozinho e para dupla. `enforce_admins: true` faz a regra valer também para o
+   sozinho e para dupla. `contexts: ["explicacao"]` é o nome do job do Portão
+   de Entendimento: com ele na lista, PR com a explicação curta **não mescla**.
+   Sem isso o check fica vermelho e o botão de merge continua verde — a regra
+   viraria sugestão. `enforce_admins: true` faz a regra valer também para o
    dono do repositório: sem isso, o aluno é justamente quem fura a regra sem
    perceber. Para destravar uma emergência ele desliga a proteção
    conscientemente, e isso fica registrado no log do repositório.
