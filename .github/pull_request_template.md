@@ -3,7 +3,7 @@ Closes #
 ## O que este PR faz e por quê
 
 <!-- Com as suas palavras. Não cole o diff nem a saída da IA.
-     Mínimo de 400 caracteres — é o que o Portão de Entendimento verifica,
+     Mínimo de 250 caracteres — é o que o Portão de Entendimento verifica,
      em TODO PR, inclusive nos de manutenção. A etiqueta `manutencao` decide
      outra coisa: se o PR precisava ou não de `spec.md`. São duas perguntas
      independentes. -->

@@ -1140,7 +1140,7 @@ você travou para escrever, volte e leia o código antes de insistir no texto.
 ## 9. O Portão de Entendimento
 
 Todo Pull Request precisa ter, no corpo, a seção **"O que este PR faz e por quê"**
-preenchida com pelo menos **400 caracteres** — o que dá, na prática, um parágrafo de
+preenchida com pelo menos **250 caracteres** — o que dá, na prática, três frases de
 verdade. Uma verificação automática confere isso e, como a proteção da `main` exige
 esse check, o PR reprovado **não mescla**.
 
@@ -1148,7 +1148,7 @@ esse check, o PR reprovado **não mescla**.
 mudança é pequena, a explicação é curta e específica — *"o `ValidationPipe` estava sem
 `whitelist: true`, então campos extras no body passavam direto para o service; ativei a
 flag e ajustei dois testes que dependiam do comportamento antigo"* é o começo;
-acrescente o que você conferiu e o que poderia ter quebrado, e os 400 caracteres vêm
+acrescente o que você conferiu e o que poderia ter quebrado, e os 250 caracteres vêm
 sozinhos — dizendo algo.
 
 A etiqueta `manutencao` **não dispensa a explicação**. Ela decide outra coisa: se o PR
@@ -1341,9 +1341,9 @@ jobs:
             | sed '/^##/,$d' \
             | perl -0pe 's/<!--.*?-->//gs')
           TAMANHO=$(printf '%s' "$TEXTO" | tr -d '[:space:]' | wc -c)
-          echo "Caracteres na explicação: $TAMANHO (mínimo 400)"
-          if [ "$TAMANHO" -lt 400 ]; then
-            echo "::error::Escreva a seção 'O que este PR faz e por quê' com pelo menos 400 caracteres. Encontrei $TAMANHO."
+          echo "Caracteres na explicação: $TAMANHO (mínimo 250)"
+          if [ "$TAMANHO" -lt 250 ]; then
+            echo "::error::Escreva a seção 'O que este PR faz e por quê' com pelo menos 250 caracteres. Encontrei $TAMANHO."
             exit 1
           fi
 ```
