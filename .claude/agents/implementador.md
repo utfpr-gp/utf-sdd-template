@@ -1,6 +1,6 @@
 ---
 name: implementador
-description: Implementa UMA tarefa do plan.md seguindo TDD, com contexto limpo. Use quando o fluxo ciclo-tarefa despachar a implementação de uma tarefa. Não revisa o próprio trabalho.
+description: Implementa UMA tarefa do plan.md seguindo TDD, com contexto limpo. Use quando o fluxo /utf-task despachar a implementação de uma tarefa. Não revisa o próprio trabalho.
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 

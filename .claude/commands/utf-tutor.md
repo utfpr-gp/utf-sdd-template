@@ -3,6 +3,6 @@ description: Chama o agente tutor — <n> explica a tarefa já implementada; ant
 argument-hint: <n | antes <n> | passo <n> | spec | prova | prd | flows | architecture | setup>
 ---
 
-Leia `.agents/workflows/tutor.md` e execute-o integralmente.
+Leia `.agents/workflows/utf-tutor.md` e execute-o integralmente.
 
 Argumento: $ARGUMENTS

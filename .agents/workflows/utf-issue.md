@@ -48,13 +48,13 @@ status: rascunho   # rascunho | aprovada
 - Aprovado, proponha o commit do plano (`plan: <slug> (#<n>)`) e faça-o com o OK do usuário. Spec e plano são os primeiros commits da branch, **antes de qualquer código** — é o `git log` que prova que a especificação veio primeiro.
 
 **Passo 3: Execução (uma tarefa por vez)**
-- Execute **uma tarefa por vez** através do fluxo `ciclo-tarefa` (`.agents/workflows/ciclo-tarefa.md`), que despacha o subagente **implementador** com contexto limpo e, depois dele, dois revisores distintos e somente-leitura: **revisor-conformidade** (diff × critérios de aceite da `spec.md`) e **revisor-codigo** (diff × `docs/architecture.md`).
+- Execute **uma tarefa por vez** através do fluxo `/utf-task` (`.agents/workflows/utf-task.md`), que despacha o subagente **implementador** com contexto limpo e, depois dele, dois revisores distintos e somente-leitura: **revisor-conformidade** (diff × critérios de aceite da `spec.md`) e **revisor-codigo** (diff × `docs/architecture.md`).
 - **Você nunca revisa o código que você mesmo despachou.** Revisor é sempre outro agente, sem permissão de escrita. Auto-auditoria não conta como revisão: quem escreveu carrega os mesmos pontos cegos.
 - Ao fim de cada tarefa, pare e devolva o controle ao usuário. Ele pede a próxima.
 
 **Passo 4: Auditoria final e Pull Request**
 - Terminadas todas as tarefas, atualize **primeiro** a documentação: o status da história no `docs/prd.md` (→ `Live`), os diagramas do `docs/architecture.md` que mudaram, e a linha da spec no `specs/README.md` (→ `implementada`). Proponha o commit e faça-o **só com o "pode commitar" do usuário** — o portão do commit vale aqui como em cada tarefa.
-- Despache então o subagente **auditor-final**, que compara o diff **inteiro** da branch contra o `spec.md` original — nunca contra o `plan.md` — e confere a documentação que acabou de ser atualizada. Se o veredito for NÃO PRONTO, cada pendência vira tarefa nova no `plan.md` (com o OK do usuário) e passa pelo `ciclo-tarefa`; depois o auditor roda de novo.
+- Despache então o subagente **auditor-final**, que compara o diff **inteiro** da branch contra o `spec.md` original — nunca contra o `plan.md` — e confere a documentação que acabou de ser atualizada. Se o veredito for NÃO PRONTO, cada pendência vira tarefa nova no `plan.md` (com o OK do usuário) e passa pelo `/utf-task`; depois o auditor roda de novo.
 - Com PRONTO PARA PR, sugira `/utf-tutor prova` — o simulado interativo sobre o diff inteiro, que é o ensaio da defesa presencial.
 - Lembre o usuário de abrir o Pull Request com `Closes #<n>`.
 - A seção **"O que este PR faz e por quê"** é escrita **pelo usuário, com as palavras dele**. Ofereça os fatos do diff; não ofereça o texto pronto.

@@ -73,7 +73,7 @@ reescreve nada: o miolo é o mesmo.
 | --- | --- | --- | --- |
 | Claude Code | `CLAUDE.md` | `.claude/commands/` | `.claude/agents/` |
 | Cursor | `.cursor/rules/` | `.cursor/commands/` | `.cursor/agents/` |
-| Antigravity | `.agents/rules/` | `.agents/workflows/` | `.agents/agents/` |
+| Antigravity | `.agents/rules/` | `.agents/workflows/` (o nome do arquivo **é** o comando) | `.agents/agents/` |
 | OpenCode | `AGENTS.md` | `.opencode/command/` | `.opencode/agents/` |
 
 Nas quatro, os revisores e o tutor nascem **sem poder de escrita**; só o
@@ -93,11 +93,6 @@ implementador escreve. A trava tem forças diferentes, e vale saber qual você t
 > Se o seu OpenCode não listar os agentes ou os comandos, é diferença de versão nos
 > nomes das pastas: renomeie `.opencode/agents/` para `.opencode/agent/` e
 > `.opencode/command/` para `.opencode/commands/`. O conteúdo é o mesmo.
-
-> No **Antigravity**, o comando é o nome do arquivo em `.agents/workflows/`:
-> `/prd`, `/backlog`, `/user-flows`, `/architecture`, `/setup`, `/utf-workflow`
-> (= `/utf-issue`), `/ciclo-tarefa` (= `/utf-task`) e `/tutor`. Onde os guias
-> dizem `/utf-<x>`, leia o equivalente.
 
 O passo a passo detalhado está em [`docs/tutorial-sdd.md`](docs/tutorial-sdd.md);
 o porquê de cada regra, em [`docs/guia-sdd.md`](docs/guia-sdd.md).
