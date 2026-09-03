@@ -1,14 +1,14 @@
 # 🎨 Tokens de Design
 
 **Projeto:** [nome]
-**Versão:** 0.0.0 · esqueleto — preencha via `/utf-flows`
+**Versão:** 0.0.0 · esqueleto — preencha via `/utf-design`
 **Última atualização:** [data]
 
 > 🤖 **Este documento existe para a IA parar de inventar um botão diferente a cada
 > tela.** Não é um design system — é o mínimo que dá à prototipagem assistida algo a
 > que obedecer.
 >
-> ✍️ **Não preencha na mão:** rode `/utf-flows`.
+> ✍️ **Não preencha na mão:** rode `/utf-design` (depois do `/utf-flows`).
 
 ---
 

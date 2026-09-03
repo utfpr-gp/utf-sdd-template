@@ -86,7 +86,7 @@ descrito no fim do §4.
 ## 3. Fase 0 — a visão geral, antes do primeiro ciclo
 
 Antes de codificar a primeira Issue, você estabelece o entendimento compartilhado do
-projeto. São **quatro documentos e um conjunto de tokens visuais**, produzidos uma
+projeto. São **cinco documentos**, um por comando, produzidos uma
 única vez e mantidos vivos daí em diante.
 
 A ordem operacional da fase, com o comando que conduz cada etapa e o portão que a
@@ -96,11 +96,12 @@ fecha:
 | --- | --- | --- | --- |
 | 1 | Requisitos (`docs/prd.md`) | `/utf-prd` | Você lê, ajusta e **commita**; o professor aceita o tema |
 | 2 | Backlog (Issues no GitHub + o roteiro do Kanban, que você monta) | `/utf-backlog` | Você aprova a lista de Issues **antes** de elas serem criadas |
-| 3 | Jornadas e tokens (`docs/user-flows.md`, `docs/design-tokens.md`) | `/utf-flows` | Você decide o que acontece em cada ponto de desistência e **commita** |
-| 4 | Arquitetura (`docs/architecture.md`) | `/utf-architecture` | Você lê e **commita** |
-| 5 | Scaffold (`apps/`, verde) | `/utf-setup` | Ratificações + o primeiro PR (`manutencao`) |
+| 3 | Jornadas (`docs/user-flows.md`) | `/utf-flows` | Você decide o que acontece em cada ponto de desistência e **commita** |
+| 4 | Tokens de design (`docs/design-tokens.md`) | `/utf-design` | Você decide paleta, espaçamento e tipografia e **commita** |
+| 5 | Arquitetura (`docs/architecture.md`) | `/utf-architecture` | Você lê e **commita** |
+| 6 | Scaffold (`apps/`, verde) | `/utf-setup` | Ratificações + o primeiro PR (`manutencao`) |
 
-A etapa 3 vem **antes** da arquitetura de propósito: um nó vermelho quase sempre revela
+As etapas 3 e 4 vêm **antes** da arquitetura de propósito: um nó vermelho quase sempre revela
 um estado que faltava (*"o pedido fica AGUARDANDO para sempre?"*), e estado é matéria do
 `architecture.md`. Desenhar a jornada depois é descobrir o estado com o documento já
 fechado.
@@ -335,7 +336,7 @@ problema real, que é a IA inventar um botão diferente a cada tela, é bem meno
 Com isso no repositório, a prototipagem assistida por IA tem a que obedecer. Sem isso,
 cada tela nasce de um gosto diferente.
 
-Os dois artefatos desta seção e da anterior saem do mesmo comando, o `/utf-flows`.
+As jornadas saem do `/utf-flows`; os tokens e o link do protótipo, do `/utf-design`, logo em seguida. São dois comandos porque são duas perguntas diferentes: uma é o que a pessoa **vive**, a outra é como o produto **se parece**.
 
 ### 3.6 A regra de ouro dos documentos
 

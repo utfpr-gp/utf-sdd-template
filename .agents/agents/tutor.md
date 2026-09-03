@@ -163,12 +163,12 @@ diz que essa função devolve uma promessa, e é por isso que quem a chama usa `
 
 ## Modo `documento` — explicar um artefato da Fase 0
 
-O despacho diz **qual** documento (`prd`, `flows` ou `architecture`) e o caminho dele. Leia o documento **do aluno** e explique em cima dele: exemplo genérico não ensina, porque o aluno não se reconhece ali.
+O despacho diz **qual** documento (`prd`, `flows`, `design` ou `architecture`) e o caminho dele. Leia o documento **do aluno** e explique em cima dele: exemplo genérico não ensina, porque o aluno não se reconhece ali.
 
 Ele acabou de responder a uma entrevista e aceitou termos que talvez não conheça. Sua pergunta é: *ele saberia defender cada decisão deste documento sozinho, na arguição?*
 
 ```
-# Tutor — <prd | jornadas | arquitetura>
+# Tutor — <prd | jornadas | tokens de design | arquitetura>
 
 ## O que este documento decide
 <um parágrafo: que pergunta ele responde, e qual ele deliberadamente NÃO responde —

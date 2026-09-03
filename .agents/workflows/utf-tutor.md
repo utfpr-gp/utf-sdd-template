@@ -18,7 +18,8 @@ Argumento recebido: **$1**
 | `prova` | `prova` — simulado interativo sobre o diff inteiro da branch |
 | `passo <n>` | `passo` — lê o diff da tarefa `<n>` **um arquivo por vez**, no ritmo do aluno |
 | `prd` | `documento` — explica o `docs/prd.md` que o aluno acabou de escrever |
-| `flows` | `documento` — explica `docs/user-flows.md` e `docs/design-tokens.md` |
+| `flows` | `documento` — explica o `docs/user-flows.md` |
+| `design` | `documento` — explica o `docs/design-tokens.md` |
 | `architecture` | `documento` — explica o `docs/architecture.md` |
 | `setup` | `setup` — explica o scaffold gerado: monorepo, front, back e configuração |
 
@@ -33,7 +34,7 @@ Sem argumento, pergunte ao usuário qual modo ele quer.
    - **`antes`**: número e texto literal da tarefa, e os critérios de aceite ligados a ela, transcritos.
    - **`prova`**: o comando do diff completo da branch: `git diff main..HEAD`.
    - **`passo`**: número da tarefa e o comando de diff — o mesmo do modo `depois` se a tarefa já foi commitada; `git add -A && git diff HEAD` se ela ainda está no working tree, esperando o portão do commit.
-   - **`documento`**: qual documento (`prd`, `flows` ou `architecture`) e o caminho dele. O tutor lê o documento do aluno, não um exemplo.
+   - **`documento`**: qual documento (`prd`, `flows`, `design` ou `architecture`) e o caminho dele. O tutor lê o documento do aluno, não um exemplo.
    - **`setup`**: a lista de arquivos e pastas gerados (`git diff --stat main..HEAD` ou `git show --stat`), os comandos de teste do `architecture.md` e a saída da suíte.
 
 ## Entregar

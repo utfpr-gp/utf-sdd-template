@@ -1,8 +1,8 @@
 ---
-description: Conduz o desenho das jornadas de usuário (docs/user-flows.md) e dos tokens de design (docs/design-tokens.md) a partir do prd.md. Obriga pelo menos uma jornada com ponto de desistência declarado. Roda depois do /utf-prd e antes do /utf-architecture.
+description: Conduz o desenho das jornadas de usuário (docs/user-flows.md) a partir do prd.md. Obriga pelo menos uma jornada com ponto de desistência declarado. Roda depois do /utf-prd e antes do /utf-design.
 ---
 
-# Gerar as jornadas e os tokens
+# Gerar as jornadas de usuário
 
 Você conduz o desenho do **caminho que a pessoa percorre na tela** — e, principalmente,
 dos pontos onde ela trava, espera ou desiste. O aluno decide; você pergunta, desenha e
@@ -102,28 +102,14 @@ O texto é **do aluno**. Você pergunta *"e aí, o que o sistema faz nesse caso?
 organiza a resposta dele. Se ele não souber, isso não vira invenção sua: vira uma linha
 em **Dúvidas em aberto**, e o `/utf-architecture` a resolve.
 
-## Passo 4 — Tokens de design
+## Passo 4 — Portão
 
-Não se espera design system: o que resolve o problema real — a IA inventando um botão
-diferente a cada tela — é bem menor. Grave em `docs/design-tokens.md`:
-
-1. **Paleta** — as cores, com nome semântico (`primaria`, `perigo`, `superficie`,
-   `texto`), não `azul-2`. Inclua os estados de erro e de desabilitado.
-2. **Escala de espaçamento** — uma progressão só (ex.: 4, 8, 16, 24, 32).
-3. **Tipografia** — família, tamanhos e pesos, com o papel de cada um.
-4. **Estados de botão** — normal, hover, foco, desabilitado, carregando.
-
-Pergunte também pelo link do protótipo (Figma, Stitch ou equivalente) com **3 a 5
-telas** das jornadas principais, e registre-o no documento. Se ainda não existir,
-registre como pendência — não invente cor nem link.
-
-## Passo 5 — Portão
-
-1. Grave `docs/user-flows.md` e `docs/design-tokens.md`.
+1. Grave `docs/user-flows.md`.
 2. **PARE.** O aluno lê fora do chat. O commit é dele.
    Ofereça: *"Rode `/utf-flows` de novo se quiser outra jornada, ou `/utf-tutor flows` se quiser entender por que o nó vermelho muda o sistema."*
-3. Próximo passo: `/utf-architecture` — que vai ler as jornadas para encontrar os
-   estados e os pontos de decisão que o `architecture.md` precisa declarar.
+3. Próximo passo: `/utf-design`, que define os tokens visuais das telas destas jornadas.
+   Depois dele vem o `/utf-architecture`, que lê as jornadas para encontrar os estados e
+   os pontos de decisão que o `architecture.md` precisa declarar.
 
 ## Proibições
 
@@ -131,4 +117,4 @@ registre como pendência — não invente cor nem link.
 - Entregar diagrama **sem** nó vermelho, ou nó vermelho **sem** o parágrafo do Passo 3.
 - Escrever o parágrafo de decisão no lugar do aluno.
 - Falar de endpoint, tabela, componente ou biblioteca — é `/utf-architecture`.
-- Inventar cor, fonte ou link de protótipo que o aluno não deu.
+- Definir cor, fonte ou link de protótipo — é `/utf-design`.
