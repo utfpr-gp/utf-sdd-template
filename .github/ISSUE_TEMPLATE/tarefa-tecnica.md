@@ -22,5 +22,5 @@ labels: manutencao
 
 ---
 
-<!-- PR com a etiqueta `manutencao`, sem `spec.md` — mas COM a explicação de 400
+<!-- PR com a etiqueta `manutencao`, sem `spec.md` — mas COM a explicação de 250
      caracteres: a etiqueta dispensa a spec, nunca o Portão de Entendimento. -->

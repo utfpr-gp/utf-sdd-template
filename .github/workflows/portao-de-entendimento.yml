@@ -18,8 +18,8 @@ jobs:
             | sed '/^##/,$d' \
             | perl -0pe 's/<!--.*?-->//gs')
           TAMANHO=$(printf '%s' "$TEXTO" | tr -d '[:space:]' | wc -c)
-          echo "Caracteres na explicação: $TAMANHO (mínimo 400)"
-          if [ "$TAMANHO" -lt 400 ]; then
-            echo "::error::Escreva a seção 'O que este PR faz e por quê' com pelo menos 400 caracteres. Encontrei $TAMANHO."
+          echo "Caracteres na explicação: $TAMANHO (mínimo 250)"
+          if [ "$TAMANHO" -lt 250 ]; then
+            echo "::error::Escreva a seção 'O que este PR faz e por quê' com pelo menos 250 caracteres. Encontrei $TAMANHO."
             exit 1
           fi

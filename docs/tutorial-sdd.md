@@ -159,7 +159,7 @@ e não passam pelo `/utf-issue`. O caminho é mais curto, e mesmo assim tem regr
 3. **No bug, o primeiro commit é um teste que reproduz a falha e falha de verdade.**
    Sem esse teste, nada prova que o bug foi embora nem que ele não volta. Só depois vem
    a correção. É o mesmo RED → GREEN do ciclo, sem a papelada.
-4. **PR com a etiqueta `manutencao`**, `Closes #<n>` e a explicação de 400 caracteres.
+4. **PR com a etiqueta `manutencao`**, `Closes #<n>` e a explicação de 250 caracteres.
    A etiqueta dispensa a spec, **nunca** o Portão de Entendimento.
 
 Se, ao investigar, você descobrir que o `docs/prd.md` nunca disse o que o sistema

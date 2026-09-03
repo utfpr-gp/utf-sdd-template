@@ -116,14 +116,17 @@
   <h2>O Portão de Entendimento</h2>
 
   <p>Todo Pull Request precisa ter, no corpo, a seção <strong>“O que este PR faz e por
-  quê”</strong> preenchida com pelo menos <strong>400 caracteres</strong>. Uma verificação
-  automática confere isso e reprova o PR se faltar. É uma regra só, e vale para todos os PRs,
-  inclusive os de manutenção.</p>
+  quê”</strong> preenchida com pelo menos <strong>250 caracteres</strong>, sem contar espaços
+  — o que dá, na prática, três frases de verdade. Uma verificação automática confere isso e,
+  como a proteção da <code>main</code> exige esse check, o PR reprovado não mescla. É uma regra
+  só, e vale para todos os PRs, inclusive os de manutenção.</p>
 
   <p>Se a mudança é pequena, a explicação é curta e específica. Algo como <em>“o
   <code>ValidationPipe</code> estava sem <code>whitelist: true</code>, então campos extras no
   body passavam direto para o service; ativei a flag e ajustei dois testes que dependiam do
-  comportamento antigo”</em> já passa dos 400 caracteres e diz alguma coisa.</p>
+  comportamento antigo”</em> é o <strong>começo</strong> — sozinho ele tem 152 caracteres e
+  não passa. Acrescente o que você conferiu e o que poderia ter quebrado, e os 250 vêm
+  naturalmente, dizendo alguma coisa.</p>
 
   <div class="pare">
     <p><strong>Não cole o diff nem a saída da IA nessa explicação.</strong> O texto precisa

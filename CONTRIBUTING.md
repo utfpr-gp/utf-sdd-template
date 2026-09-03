@@ -67,7 +67,7 @@ O que é **norma inegociável** deste repositório são os portões humanos — 
 
 Se o Pull Request for a primeira vez que você olha o código, o método falhou. Por isso **todo PR** — de história ou de manutenção — passa por uma verificação automática antes de ser mesclado, e a proteção da `main` exige que ela passe:
 
-- A descrição precisa conter a seção _"O que este PR faz e por quê"_ preenchida por você com pelo menos **400 caracteres** (sem contar espaços). Não cole o _diff_ nem a saída da IA; explique com suas palavras. A verificação está em `.github/workflows/portao-de-entendimento.yml`, e o guia (§9 e Apêndice B) explica cada linha.
+- A descrição precisa conter a seção _"O que este PR faz e por quê"_ preenchida por você com pelo menos **250 caracteres** (sem contar espaços). Não cole o _diff_ nem a saída da IA; explique com suas palavras. A verificação está em `.github/workflows/portao-de-entendimento.yml`, e o guia (§9 e Apêndice B) explica cada linha.
 
 **A etiqueta `manutencao` decide outra coisa:** se o PR precisava ou não de `spec.md`. Mudança puramente técnica (atualizar versão, refatorar, arrumar formatação) e correção de bug nascem como Issue direto no GitHub, sem `spec.md`, e o PR recebe a etiqueta `manutencao` — mas a explicação continua obrigatória. São duas perguntas independentes.
 
