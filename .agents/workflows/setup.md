@@ -14,6 +14,12 @@ que foi decidida. O que não estiver escrito lá, você pergunta; não escolhe.
 
 ## Passo 0 — Pré-condições (PARE se qualquer uma falhar)
 
+0. **Os documentos da Fase 0 estão commitados.** Rode
+   `git status --porcelain docs/`: se a saída **não** estiver vazia, **PARE** e peça
+   o commit. O scaffold vai nascer a partir do `architecture.md`; se ele ainda não
+   está no histórico, o repositório não tem como provar qual decisão gerou qual
+   arquivo — e é essa rastreabilidade que a avaliação cobra.
+
 1. `docs/prd.md` e `docs/architecture.md` existem e declaram: o framework do backend,
    o framework do frontend, a estrutura de pastas do monorepo e como rodar os testes.
    Se algum desses quatro estiver ausente ou ambíguo, **PARE** e diga o que falta —
@@ -154,12 +160,18 @@ motivo, **PARE** e relate. Não tente uma terceira abordagem.
 1. Commits pequenos e nomeados por passo (apps, raiz, ferramentas do método) —
    **cada um proposto ao usuário antes** ("commit do passo X: <mensagem>?"),
    nenhum sem o OK dele.
-2. Relate ao usuário: o que foi gerado, a saída dos testes, e as decisões que o
+2. **Despache o tutor em modo `setup`, antes do PR.** Este é o único momento do
+   semestre em que o aluno recebe um monte de arquivos que ele não escreveu e não
+   viu nascer — se ninguém explicar, ele abre o primeiro PR sem saber o que tem
+   dentro do próprio repositório. Não pergunte se ele quer: despache, apresente a
+   explicação na íntegra e só então siga. O despacho leva `docs/architecture.md`, a
+   lista de arquivos gerados e a saída dos testes.
+3. Relate ao usuário: o que foi gerado, a saída dos testes, e as decisões que o
    `architecture.md` não cobria (Passo 2) para ele ratificar no documento.
    **Ratificação aprovada pelo usuário = atualize o `architecture.md` na mesma
    branch**, antes do PR — documento e scaffold entram juntos, contando a mesma
    história.
-3. Instrua o usuário a abrir o PR com a etiqueta **`manutencao`** — setup é Task,
+4. Instrua o usuário a abrir o PR com a etiqueta **`manutencao`** — setup é Task,
    não história. O corpo já vem preenchido pelo
    `.github/pull_request_template.md`, que está na `main` desde o template.
    Explique o detalhe que ninguém adivinha:

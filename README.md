@@ -32,6 +32,36 @@ Bug e tarefa técnica não entram nessa tabela: eles nascem como Issue direto no
 etiqueta `manutencao`. O tutorial tem o passo a passo. Os modelos comentados de
 `spec.md` e `plan.md` ficam em `docs/modelo-spec.md` e `docs/modelo-plan.md`.
 
+### O primeiro prompt
+
+Abra o chat da sua IDE e **cole o texto abaixo**. Ele confirma que o método carregou,
+diz em que ponto o projeto está e qual é o próximo passo — serve no primeiro dia e em
+qualquer volta depois de dias sem mexer.
+
+```text
+Sou aluno da disciplina e este repositório usa o método UTF-SDD.
+
+Antes de qualquer outra coisa:
+
+1. Leia `.agents/rules/utf-rules.md` — é a constituição deste repositório e vale
+   para tudo o que fizermos daqui em diante.
+2. Leia `docs/checklist.md` — é a ficha da disciplina: regras, indicadores e entregas.
+3. Olhe `docs/`, `specs/` e o `git log`, e me responda:
+   - as regras inegociáveis, uma linha cada;
+   - em que fase o projeto está agora, e como você chegou a essa conclusão;
+   - qual é o próximo comando que eu devo rodar, o que ele vai me perguntar e o que
+     eu vou ter que decidir nele;
+   - o que precisa estar commitado antes de eu rodá-lo.
+
+Explique como se eu nunca tivesse visto este método. Não escreva código nem crie
+nenhum arquivo nesta resposta.
+```
+
+Se o agente não souber recitar as regras, **elas não carregaram** — confira, na tabela
+abaixo, se as pastas da sua ferramenta são mesmo as que ele lê. E, a qualquer momento,
+`/utf-tutor` explica o que estiver na sua frente: `prd`, `flows`, `architecture` e
+`setup` na Fase 0; `spec`, `antes <n>`, `<n>` e `prova` durante as histórias.
+
 ### Um método, quatro ferramentas
 
 O conteúdo de verdade — constituição, fluxos e subagentes — vive uma vez só, em

@@ -27,6 +27,12 @@ fechado.
 
 ## Passo 0 — Pré-condições
 
+0. **O documento anterior está commitado.** Rode `git status --porcelain docs/prd.md`:
+   se a saída **não** estiver vazia, ou se o arquivo não estiver versionado, **PARE** e
+   peça o commit ao aluno. Não é burocracia: cada documento da Fase 0 é decisão dele, e
+   o commit é o que põe o nome dele nessa decisão. Seguir sem commitar empilha quatro
+   documentos num commit só, no fim, e a autoria some.
+
 1. `docs/prd.md` preenchido, com stories e critérios de aceite. Sem ele, **PARE** e
    mande rodar `/utf-prd` — jornada sem história é desenho decorativo.
 2. Se `docs/user-flows.md` já tem jornada real (não é esqueleto), **PARE** e pergunte:
@@ -115,6 +121,7 @@ registre como pendência — não invente cor nem link.
 
 1. Grave `docs/user-flows.md` e `docs/design-tokens.md`.
 2. **PARE.** O aluno lê fora do chat. O commit é dele.
+   Ofereça: *"Rode `/utf-flows` de novo se quiser outra jornada, ou `/utf-tutor flows` se quiser entender por que o nó vermelho muda o sistema."*
 3. Próximo passo: `/utf-architecture` — que vai ler as jornadas para encontrar os
    estados e os pontos de decisão que o `architecture.md` precisa declarar.
 

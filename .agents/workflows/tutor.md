@@ -16,6 +16,11 @@ Argumento recebido: **$1**
 | `antes <n>` | `antes` — explica a tarefa antes da implementação (normalmente quem chama isso é o ciclo-tarefa) |
 | `spec` | `spec` — explica as consequências técnicas da spec em rascunho |
 | `prova` | `prova` — simulado interativo sobre o diff inteiro da branch |
+| `passo <n>` | `passo` — lê o diff da tarefa `<n>` **um arquivo por vez**, no ritmo do aluno |
+| `prd` | `documento` — explica o `docs/prd.md` que o aluno acabou de escrever |
+| `flows` | `documento` — explica `docs/user-flows.md` e `docs/design-tokens.md` |
+| `architecture` | `documento` — explica o `docs/architecture.md` |
+| `setup` | `setup` — explica o scaffold gerado: monorepo, front, back e configuração |
 
 Sem argumento, pergunte ao usuário qual modo ele quer.
 
@@ -27,10 +32,14 @@ Sem argumento, pergunte ao usuário qual modo ele quer.
    - **`depois`**: número e texto literal da tarefa, e o comando de diff. Encontre o commit da tarefa com `git log --oneline --grep "^tarefa <n>:"` (convenção de commit do ciclo-tarefa; o `^` e o `:` impedem que `tarefa 1` case com `tarefa 10`) e monte `git diff <sha>^..<sha>`. Se a tarefa **ainda não foi commitada** (o aluno quer a aula antes de autorizar o commit), o diff é o working tree: `git add -A && git diff HEAD`. Se a tarefa tiver mais de um commit ou o commit não for encontrado, monte o intervalo à mão e confirme com o usuário antes de despachar.
    - **`antes`**: número e texto literal da tarefa, e os critérios de aceite ligados a ela, transcritos.
    - **`prova`**: o comando do diff completo da branch: `git diff main..HEAD`.
+   - **`passo`**: número da tarefa e o comando de diff — o mesmo do modo `depois` se a tarefa já foi commitada; `git add -A && git diff HEAD` se ela ainda está no working tree, esperando o portão do commit.
+   - **`documento`**: qual documento (`prd`, `flows` ou `architecture`) e o caminho dele. O tutor lê o documento do aluno, não um exemplo.
+   - **`setup`**: a lista de arquivos e pastas gerados (`git diff --stat main..HEAD` ou `git show --stat`), os comandos de teste do `architecture.md` e a saída da suíte.
 
 ## Entregar
 
 - **Modos `antes`, `depois` e `spec`:** apresente a resposta do tutor ao usuário **na íntegra, sem resumir** — resumo seu é exatamente a contaminação que o tutor existe para evitar. Depois, coloque-se à disposição para dúvidas: repasse cada dúvida ao tutor em novo despacho se ela exigir olhar o código de novo.
+- **Modo `passo`:** o tutor te devolve um bloco por arquivo. **Entregue um bloco por vez** e espere o usuário dizer que entendeu ou perguntar. Não emende dois arquivos na mesma mensagem, mesmo que o segundo seja curto — o ponto do modo é o ritmo. Dúvida sobre um arquivo volta ao tutor em novo despacho, se exigir olhar o código de novo. No fim, pergunte se ele quer rever algum.
 - **Modo `prova`:** o tutor te devolve as questões **com gabarito**. O gabarito é seu, não do aluno:
   1. Faça **uma pergunta por vez** e espere a resposta do usuário.
   2. Compare com o gabarito e dê o retorno de forma didática: o que acertou, o que faltou, onde está a evidência (`arquivo:linha`).

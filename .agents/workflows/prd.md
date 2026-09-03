@@ -48,6 +48,7 @@ Percorra o `docs/checklist.md` e confira o rascunho contra **todo ID cuja sement
 
 1. Grave `docs/prd.md` completo.
 2. **PARE.** O aluno lê o documento inteiro, fora do chat. Ajuste agora custa uma conversa; depois, custa uma spec.
+   Ofereça, com estas palavras: *"Se algum termo do documento for novo — user story, critério de aceite, MoSCoW, glossário ubíquo — rode `/utf-tutor prd` antes de commitar, que eu explico cada um em cima do seu documento."*
 3. O commit do `prd.md` é **dele**. Próximos passos, nesta ordem: com o **aceite do professor** e stories `Ready`, `/utf-backlog` leva as stories para o GitHub (Issues + Kanban); depois `/utf-flows`, que desenha as jornadas e acha os pontos de desistência; e só então `/utf-architecture`.
 
 ## Proibições
