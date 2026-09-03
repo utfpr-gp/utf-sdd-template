@@ -27,6 +27,17 @@ Cinco comandos, nesta ordem, cada um fechando num portão seu:
 Pré-requisito dos passos 2 e 5 (e, depois, de cada `/utf-issue`): `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
 pode rodar de novo mais tarde, a cada leva de stories promovidas a `Ready`.
 
+> 🎓 **O tutor também vale na Fase 0.** Cada documento é decisão sua, e decisão que
+> você não sabe explicar não sobrevive à arguição. Antes de commitar, rode
+> `/utf-tutor prd`, `/utf-tutor flows` ou `/utf-tutor architecture` — ele explica os
+> conceitos em cima do **seu** documento, não em exemplo genérico. Depois do
+> `/utf-setup` você não precisa pedir: o fluxo chama o tutor sozinho, porque ali é o
+> único momento em que você recebe dezenas de arquivos que não escreveu.
+
+> ⛔ **Cada passo só começa com o anterior commitado.** Os comandos conferem isso e
+> param se faltar. Não é burocracia: o commit é o que põe o seu nome na decisão. Sem
+> ele, os quatro documentos caem num commit só no fim e a autoria some.
+
 ---
 
 ## Antes de começar (uma vez por história)
@@ -81,7 +92,8 @@ Dentro do comando acontece o ciclo completo, com as suas paradas:
 | Revisão em paralelo | revisor-conformidade + revisor-codigo | nada — quem despacha é o fluxo |
 | Pareceres gravados em `reviews/` | orquestrador | nada |
 | **Triagem** (se houve apontamentos) | orquestrador apresenta a lista | **🚪 aceita ou recusa cada um** — recusa exige justificativa, registrada em `reviews/tarefa-NN-decisoes-rN.md` |
-| Commit `tarefa 1: ...` | orquestrador apresenta o diff e os pareceres | **🚪 confere o diff na IDE, com o roteiro do tutor, e autoriza** ("pode commitar"); depois do commit, `/utf-tutor 1` dá a aula sobre ele |
+| **Leitura do diff, arquivo por arquivo** | tutor (modo `passo`), conduzido pelo orquestrador | acompanha **um arquivo por vez** e pergunta — é aqui que a sintaxe entra; diga "pode pular a leitura" se não quiser |
+| Commit `tarefa 1: ...` | orquestrador apresenta o diff e os pareceres | **🚪 confere o diff na IDE e autoriza** ("pode commitar"); depois do commit, `/utf-tutor 1` amarra a tarefa inteira |
 
 Repita para cada tarefa: `/utf-task 2`, `/utf-task 3`… — ou apenas
 `/utf-task`, que pega a próxima pendente do `plan.md` e avisa quando não
@@ -120,18 +132,16 @@ palavras, lista os apontamentos aceitos e recusados (saem dos arquivos
 | `/utf-setup` | Fase 0, etapa 5 — gera o scaffold do monorepo |
 | `/utf-issue <n>` | Para iniciar o ciclo da Issue (spec → plano) e, no fim, para fechá-la (auditor → PR); rodado de novo, retoma de onde parou |
 | `/utf-task [n]` | Uma vez **por tarefa** do plano — sem número, executa a próxima pendente |
+| `/utf-tutor prd` · `flows` · `architecture` | Na Fase 0, antes de commitar cada documento |
+| `/utf-tutor setup` | Depois do scaffold — monorepo, front, back e os arquivos que você não escreveu (o `/utf-setup` já chama sozinho) |
 | `/utf-tutor spec` | Antes de aprovar a spec |
+| `/utf-tutor passo <n>` | A leitura do diff arquivo por arquivo, no seu ritmo (o `/utf-task` já chama sozinho, antes do commit) |
 | `/utf-tutor <n>` | Depois de uma tarefa, para a aula sobre aquele diff |
 | `/utf-tutor antes <n>` | Para reouvir a explicação pré-implementação de uma tarefa |
 | `/utf-tutor prova` | Antes de escrever o PR — o ensaio da defesa |
 
 Dizer "vamos trabalhar na Issue 12" em linguagem natural também dispara o fluxo
 (`utf-rules.md` §1) — os comandos são só o caminho mais curto.
-
-> **No Antigravity o comando é o nome do arquivo em `.agents/workflows/`**, não o
-> `/utf-*`: `/prd`, `/backlog`, `/user-flows`, `/architecture`, `/setup`,
-> `/utf-workflow` (a Issue), `/ciclo-tarefa` (a tarefa) e `/tutor`. O conteúdo é
-> o mesmo — onde este tutorial diz `/utf-<x>`, leia o equivalente.
 
 ---
 

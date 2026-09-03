@@ -15,6 +15,12 @@ Você é o entrevistador técnico. O aluno é o Arquiteto: **ele decide; você a
 
 ## Passo 0 — Pré-condições
 
+0. **O documento anterior está commitado.** Rode `git status --porcelain docs/user-flows.md docs/design-tokens.md`:
+   se a saída **não** estiver vazia, ou se o arquivo não estiver versionado, **PARE** e
+   peça o commit ao aluno. Não é burocracia: cada documento da Fase 0 é decisão dele, e
+   o commit é o que põe o nome dele nessa decisão. Seguir sem commitar empilha quatro
+   documentos num commit só, no fim, e a autoria some.
+
 0. `docs/user-flows.md` tem pelo menos uma jornada desenhada, com o parágrafo de decisão sobre o nó vermelho. Se não tiver, **PARE** e mande rodar `/utf-flows`: é lá que aparecem os estados que faltam ("o pedido fica AGUARDANDO para sempre?"), e estado esquecido aqui vira retrabalho na primeira spec.
 1. `docs/prd.md` existe, com glossário, atores e stories. Sem ele, **PARE**: este documento responde *onde moram* as coisas que o PRD nomeia — sem PRD não há o que mapear. Mande rodar `/utf-prd` antes.
 2. Leia `docs/checklist.md` **inteiro** — a seção *Regras da disciplina* diz o que é stack fixa e o que é escolha do aluno, e vários IDs são padrões estruturais que este documento precisa declarar.
@@ -43,6 +49,7 @@ Antes de fechar, confira que o documento declara **explicitamente** as quatro co
 
 1. Percorra o `docs/checklist.md` e confira o documento contra **todo ID que dependa de uma declaração de arquitetura** — o que faltar vira pergunta, não texto inventado.
 2. Grave `docs/architecture.md`. **PARE.** O aluno lê fora do chat; o commit é dele. Próximo passo: `/utf-setup`.
+   Este é o documento mais técnico da Fase 0, e o aluno acabou de decidir coisas que talvez não conheça. Ofereça, sem enfeite: *"Antes de commitar, rode `/utf-tutor architecture` — ele explica monorepo, camadas, ORM e o diagrama ER em cima das suas escolhas, não em exemplo genérico."*
 
 ## Proibições
 
