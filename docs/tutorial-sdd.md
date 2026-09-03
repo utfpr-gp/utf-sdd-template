@@ -14,29 +14,30 @@ Git e de PR estão no [CONTRIBUTING](../CONTRIBUTING.md).
 
 ## Fase 0 — Iniciar o projeto (uma vez por projeto)
 
-Cinco comandos, nesta ordem, cada um fechando num portão seu:
+Seis comandos, nesta ordem, cada um fechando num portão seu:
 
 | # | Comando | O que sai | 🚪 Você faz o quê |
 | --- | --- | --- | --- |
 | 1 | `/utf-prd` | `docs/prd.md` — entrevista de requisitos | Lê o documento inteiro, ajusta e **commita**; leva o tema ao professor |
 | 2 | `/utf-backlog` | Issues (uma por story `Ready`) + o roteiro do Kanban | **Aprova a lista** antes de as Issues serem criadas |
-| 3 | `/utf-flows` | `docs/user-flows.md` e `docs/design-tokens.md` — jornadas e tokens | Decide o que acontece em cada ponto de desistência e **commita** |
-| 4 | `/utf-architecture` | `docs/architecture.md` — entrevista técnica | Lê e **commita** |
-| 5 | `/utf-setup` | `apps/` — o monorepo nascendo com testes verdes | Ratifica as decisões relatadas e abre o **1º PR** (`manutencao`) |
+| 3 | `/utf-flows` | `docs/user-flows.md` — as jornadas | Decide o que acontece em cada ponto de desistência e **commita** |
+| 4 | `/utf-design` | `docs/design-tokens.md` — tokens e protótipo | Decide paleta, espaçamento e tipografia e **commita** |
+| 5 | `/utf-architecture` | `docs/architecture.md` — entrevista técnica | Lê e **commita** |
+| 6 | `/utf-setup` | `apps/` — o monorepo nascendo com testes verdes | Ratifica as decisões relatadas e abre o **1º PR** (`manutencao`) |
 
-Pré-requisito dos passos 2 e 5 (e, depois, de cada `/utf-issue`): `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
+Pré-requisito dos passos 2 e 6 (e, depois, de cada `/utf-issue`): `gh` autenticado ou MCP do GitHub. O `/utf-backlog`
 pode rodar de novo mais tarde, a cada leva de stories promovidas a `Ready`.
 
 > 🎓 **O tutor também vale na Fase 0.** Cada documento é decisão sua, e decisão que
 > você não sabe explicar não sobrevive à arguição. Antes de commitar, rode
-> `/utf-tutor prd`, `/utf-tutor flows` ou `/utf-tutor architecture` — ele explica os
+> `/utf-tutor prd`, `flows`, `design` ou `architecture` — ele explica os
 > conceitos em cima do **seu** documento, não em exemplo genérico. Depois do
 > `/utf-setup` você não precisa pedir: o fluxo chama o tutor sozinho, porque ali é o
 > único momento em que você recebe dezenas de arquivos que não escreveu.
 
 > ⛔ **Cada passo só começa com o anterior commitado.** Os comandos conferem isso e
 > param se faltar. Não é burocracia: o commit é o que põe o seu nome na decisão. Sem
-> ele, os quatro documentos caem num commit só no fim e a autoria some.
+> ele, os documentos da Fase 0 caem num commit só no fim e a autoria some.
 
 ---
 
@@ -127,12 +128,13 @@ palavras, lista os apontamentos aceitos e recusados (saem dos arquivos
 | --- | --- |
 | `/utf-prd` | Fase 0, etapa 1 — a entrevista que gera o `docs/prd.md` |
 | `/utf-backlog` | Fase 0, etapa 2 — PRD aprovado vira Issues + Kanban (e roda de novo a cada leva de stories `Ready`) |
-| `/utf-flows` | Fase 0, etapa 3 — desenha as jornadas e os tokens de design |
-| `/utf-architecture` | Fase 0, etapa 4 — a entrevista que gera o `docs/architecture.md` |
-| `/utf-setup` | Fase 0, etapa 5 — gera o scaffold do monorepo |
+| `/utf-flows` | Fase 0, etapa 3 — desenha as jornadas e os pontos de desistência |
+| `/utf-design` | Fase 0, etapa 4 — paleta, espaçamento, tipografia e o link do protótipo |
+| `/utf-architecture` | Fase 0, etapa 5 — a entrevista que gera o `docs/architecture.md` |
+| `/utf-setup` | Fase 0, etapa 6 — gera o scaffold do monorepo |
 | `/utf-issue <n>` | Para iniciar o ciclo da Issue (spec → plano) e, no fim, para fechá-la (auditor → PR); rodado de novo, retoma de onde parou |
 | `/utf-task [n]` | Uma vez **por tarefa** do plano — sem número, executa a próxima pendente |
-| `/utf-tutor prd` · `flows` · `architecture` | Na Fase 0, antes de commitar cada documento |
+| `/utf-tutor prd` · `flows` · `design` · `architecture` | Na Fase 0, antes de commitar cada documento |
 | `/utf-tutor setup` | Depois do scaffold — monorepo, front, back e os arquivos que você não escreveu (o `/utf-setup` já chama sozinho) |
 | `/utf-tutor spec` | Antes de aprovar a spec |
 | `/utf-tutor passo <n>` | A leitura do diff arquivo por arquivo, no seu ritmo (o `/utf-task` já chama sozinho, antes do commit) |

@@ -38,6 +38,7 @@ Nada é duplicado neste projeto. Informação repetida diverge.
 | **Produto**       | `docs/prd.md`           | O que o sistema faz (Glossário, Atores, Histórias).                    |
 | **Arquitetura**   | `docs/architecture.md`  | Onde as coisas estão (estrutura, entidades, contratos).                |
 | **Jornadas**      | `docs/user-flows.md`    | O caminho do usuário e onde ele desiste.                               |
+| **Design**        | `docs/design-tokens.md` | Paleta, espaçamento e tipografia — para a IA não inventar um botão por tela. |
 | **Ficha**         | `docs/checklist.md`     | As regras da disciplina, os IDs e as entregas — a régua dos workflows. |
 | **Modelos**       | `docs/modelo-spec.md` e `docs/modelo-plan.md` | A forma do `spec.md` e do `plan.md`, comentada. Não são specs — são a régua. |
 | **Especificação** | `specs/<issue>-<slug>/` | O `spec.md` (o que fazer), o `plan.md` (tarefas técnicas) e `reviews/` (pareceres e triagem). |
