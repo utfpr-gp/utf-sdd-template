@@ -6,7 +6,7 @@
 
 > 🤖 **Este documento existe para a IA parar de inventar um botão diferente a cada
 > tela.** Não é um design system — é o mínimo que dá à prototipagem assistida algo a
-> que obedecer.
+> que obedecer. **Quando o protótipo e este documento divergirem, vale este documento.**
 >
 > ✍️ **Não preencha na mão:** rode `/utf-design` (depois do `/utf-flows`).
 

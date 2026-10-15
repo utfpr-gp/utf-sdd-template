@@ -73,6 +73,18 @@ que as telas do protótipo devem ser as das jornadas que ele acabou de desenhar,
 telas soltas: é assim que o protótipo vira insumo da prototipagem assistida por IA, em
 vez de decoração.
 
+Explique por que **três a cinco, e não todas** (guia, §3.5): a tela desenhada antes da
+spec envelhece, e quem mantém a coerência entre as telas é este documento, não o
+protótipo. As demais telas nascem no ciclo de cada história.
+
+**Confira o conteúdo das telas contra o `docs/prd.md`.** Se o MCP da ferramenta estiver
+conectado, leia o texto de cada tela; senão, peça ao aluno que o percorra com você.
+Ferramenta de protótipo inventa regra de negócio — preço, prazos, "verificado",
+"certificado", filtros que o PRD deixou fora de escopo. Cada contradição vira uma
+**pendência do protótipo** no documento; não vira requisito, e não é corrigida em
+silêncio. E registre no documento: **quando protótipo e documentos divergirem, vale o
+documento** — este, para a aparência; o `prd.md`, para o conteúdo.
+
 ## Passo 3 — Portão
 
 1. Grave `docs/design-tokens.md`.
