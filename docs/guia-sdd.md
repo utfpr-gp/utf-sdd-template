@@ -336,6 +336,30 @@ problema real, que é a IA inventar um botão diferente a cada tela, é bem meno
 Com isso no repositório, a prototipagem assistida por IA tem a que obedecer. Sem isso,
 cada tela nasce de um gosto diferente.
 
+**Por que três a cinco, e não todas.** "Três a cinco" não é um mínimo a superar — é uma
+escolha. Duas razões:
+
+- **A tela envelhece antes de ser construída.** Cada história ainda vai passar pela
+  conversa do `/utf-issue`, que quase sempre ajusta detalhes. Uma tela desenhada hoje
+  para uma história que só será feita daqui a semanas chega errada ao ciclo, e alguém
+  vai confiar nela.
+- **Quem mantém as telas coerentes é o `design-tokens.md`, não o protótipo.** Com
+  paleta, escala, tipografia e estados de botão escritos, a tela feita durante a
+  história já nasce igual às outras.
+
+Escolha as telas **arriscadas**: as das jornadas, onde há nó vermelho e onde uma decisão
+de tela errada custa caro (pagamento, um envio que depende de outra pessoa, o abandono
+no meio). **As demais nascem no ciclo de cada história**, a partir da spec aprovada e dos
+tokens.
+
+**A ferramenta de protótipo inventa regra de negócio.** Gerador de tela por IA preenche
+o vazio com o que é comum no mercado: põe preço onde o PRD decidiu não ter, promete
+"disponível imediatamente", "verificado" ou "certificado" onde a plataforma não
+confere nada, cria filtro que é non-goal. Por isso: gere as telas **depois** das
+jornadas, nunca antes, e **leia o texto** de cada tela contra o `prd.md` — conteúdo de
+protótipo não é requisito. Quando protótipo e documentos divergem, vale o documento: o
+`design-tokens.md` para a aparência, o `prd.md` para o conteúdo.
+
 As jornadas saem do `/utf-flows`; os tokens e o link do protótipo, do `/utf-design`, logo em seguida. São dois comandos porque são duas perguntas diferentes: uma é o que a pessoa **vive**, a outra é como o produto **se parece**.
 
 ### 3.6 A regra de ouro dos documentos

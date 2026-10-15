@@ -32,7 +32,9 @@ status: rascunho   # rascunho | aprovada
 
   **A estrutura é a de `docs/modelo-spec.md`** — copie-a e preencha; os comentários dela explicam cada seção e são apagados no caminho. Não invente seções novas nem pule as existentes.
 
-  Se `docs/user-flows.md` tem jornada desta história, cada nó vermelho dela vira pelo menos um critério de aceite. Acrescente a linha desta spec em `specs/README.md`, com estado `rascunho` (os estados são `rascunho`, `aprovada`, `implementada` e `bloqueada`).
+  Se `docs/user-flows.md` tem jornada desta história, cada nó vermelho dela vira pelo menos um critério de aceite.
+
+  Se a história tem tela, a referência visual é o `docs/design-tokens.md` — não o protótipo, que tem só as telas principais e pode estar desatualizado. Se a tela desta história ainda não existe no protótipo, ela nasce agora, a partir da spec aprovada e dos tokens; se existe, confira o texto dela contra os critérios desta spec — o que a tela mostra e a spec não pede é fora de escopo, não requisito. Acrescente a linha desta spec em `specs/README.md`, com estado `rascunho` (os estados são `rascunho`, `aprovada`, `implementada` e `bloqueada`).
 
 - Proponha o commit do rascunho (`spec: <slug> (#<n>) — rascunho`) e faça-o **só com o OK do usuário**.
 
